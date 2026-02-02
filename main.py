@@ -1,240 +1,234 @@
-import sys
-import os
-import operator
-from collections import deque
-import io
-from optparse import OptionParser
-from PIL import Image
+"""
+Sketch to Binary Image Converter
 
-def add_tuple(a, b):
-	return tuple(map(operator.add, a, b))
+Converts hand-drawn pencil sketches (photos of paper drawings) into crisp
+binary images with white paper and black lines, ready for SVG conversion.
+"""
 
-def sub_tuple(a, b):
-	return tuple(map(operator.sub, a, b))
-
-def neg_tuple(a):
-	return tuple(map(operator.neg, a))
-
-def direction(edge):
-	return sub_tuple(edge[1], edge[0])
-
-def magnitude(a):
-	return int(pow(pow(a[0], 2) + pow(a[1], 2), .5))
-
-def normalize(a):
-	mag = magnitude(a)
-	assert mag > 0, "Cannot normalize a zero-length vector"
-	return tuple(map(operator.truediv, a, [mag]*len(a)))
-	
-						   
-
-def svg_header(width, height):
-	return """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
-  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="%d" height="%d"
-	 xmlns="http://www.w3.org/2000/svg" version="1.1">
-""" % (width, height)
-
-def rgba_image_to_svg_pixels(im):
-	s = io.StringIO()
-	s.write(svg_header(*im.size))
-
-	width, height = im.size
-	for x in range(width):
-		for y in range(height):
-			here = (x, y)
-			rgba = im.getpixel(here)
-			if not rgba[3]:
-				continue
-			s.write("""  <rect x="%d" y="%d" width="1" height="1" style="fill:rgb%s; fill-opacity:%.3f; stroke:none;" />\n""" % (x, y, rgba[0:3], float(rgba[3]) / 255))
-		print ("Converting pixels: "+str(x*100/width) + "%")
-	s.write("""</svg>\n""")
-	return s.getvalue()
+import cv2
+import numpy as np
+from pathlib import Path
 
 
-def joined_edges(assorted_edges, keep_every_point=False):
-	pieces = []
-	piece = []
-	directions = deque([
-		(0, 1),
-		(1, 0),
-		(0, -1),
-		(-1, 0),
-		])
-	while assorted_edges:
-		if not piece:
-			piece.append(assorted_edges.pop())
-		current_direction = normalize(direction(piece[-1]))
-		while current_direction != directions[2]:
-			directions.rotate()
-		for i in range(1, 4):
-			next_end = add_tuple(piece[-1][1], directions[i])
-			next_edge = (piece[-1][1], next_end)
-			if next_edge in assorted_edges:
-				assorted_edges.remove(next_edge)
-				if i == 2 and not keep_every_point:
-					# same direction
-					piece[-1] = (piece[-1][0], next_edge[1])
-				else:
-					piece.append(next_edge)
-				if piece[0][0] == piece[-1][1]:
-					if not keep_every_point and normalize(direction(piece[0])) == normalize(direction(piece[-1])):
-						piece[-1] = (piece[-1][0], piece.pop(0)[1])
-						# same direction
-					pieces.append(piece)
-					piece = []
-				break
-		else:
-			raise Exception("Failed to find connecting edge")
-	return pieces
+def sketch_to_binary(
+    input_path: str,
+    output_path: str = None,
+    block_size: int = 21,
+    c_value: int = 10,
+    denoise_strength: int = 10,
+    morph_kernel_size: int = 1,
+    invert: bool = False,
+) -> np.ndarray:
+    """
+    Convert a hand-drawn pencil sketch image to a crisp binary image.
+    
+    This function processes photos of pencil drawings on paper to produce
+    clean black lines on white background, suitable for SVG vectorization.
+    
+    Args:
+        input_path: Path to the input image (PNG, JPG, etc.)
+        output_path: Path for the output binary image. If None, derived from input.
+        block_size: Size of pixel neighborhood for adaptive thresholding.
+                   Must be odd. Larger = smoother, smaller = more detail.
+        c_value: Constant subtracted from mean. Higher = more aggressive
+                background removal (more white), lower = keep more gray lines.
+        denoise_strength: Strength of denoising (0 to disable). Higher = smoother.
+        morph_kernel_size: Size for morphological operations to clean up.
+                          0 to disable, 1-2 for light cleanup.
+        invert: If True, invert the final result (white lines on black).
+    
+    Returns:
+        The processed binary image as a numpy array.
+    """
+    # Load the image
+    img = cv2.imread(input_path)
+    if img is None:
+        raise FileNotFoundError(f"Could not load image: {input_path}")
+    
+    print(f"Loaded image: {input_path} ({img.shape[1]}x{img.shape[0]})")
+    
+    # Convert to grayscale
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    
+    # Apply denoising to reduce paper texture and noise
+    if denoise_strength > 0:
+        gray = cv2.fastNlMeansDenoising(gray, h=denoise_strength)
+        print(f"Applied denoising with strength {denoise_strength}")
+    
+    # Apply adaptive thresholding
+    # This works well for varying lighting conditions common in photos
+    # ADAPTIVE_THRESH_GAUSSIAN_C uses weighted sum of neighborhood values
+    binary = cv2.adaptiveThreshold(
+        gray,
+        255,  # max value (white)
+        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+        cv2.THRESH_BINARY,
+        block_size,  # neighborhood size
+        c_value  # constant subtracted from mean
+    )
+    print(f"Applied adaptive threshold (block={block_size}, C={c_value})")
+    
+    # Optional morphological operations to clean up the result
+    if morph_kernel_size > 0:
+        kernel = np.ones((morph_kernel_size, morph_kernel_size), np.uint8)
+        
+        # Close small gaps in lines
+        binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
+        
+        # Remove small noise spots
+        binary = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)
+        print(f"Applied morphological cleanup (kernel={morph_kernel_size})")
+    
+    # Invert if requested (for white lines on black)
+    if invert:
+        binary = cv2.bitwise_not(binary)
+        print("Inverted result")
+    
+    # Determine output path
+    if output_path is None:
+        input_p = Path(input_path)
+        output_path = str(input_p.parent / f"{input_p.stem}_binary.png")
+    
+    # Save the result
+    cv2.imwrite(output_path, binary)
+    print(f"Saved binary image to: {output_path}")
+    
+    return binary
 
 
-def rgba_image_to_svg_contiguous(im, keep_every_point=False):
-
-	# collect contiguous pixel groups
-	
-	adjacent = ((1, 0), (0, 1), (-1, 0), (0, -1))
-	visited = Image.new("1", im.size, 0)
-	
-	color_pixel_lists = {}
-
-	width, height = im.size
-	for x in range(width):
-		for y in range(height):
-			here = (x, y)
-			if visited.getpixel(here):
-				continue
-			rgba = im.getpixel((x, y))
-			if not rgba[3]:
-				continue
-			piece = []
-			queue = [here]
-			visited.putpixel(here, 1)
-			while queue:
-				here = queue.pop()
-				for offset in adjacent:
-					neighbour = add_tuple(here, offset)
-					if not (0 <= neighbour[0] < width) or not (0 <= neighbour[1] < height):
-						continue
-					if visited.getpixel(neighbour):
-						continue
-					neighbour_rgba = im.getpixel(neighbour)
-					if neighbour_rgba != rgba:
-						continue
-					queue.append(neighbour)
-					visited.putpixel(neighbour, 1)
-				piece.append(here)
-
-			if not rgba in color_pixel_lists:
-				color_pixel_lists[rgba] = []
-			color_pixel_lists[rgba].append(piece)
-		print ("Converting image: "+str(round(x*100/width, 2)) + "%")
-	del adjacent
-	del visited
-
-	# calculate clockwise edges of pixel groups
-
-	edges = {
-		(-1, 0):((0, 0), (0, 1)),
-		(0, 1):((0, 1), (1, 1)),
-		(1, 0):((1, 1), (1, 0)),
-		(0, -1):((1, 0), (0, 0)),
-		}
-			
-	color_edge_lists = {}
-
-	counter = 0
-	for rgba, pieces in color_pixel_lists.items():
-		for piece_pixel_list in pieces:
-			edge_set = set([])
-			piece_pixel_set = set(piece_pixel_list)  # O(1) lookups instead of O(n)
-			for coord in piece_pixel_list:
-				for offset, (start_offset, end_offset) in edges.items():
-					neighbour = add_tuple(coord, offset)
-					start = add_tuple(coord, start_offset)
-					end = add_tuple(coord, end_offset)
-					edge = (start, end)
-					if neighbour in piece_pixel_set:
-						continue
-					edge_set.add(edge)
-			if not rgba in color_edge_lists:
-				color_edge_lists[rgba] = []
-			color_edge_lists[rgba].append(edge_set)
-		counter = counter+1
-		print ("Calculating edges: "+str(round(counter*100/len(color_pixel_lists.items()),2)) + "%")
-	del color_pixel_lists
-	del edges
-
-	# join edges of pixel groups
-
-	color_joined_pieces = {}
-
-	for color, pieces in color_edge_lists.items():
-		color_joined_pieces[color] = []
-		for assorted_edges in pieces:
-			color_joined_pieces[color].append(joined_edges(assorted_edges, keep_every_point))
-
-	s = io.StringIO()
-	s.write(svg_header(*im.size))
-
-	counter = 0
-	for color, shapes in color_joined_pieces.items():
-		for shape in shapes:
-			s.write(""" <path d=" """)
-			for sub_shape in shape:
-				here = sub_shape.pop(0)[0]
-				s.write(""" M %d,%d """ % here)
-				for edge in sub_shape:
-					here = edge[0]
-					s.write(""" L %d,%d """ % here)
-				s.write(""" Z """)
-			s.write(""" " style="fill:rgb%s; fill-opacity:%.3f; stroke:none;" />\n""" % (color[0:3], float(color[3]) / 255))
-		counter = counter+1
-		print ("Joining edges: "+str(round(counter*100/len(color_joined_pieces.items()), 2)) + "%")
-	s.write("""</svg>\n""")
-	return s.getvalue()
-	
-				
-		
+def process_with_multiple_settings(
+    input_path: str,
+    output_dir: str = None,
+) -> dict:
+    """
+    Process the image with multiple threshold settings for comparison.
+    
+    Useful for finding the best parameters for your specific sketch style.
+    
+    Args:
+        input_path: Path to the input image.
+        output_dir: Directory for output images. If None, uses input directory.
+    
+    Returns:
+        Dictionary mapping setting names to output paths.
+    """
+    input_p = Path(input_path)
+    if output_dir is None:
+        output_dir = input_p.parent
+    else:
+        output_dir = Path(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Different settings to try
+    settings = {
+        "soft": {
+            "block_size": 31,
+            "c_value": 5,
+            "denoise_strength": 5,
+            "morph_kernel_size": 0,
+        },
+        "medium": {
+            "block_size": 21,
+            "c_value": 10,
+            "denoise_strength": 10,
+            "morph_kernel_size": 1,
+        },
+        "crisp": {
+            "block_size": 15,
+            "c_value": 15,
+            "denoise_strength": 15,
+            "morph_kernel_size": 1,
+        },
+        "aggressive": {
+            "block_size": 11,
+            "c_value": 20,
+            "denoise_strength": 20,
+            "morph_kernel_size": 2,
+        },
+    }
+    
+    outputs = {}
+    for name, params in settings.items():
+        output_path = str(output_dir / f"{input_p.stem}_{name}.png")
+        print(f"\n--- Processing with '{name}' settings ---")
+        sketch_to_binary(input_path, output_path, **params)
+        outputs[name] = output_path
+    
+    return outputs
 
 
-def png_to_svg(filename, contiguous=None, keep_every_point=None):
-	try:
-		im = Image.open(filename)
-	except IOError as e:
-		sys.stderr.write('%s: Could not open as image file\n' % filename)
-		sys.exit(1)
-	im_rgba = im.convert('RGBA')
-	
-	if contiguous:
-		return rgba_image_to_svg_contiguous(im_rgba, keep_every_point)
-	else:
-		return rgba_image_to_svg_pixels(im_rgba)
-	
+def main():
+    """Main entry point for processing the example sketch."""
+    import argparse
+    
+    parser = argparse.ArgumentParser(
+        description="Convert hand-drawn sketches to crisp binary images"
+    )
+    parser.add_argument(
+        "input",
+        nargs="?",
+        default="example_good_sketch.png",
+        help="Input image path (default: example_good_sketch.png)"
+    )
+    parser.add_argument(
+        "-o", "--output",
+        help="Output image path (default: <input>_binary.png)"
+    )
+    parser.add_argument(
+        "--compare",
+        action="store_true",
+        help="Generate multiple versions with different settings for comparison"
+    )
+    parser.add_argument(
+        "--block-size",
+        type=int,
+        default=21,
+        help="Block size for adaptive threshold (odd number, default: 21)"
+    )
+    parser.add_argument(
+        "--c-value",
+        type=int,
+        default=10,
+        help="C constant for adaptive threshold (default: 10)"
+    )
+    parser.add_argument(
+        "--denoise",
+        type=int,
+        default=10,
+        help="Denoising strength, 0 to disable (default: 10)"
+    )
+    parser.add_argument(
+        "--morph",
+        type=int,
+        default=1,
+        help="Morphological kernel size, 0 to disable (default: 1)"
+    )
+    parser.add_argument(
+        "--invert",
+        action="store_true",
+        help="Invert result (white lines on black)"
+    )
+    
+    args = parser.parse_args()
+    
+    if args.compare:
+        print(f"Processing {args.input} with multiple settings for comparison...")
+        outputs = process_with_multiple_settings(args.input)
+        print("\n=== Comparison complete ===")
+        print("Generated files:")
+        for name, path in outputs.items():
+            print(f"  {name}: {path}")
+    else:
+        sketch_to_binary(
+            args.input,
+            args.output,
+            block_size=args.block_size,
+            c_value=args.c_value,
+            denoise_strength=args.denoise,
+            morph_kernel_size=args.morph,
+            invert=args.invert,
+        )
 
 
 if __name__ == "__main__":
-	parser = OptionParser()
-	parser.add_option("-p", "--pixels", action="store_false", dest="contiguous", help="Generate a separate shape for each pixel; do not group pixels into contiguous areas of the same colour", default=True)
-	parser.add_option("-1", "--one", action="store_true", dest="keep_every_point", help="1-pixel-width edges on contiguous shapes; default is to remove intermediate points on straight line edges. ", default=None)
-	(options, args) = parser.parse_args()
-	
-
-
-if(len(sys.argv))<2:
-	for file in os.listdir("."):
-		if file.endswith(".png"):
-			print ("Converting "+file)
-			f = open(file.replace(".png",".svg"),'w')
-			f.write(png_to_svg(file, contiguous=options.contiguous, keep_every_point=options.keep_every_point))
-else:
-	for file in sys.argv:
-		if file.endswith(".png"):
-			print ("Converting "+file)
-			f = open(file.replace(".png",".svg"),'w')
-			f.write(png_to_svg(file, contiguous=options.contiguous, keep_every_point=options.keep_every_point))
-		
-
-
-
+    main()
