@@ -5,6 +5,8 @@ Converts hand-drawn pencil sketches (photos of paper drawings) into crisp
 binary images with white paper and black lines, ready for SVG conversion.
 """
 
+# python binarization.py example_good_sketch.png
+
 import cv2
 import numpy as np
 from pathlib import Path

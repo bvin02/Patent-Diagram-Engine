@@ -5,6 +5,8 @@ Separates individual strokes from a binarized sketch image.
 Each connected stroke region gets a unique label/mask.
 """
 
+# python stroke_segregation.py example_good_sketch_binary_preprocessed.png --stats
+
 import cv2
 import numpy as np
 from pathlib import Path

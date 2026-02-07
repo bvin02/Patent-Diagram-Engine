@@ -5,6 +5,8 @@ Detects corners, endpoints, and junctions in binarized sketch lines.
 These points become anchors for SVG path generation downstream.
 """
 
+# python corner_segregation.py example_good_sketch_binary_preprocessed.png
+
 import cv2
 import numpy as np
 from pathlib import Path
