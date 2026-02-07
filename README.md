@@ -16,13 +16,13 @@ Transforms photos of pencil drawings into pure black-and-white images by separat
 
 ```bash
 # Default conversion
-python main.py sketch.png
+python binarization.py sketch.png
 
 # Compare multiple threshold settings
-python main.py --compare sketch.png
+python binarization.py --compare sketch.png
 
 # Custom parameters
-python main.py sketch.png --block-size 15 --c-value 12 --denoise 10
+python binarization.py sketch.png --block-size 15 --c-value 12 --denoise 10
 ```
 
 ### Parameters

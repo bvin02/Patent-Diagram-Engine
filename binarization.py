@@ -182,20 +182,20 @@ def main():
     parser.add_argument(
         "--block-size",
         type=int,
-        default=21,
-        help="Block size for adaptive threshold (odd number, default: 21)"
+        default=15,
+        help="Block size for adaptive threshold (odd number, default: 15)"
     )
     parser.add_argument(
         "--c-value",
         type=int,
-        default=10,
-        help="C constant for adaptive threshold (default: 10)"
+        default=15,
+        help="C constant for adaptive threshold (default: 15)"
     )
     parser.add_argument(
         "--denoise",
         type=int,
-        default=10,
-        help="Denoising strength, 0 to disable (default: 10)"
+        default=15,
+        help="Denoising strength, 0 to disable (default: 15)"
     )
     parser.add_argument(
         "--morph",
