@@ -6,6 +6,7 @@ These points become anchors for SVG path generation downstream.
 """
 
 # python corner_segregation.py example_good_sketch_binary_preprocessed.png
+# python corner_segregation.py example_good_sketch_binary_preprocessed.png --debug
 
 import cv2
 import numpy as np
@@ -19,6 +20,7 @@ def detect_corners(
     min_distance: int = 15,
     max_corners: int = 500,
     use_skeleton: bool = True,
+    debug: bool = False,
 ) -> tuple[np.ndarray, dict]:
     """
     Detect corners and junctions in a binary sketch image.
@@ -33,30 +35,47 @@ def detect_corners(
         min_distance: Minimum distance between corners (NMS radius)
         max_corners: Maximum number of corners to detect
         use_skeleton: Whether to skeletonize first (recommended)
+        debug: If True, save intermediate step images
     
     Returns:
         Tuple of (skeleton_image, points_dict)
         - skeleton_image: The skeletonized line image
         - points_dict: Dict with 'corners', 'endpoints', 'junctions' lists
     """
+    # Setup debug output directory
+    input_p = Path(input_path)
+    debug_dir = input_p.parent / "debug_corners"
+    if debug:
+        debug_dir.mkdir(exist_ok=True)
+        print(f"Debug output directory: {debug_dir}")
+    
     # Load binary image
     img = cv2.imread(input_path, cv2.IMREAD_GRAYSCALE)
     if img is None:
         raise FileNotFoundError(f"Could not load image: {input_path}")
     
-    print(f"Loaded image: {input_path} ({img.shape[1]}x{img.shape[0]})")
+    print(f"[1/6] Loaded image: {input_path} ({img.shape[1]}x{img.shape[0]})")
+    if debug:
+        cv2.imwrite(str(debug_dir / "01_input.png"), img)
     
     # Invert for processing (white lines on black)
     inverted = cv2.bitwise_not(img)
+    print(f"[2/6] Inverted image (white lines on black)")
+    if debug:
+        cv2.imwrite(str(debug_dir / "02_inverted.png"), inverted)
     
     # Skeletonize to get 1-pixel wide lines
     if use_skeleton:
         skeleton = skeletonize(inverted)
-        print("Applied skeletonization")
+        print(f"[3/6] Applied skeletonization")
     else:
         skeleton = inverted
+        print(f"[3/6] Skipped skeletonization")
     
-    # Shi-Tomasi corner detection (better than Harris for this use case)
+    if debug:
+        cv2.imwrite(str(debug_dir / "03_skeleton.png"), skeleton)
+    
+    # Shi-Tomasi corner detection
     corners_raw = cv2.goodFeaturesToTrack(
         skeleton,
         maxCorners=max_corners,
@@ -67,12 +86,27 @@ def detect_corners(
     corner_points = []
     if corners_raw is not None:
         corner_points = [(int(c[0][0]), int(c[0][1])) for c in corners_raw]
-    print(f"Detected {len(corner_points)} corner points")
+    print(f"[4/6] Detected {len(corner_points)} corner points (Shi-Tomasi)")
     
-    # Detect endpoints and junctions from skeleton topology
+    if debug:
+        corners_vis = create_single_point_visualization(img, skeleton, corner_points, (0, 255, 0), "Corners")
+        cv2.imwrite(str(debug_dir / "04_corners.png"), corners_vis)
+    
+    # Detect endpoints
     endpoints = detect_endpoints(skeleton, min_distance=min_distance // 2)
+    print(f"[5/6] Detected {len(endpoints)} endpoints (1 neighbor)")
+    
+    if debug:
+        endpoints_vis = create_single_point_visualization(img, skeleton, endpoints, (0, 0, 255), "Endpoints")
+        cv2.imwrite(str(debug_dir / "05_endpoints.png"), endpoints_vis)
+    
+    # Detect junctions
     junctions = detect_junctions(skeleton, min_distance=min_distance // 2)
-    print(f"Detected {len(endpoints)} endpoints, {len(junctions)} junctions")
+    print(f"[6/6] Detected {len(junctions)} junctions (3+ neighbors)")
+    
+    if debug:
+        junctions_vis = create_single_point_visualization(img, skeleton, junctions, (255, 0, 255), "Junctions")
+        cv2.imwrite(str(debug_dir / "06_junctions.png"), junctions_vis)
     
     # Compile all points
     all_points = {
@@ -81,16 +115,44 @@ def detect_corners(
         "junctions": junctions,
     }
     
-    # Create visualization
+    # Create final combined visualization
     if output_path is None:
-        input_p = Path(input_path)
         output_path = str(input_p.parent / f"{input_p.stem}_corners.png")
     
     vis = create_corner_visualization(img, all_points, skeleton)
     cv2.imwrite(output_path, vis)
-    print(f"Saved corner visualization to: {output_path}")
+    print(f"Saved final visualization to: {output_path}")
+    
+    if debug:
+        cv2.imwrite(str(debug_dir / "07_combined.png"), vis)
+        print(f"\nDebug images saved to: {debug_dir}/")
     
     return skeleton, all_points
+
+
+def create_single_point_visualization(
+    original: np.ndarray,
+    skeleton: np.ndarray,
+    points: list[tuple[int, int]],
+    color: tuple[int, int, int],
+    label: str,
+) -> np.ndarray:
+    """Create visualization for a single type of point."""
+    vis = cv2.cvtColor(original, cv2.COLOR_GRAY2BGR)
+    
+    # Overlay skeleton in light gray
+    vis[skeleton > 0] = [200, 200, 200]
+    
+    # Draw points
+    for (x, y) in points:
+        cv2.circle(vis, (x, y), 4, color, -1)
+        cv2.circle(vis, (x, y), 5, (0, 0, 0), 1)
+    
+    # Add label
+    cv2.putText(vis, f"{label}: {len(points)}", (10, 30), 
+                cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
+    
+    return vis
 
 
 def skeletonize(binary_img: np.ndarray) -> np.ndarray:
@@ -250,14 +312,14 @@ def main():
     parser.add_argument(
         "--quality",
         type=float,
-        default=0.05,
-        help="Corner quality threshold 0-1 (default: 0.05)"
+        default=0.25,
+        help="Corner quality threshold 0-1 (default: 0.25)"
     )
     parser.add_argument(
         "--min-distance",
         type=int,
-        default=15,
-        help="Minimum distance between points (default: 15)"
+        default=5,
+        help="Minimum distance between points (default: 5)"
     )
     parser.add_argument(
         "--max-corners",
@@ -270,6 +332,11 @@ def main():
         action="store_true",
         help="Skip skeletonization step"
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Save intermediate step images to debug_corners/"
+    )
     
     args = parser.parse_args()
     
@@ -280,6 +347,7 @@ def main():
         min_distance=args.min_distance,
         max_corners=args.max_corners,
         use_skeleton=not args.no_skeleton,
+        debug=args.debug,
     )
     
     print(f"\nTotal keypoints: {len(get_all_keypoints(points))}")
