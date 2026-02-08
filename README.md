@@ -13,6 +13,9 @@ pip install opencv-python numpy
 ## Stage 1: Pre-Processing
 Input: photo
 Output: clean binary mask (black ink on white for human readability, plus a foreground mask representation internally)
+```bash
+python preprocess.py examples/clean.png --debug
+```
 
 ## Stage 2: Distance Transform
 Input: binary mask
