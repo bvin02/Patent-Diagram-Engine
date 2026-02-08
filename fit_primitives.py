@@ -33,8 +33,9 @@ DEFAULT_CONFIG = {
     "rdp_epsilon_ref": 1.0,
     
     # Line fitting
-    "line_min_straightness": 0.985,
+    "line_min_straightness": 0.975,  # Relaxed from 0.985 for better editability
     "line_min_straightness_detail": 0.995,
+    "line_simplicity_factor": 1.15,  # Line wins if rms <= factor * best_rms
     
     # Arc fitting
     "arc_min_length_px": 40,
@@ -42,6 +43,7 @@ DEFAULT_CONFIG = {
     "arc_min_turning": 0.15,
     "arc_min_sweep_consistency": 0.8,
     "arc_max_radius_px": 5000,
+    "arc_radius_as_line_px": 2000,  # If arc radius > this, treat as line candidate
     
     # Error tolerances (defaults, overridden by stroke width if available)
     "error_tolerance_px_default": 1.0,
@@ -690,15 +692,32 @@ def process_edge(edge: dict, nodes_by_id: dict, config: dict,
             chosen = line_candidate
         else:
             chosen = polyline_candidate
-    else:  # structural
+    else:  # structural - prioritize editability
+        # Collect valid candidates with their RMS errors
+        valid_candidates = []
         if line_candidate["passed"]:
-            chosen = line_candidate
-        elif arc_candidate is not None and arc_candidate["passed"]:
-            chosen = arc_candidate
-        elif bezier_candidate["passed"] and bezier_rms < 3.0:
-            chosen = bezier_candidate
-        else:
+            valid_candidates.append(("line", line_candidate, line_rms))
+        if arc_candidate is not None and arc_candidate["passed"]:
+            # Demote large-radius arcs (nearly straight, better as line)
+            arc_radius = arc_candidate.get("radius", 0)
+            if arc_radius <= config["arc_radius_as_line_px"]:
+                valid_candidates.append(("arc", arc_candidate, arc_rms))
+        if bezier_candidate["passed"] and bezier_rms < 3.0:
+            valid_candidates.append(("cubic", bezier_candidate, bezier_rms))
+        
+        if not valid_candidates:
+            # Fallback to polyline (keeps sharp turns intact)
             chosen = polyline_candidate
+        else:
+            # Find best candidate by RMS
+            best_type, best_cand, best_rms = min(valid_candidates, key=lambda x: x[2])
+            
+            # "Line wins by simplicity" rule: if line is close to best, pick line
+            line_simplicity = config["line_simplicity_factor"]
+            if line_candidate["passed"] and line_rms <= line_simplicity * best_rms and line_max <= max_error_cap:
+                chosen = line_candidate
+            else:
+                chosen = best_cand
     
     # Compute confidence
     if chosen["type"] == "line":
@@ -1154,41 +1173,22 @@ if __name__ == "__main__":
 
 
 # ---------------------------------------------------------------------------
-# Verification Instructions
+# Notes for Debug Artifacts
 # ---------------------------------------------------------------------------
-"""
-How to validate Stage 6 output:
-
-1) Check 01_edges_bucket_vis.png:
-   - Main strokes should be structural (green)
-   - Hatching/detail should be gray
-
-2) Check 02_chosen_type_vis.png:
-   - Most main strokes should be blue (lines)
-   - Curved sections magenta (arcs) or orange (cubics)
-   - Details mostly gray (polylines)
-
-3) Inspect 06_top20_edge_XX.png gallery:
-   - Each longest edge should be fitted correctly with low RMS error
-   - Magenta overlay should closely follow green polyline
-
-4) Check 03_error_heatmap_vis.png:
-   - High error (red/purple) should be limited to noisy/cluttered regions
-   - Main strokes should be green/yellow (low error)
-
-5) If arcs look wrong:
-   - Increase arc_min_sweep_consistency (default 0.80)
-   - Increase arc_min_turning (default 0.15)
-   
-6) If too few lines fitted:
-   - Lower line_min_straightness (default 0.985)
-   - Increase error_tolerance_px_default
-
-7) If cubics have crazy control points:
-   - Increase bezier_regularization (default 1e-2)
-   - Decrease bezier_max_ctrl_dist_factor (default 2.0)
-
-8) Metrics sanity checks:
-   - structural_line_fraction should be > 0.4 for clean technical drawings
-   - rms_median_structural should be < 1.5 px typically
-"""
+#
+# 01_edges_bucket_vis.png
+#    - Main strokes are structural (green)
+#    - Hatching/detail is gray
+#
+# 02_chosen_type_vis.png
+#    - Most main strokes are blue (lines)
+#    - Curved sections magenta (arcs) or orange (cubics)
+#    - Details mostly gray (polylines)
+#
+# 03_error_heatmap_vis.png
+#    - High error (red/purple) should be limited to noisy/cluttered regions
+#    - Main strokes should be green/yellow (low error)
+#
+# <06-25>_top20_edge_XX.png (multiple images)
+#    - Each longest edge should be fitted correctly with low RMS error
+#    - Magenta overlay should closely follow green polyline
