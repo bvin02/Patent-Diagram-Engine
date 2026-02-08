@@ -20,6 +20,9 @@ python preprocess.py examples/clean.png --debug
 ## Stage 2: Distance Transform
 Input: binary mask
 Output: DT field saved as `.npy` + a visualization PNG + `stroke_width.json`
+```bash
+python distance_transform.py runs/clean/10_preprocess/out/output_mask.png --debug
+```
 
 ## Stage 3: Ridge Extraction
 Input: binary mask + DT
