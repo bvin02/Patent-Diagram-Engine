@@ -36,6 +36,7 @@ DEFAULT_CONFIG = {
     "min_ridge_component_area": 2,    # remove ridge components smaller than this
     "dilate_radius": 2,               # radius for dilating sparse local maxima
     "apply_thinning": True,           # thin to 1-pixel skeleton after dilation
+    "spur_prune_length": 1,           # remove spurs shorter than this (pixels)
     "plateau_thin": False,            # optional plateau thinning (before dilation)
     "dt_vis_clip_percentile": 99.0,   # percentile for clipping DT visualization
     "ridge_distance_clip": 5.0,       # clip distance to ridge for visualization
@@ -251,6 +252,7 @@ def dilate_and_thin(localmax: np.ndarray, fg: np.ndarray, config: dict) -> tuple
     1. Dilate local maxima to connect nearby points
     2. AND with foreground to stay inside strokes
     3. Apply morphological thinning to get 1-pixel skeleton
+    4. AND with foreground again (thinning can sometimes expand slightly)
     
     Args:
         localmax: Boolean local maximum mask (sparse points).
@@ -286,13 +288,57 @@ def dilate_and_thin(localmax: np.ndarray, fg: np.ndarray, config: dict) -> tuple
     if apply_thinning:
         # skimage.morphology.thin expects boolean array
         connected = thin(connected)
+        # Step 4: Enforce ridge stays inside foreground after thinning
+        # (thinning can occasionally produce boundary artifacts)
+        connected = connected & fg
     
     return connected, ridge_before_thin
 
 
+def prune_spurs(ridge: np.ndarray, max_spur_length: int) -> np.ndarray:
+    """
+    Remove short spurs (branches ending in an endpoint) from ridge.
+    
+    Iteratively removes endpoint pixels if their removal does not disconnect
+    the ridge significantly. This removes small artifacts from thinning.
+    
+    Args:
+        ridge: Boolean ridge mask (1-pixel skeleton).
+        max_spur_length: Maximum length of spurs to remove.
+        
+    Returns:
+        Pruned ridge mask.
+    """
+    if max_spur_length <= 0:
+        return ridge
+    
+    pruned = ridge.copy()
+    
+    # Iteratively remove endpoints up to max_spur_length times
+    for _ in range(max_spur_length):
+        # Find endpoints (pixels with exactly 1 neighbor)
+        binary = pruned.astype(np.float32)
+        kernel = np.array([
+            [1, 1, 1],
+            [1, 0, 1],
+            [1, 1, 1]
+        ], dtype=np.float32)
+        neighbor_count = cv2.filter2D(binary, -1, kernel)
+        
+        endpoints = pruned & (neighbor_count.astype(np.int32) == 1)
+        
+        if not endpoints.any():
+            break
+        
+        # Remove endpoints
+        pruned = pruned & ~endpoints
+    
+    return pruned
+
+
 def cleanup_ridge(ridge: np.ndarray, config: dict) -> tuple:
     """
-    Clean up ridge mask by removing small components.
+    Clean up ridge mask by pruning spurs and removing small components.
     
     Args:
         ridge: Boolean ridge mask.
@@ -302,13 +348,18 @@ def cleanup_ridge(ridge: np.ndarray, config: dict) -> tuple:
         Tuple of (cleaned_mask, stats_dict).
     """
     min_area = config["min_ridge_component_area"]
+    spur_length = config.get("spur_prune_length", 3)
+    
+    # Prune short spurs (artifacts from thinning)
+    ridge_pruned = prune_spurs(ridge, spur_length)
     
     # Remove small components
-    ridge_clean, count_raw, count_final = remove_small_components(ridge, min_area)
+    ridge_clean, count_raw, count_final = remove_small_components(ridge_pruned, min_area)
     
     stats = {
         "component_count_raw": count_raw,
         "component_count_final": count_final,
+        "spur_prune_length": spur_length,
     }
     
     return ridge_clean, stats
