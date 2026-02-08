@@ -33,7 +33,7 @@ DEFAULT_CONFIG = {
     "rdp_epsilon_ref": 1.0,
     
     # Line fitting
-    "line_min_straightness": 0.975,  # Relaxed from 0.985 for better editability
+    "line_min_straightness": 0.9,  # Relaxed from 0.985 for better editability
     "line_min_straightness_detail": 0.995,
     "line_simplicity_factor": 1.15,  # Line wins if rms <= factor * best_rms
     

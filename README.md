@@ -55,3 +55,6 @@ python fit_primitives.py runs/clean/50_graph_clean/out/graph_clean.json --mask r
 ## Stage 7: SVG Output
 Input: `primitives.json`
 Output: final editable `output.svg` + raster preview PNG
+```bash
+python emit_svg.py runs/clean/60_fit/out/primitives.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
+```
