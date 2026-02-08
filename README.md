@@ -48,6 +48,9 @@ python graph_cleanup.py runs/clean/40_graph_raw/out/graph_raw.json --mask runs/c
 ## Stage 6: Primitive Fitting
 Input: `graph_clean.json`
 Output: `primitives.json` + overlay PNG (lines, arcs, beziers)
+```bash
+python fit_primitives.py runs/clean/50_graph_clean/out/graph_clean.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
+```
 
 ## Stage 7: SVG Output
 Input: `primitives.json`
