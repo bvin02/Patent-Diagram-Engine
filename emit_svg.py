@@ -204,9 +204,13 @@ def arc_to_svg_path(arc: dict, precision: int, split_threshold_deg: float = 175.
     
     # SVG flags
     # large-arc-flag: 1 if sweep > 180 degrees per segment
-    # sweep-flag: In SVG with y-down, sweep=1 means clockwise
-    # Since our coords are y-down and cw=True means clockwise in our system:
-    svg_sweep_flag = 1 if cw else 0
+    # sweep-flag: In SVG with y-down coords, sweep=1 means visually clockwise on screen
+    # Our cw is computed using arctan2 in standard math coords (y-up):
+    #   - cw=True means angles decrease, which is CW in y-up coords
+    #   - But in y-down screen coords, this appears as CCW visually
+    # So we need to INVERT the mapping:
+    svg_sweep_flag = 0 if cw else 1
+
     
     # Build path
     parts = []
