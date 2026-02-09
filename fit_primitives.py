@@ -30,7 +30,14 @@ from utils.artifacts import make_run_dir, StageArtifacts
 DEFAULT_CONFIG = {
     # Edge bucketing
     "structural_min_length_px": 30,
-    "rdp_epsilon_ref": 1.0,
+    "rdp_epsilon_ref": 1.25,  # For curves
+    "rdp_epsilon_straight": 2.0,  # For straight/segmented lines
+    "rdp_straightness_threshold": 0.98,  # If straightness > this, use epsilon_straight
+    
+    # Parallel line detection (cross-hatching)
+    "parallel_angle_tolerance_deg": 5.0,  # Max angle diff to consider parallel
+    "parallel_min_neighbors": 2,  # Min neighbors to flag as hatching
+    "parallel_search_radius_px": 50.0,  # Search radius for neighbors
     
     # Line fitting
     "line_min_straightness": 0.9,  # Relaxed from 0.985 for better editability
@@ -214,6 +221,36 @@ def remove_duplicate_points(points: np.ndarray) -> np.ndarray:
         if np.allclose(points[i], points[i-1], atol=1e-6):
             mask[i] = False
     return points[mask]
+
+
+def compute_edge_direction(points: np.ndarray) -> Optional[np.ndarray]:
+    """
+    Compute normalized direction vector of an edge (endpoint to endpoint).
+    Returns None if endpoints are too close.
+    """
+    if len(points) < 2:
+        return None
+    direction = points[-1] - points[0]
+    length = np.linalg.norm(direction)
+    if length < 1e-9:
+        return None
+    return direction / length
+
+
+def get_adaptive_rdp_epsilon(points: np.ndarray, config: dict) -> float:
+    """
+    Choose RDP epsilon based on straightness of the polyline.
+    Straight lines use larger epsilon (fewer points), curves use smaller.
+    """
+    straightness = compute_straightness(points)
+    threshold = config.get("rdp_straightness_threshold", 0.98)
+    
+    if straightness >= threshold:
+        # Fairly straight - use larger epsilon for cleaner output
+        return config.get("rdp_epsilon_straight", 2.0)
+    else:
+        # Curved - use smaller epsilon to preserve detail
+        return config.get("rdp_epsilon_ref", 1.0)
 
 
 def deterministic_palette(n: int) -> List[Tuple[int, int, int]]:
@@ -523,12 +560,111 @@ def create_polyline_primitive(points: np.ndarray) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Parallel Line Detection (Cross-Hatching)
+# ---------------------------------------------------------------------------
+
+def detect_parallel_edges(edges: List[dict], config: dict) -> set:
+    """
+    Detect edges that are part of parallel hatching patterns.
+    
+    An edge is considered parallel if it has multiple nearby neighbors
+    with similar direction. These edges should be fitted as lines.
+    
+    Args:
+        edges: List of edge dicts from graph
+        config: Configuration dict
+        
+    Returns:
+        Set of edge IDs that are parallel (hatching)
+    """
+    angle_tol = np.radians(config.get("parallel_angle_tolerance_deg", 5.0))
+    min_neighbors = config.get("parallel_min_neighbors", 2)
+    search_radius = config.get("parallel_search_radius_px", 50.0)
+    
+    # Precompute edge info: direction and midpoint
+    edge_info = []
+    for edge in edges:
+        polyline = np.array(edge["polyline"], dtype=np.float64)
+        if len(polyline) < 2:
+            continue
+        
+        # Direction vector (normalized)
+        direction = compute_edge_direction(polyline)
+        if direction is None:
+            continue
+        
+        # Midpoint
+        midpoint = polyline[len(polyline) // 2]
+        
+        # Length
+        length = compute_path_length(polyline)
+        
+        edge_info.append({
+            "id": edge["id"],
+            "direction": direction,
+            "midpoint": midpoint,
+            "length": length
+        })
+    
+    if len(edge_info) < 3:
+        return set()
+    
+    # Build KD-tree on midpoints
+    midpoints = np.array([e["midpoint"] for e in edge_info])
+    tree = KDTree(midpoints)
+    
+    parallel_ids = set()
+    
+    for i, info in enumerate(edge_info):
+        # Skip very long edges (likely structural, not hatching)
+        if info["length"] > 150:
+            continue
+        
+        # Find neighbors within search radius
+        indices = tree.query_ball_point(info["midpoint"], search_radius)
+        
+        # Count neighbors with similar direction
+        parallel_count = 0
+        dir_i = info["direction"]
+        
+        for j in indices:
+            if j == i:
+                continue
+            
+            dir_j = edge_info[j]["direction"]
+            
+            # Check angle between directions
+            # Use absolute dot product since direction can be flipped
+            dot = abs(np.dot(dir_i, dir_j))
+            dot = np.clip(dot, -1.0, 1.0)
+            angle = np.arccos(dot)
+            
+            if angle <= angle_tol:
+                parallel_count += 1
+        
+        if parallel_count >= min_neighbors:
+            parallel_ids.add(info["id"])
+    
+    return parallel_ids
+
+
+# ---------------------------------------------------------------------------
 # Edge Processing
 # ---------------------------------------------------------------------------
 
 def process_edge(edge: dict, nodes_by_id: dict, config: dict, 
-                 error_tol: float, max_error_cap: float) -> dict:
-    """Process a single edge and fit primitives."""
+                 error_tol: float, max_error_cap: float,
+                 is_parallel: bool = False) -> dict:
+    """Process a single edge and fit primitives.
+    
+    Args:
+        edge: Edge dict from graph
+        nodes_by_id: Node lookup
+        config: Configuration
+        error_tol: RMS error tolerance
+        max_error_cap: Max error cap
+        is_parallel: If True, force line fitting (parallel hatching detected)
+    """
     
     # Extract and clean polyline
     raw_polyline = np.array(edge["polyline"], dtype=np.float64)
@@ -541,8 +677,8 @@ def process_edge(edge: dict, nodes_by_id: dict, config: dict,
     length_px = compute_path_length(points)
     bucket = "structural" if length_px >= config["structural_min_length_px"] else "detail"
     
-    # Simplify polyline
-    epsilon = config["rdp_epsilon_ref"]
+    # Use adaptive RDP epsilon based on straightness
+    epsilon = get_adaptive_rdp_epsilon(points, config)
     simplified = rdp_simplify(points, epsilon)
     if len(simplified) < 2:
         simplified = points[:2] if len(points) >= 2 else points
@@ -687,7 +823,13 @@ def process_edge(edge: dict, nodes_by_id: dict, config: dict,
     # --- Selection logic ---
     chosen = None
     
-    if bucket == "detail":
+    # Force line for parallel edges (cross-hatching)
+    if is_parallel and line_max <= max_error_cap * 1.5:
+        # Parallel hatching detected - force line fitting with relaxed tolerance
+        chosen = line_candidate
+        line_candidate["passed"] = True
+        line_candidate["fail_reason"] = None
+    elif bucket == "detail":
         if line_candidate["passed"]:
             chosen = line_candidate
         else:
@@ -883,12 +1025,19 @@ def fit_primitives(
     # Create artifacts
     artifacts = StageArtifacts(run_dir, 60, "fit", debug=debug)
     
+    # Detect parallel edges (cross-hatching)
+    parallel_edge_ids = detect_parallel_edges(edges, config)
+    if parallel_edge_ids:
+        print(f"Parallel hatching detected: {len(parallel_edge_ids)} edges")
+    
     # Process edges
     primitives = []
     fit_report_entries = []
     
     for edge in sorted(edges, key=lambda e: e["id"]):
-        result = process_edge(edge, nodes_by_id, config, error_tol, max_error_cap)
+        is_parallel = edge["id"] in parallel_edge_ids
+        result = process_edge(edge, nodes_by_id, config, error_tol, max_error_cap,
+                             is_parallel=is_parallel)
         primitives.append(result)
         
         fit_report_entries.append({
