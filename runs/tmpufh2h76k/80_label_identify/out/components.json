@@ -1,0 +1,171 @@
+[
+  {
+    "id": 0,
+    "anchor_x": 847,
+    "anchor_y": 263,
+    "area": 4568,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 1,
+    "anchor_x": 607,
+    "anchor_y": 276,
+    "area": 42835,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 2,
+    "anchor_x": 726,
+    "anchor_y": 415,
+    "area": 4603,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 3,
+    "anchor_x": 608,
+    "anchor_y": 394,
+    "area": 23486,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 4,
+    "anchor_x": 536,
+    "anchor_y": 456,
+    "area": 1483,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 8,
+    "anchor_x": 144,
+    "anchor_y": 531,
+    "area": 1129,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 10,
+    "anchor_x": 608,
+    "anchor_y": 524,
+    "area": 6472,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 12,
+    "anchor_x": 319,
+    "anchor_y": 575,
+    "area": 4385,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 14,
+    "anchor_x": 388,
+    "anchor_y": 612,
+    "area": 7086,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 16,
+    "anchor_x": 120,
+    "anchor_y": 662,
+    "area": 45377,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 18,
+    "anchor_x": 364,
+    "anchor_y": 856,
+    "area": 82151,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 100,
+    "anchor_x": 651,
+    "anchor_y": 687,
+    "area": 0,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  },
+  {
+    "id": 101,
+    "anchor_x": 868,
+    "anchor_y": 485,
+    "area": 0,
+    "bbox": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "boundary_edges": []
+  }
+]

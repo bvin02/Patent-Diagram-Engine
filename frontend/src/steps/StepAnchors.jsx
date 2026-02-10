@@ -25,11 +25,13 @@ export default function StepAnchors({
   onBack,
 }) {
   const containerRef = useRef(null);
+  const svgRef = useRef(null);
   const [anchors, setAnchors] = useState([]);
   const [svgViewBox, setSvgViewBox] = useState(null);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [dragging, setDragging] = useState(null); // index being dragged
+  const [dragOffset, setDragOffset] = useState({ dx: 0, dy: 0 }); // offset from cursor to anchor centre
   const [panStart, setPanStart] = useState(null);
   const nextIdRef = useRef(100);
 
@@ -107,27 +109,28 @@ export default function StepAnchors({
   }, [runId, components, setComponents, setLoading, setLoadingMsg, setError]);
 
   // ── Coordinate conversion helpers ────────────────────────────
+  // Use the SVG element's own getScreenCTM() for pixel-perfect mapping
+  // from screen (client) coordinates to SVG viewBox coordinates.
   const screenToSvg = useCallback(
     (clientX, clientY) => {
-      if (!containerRef.current || !svgViewBox) return { x: 0, y: 0 };
-      const rect = containerRef.current.getBoundingClientRect();
-      const sx = (clientX - rect.left - pan.x) / zoom;
-      const sy = (clientY - rect.top - pan.y) / zoom;
-      // Map from pixel space to SVG viewBox space
-      const scale = svgViewBox.w / (rect.width / zoom);
-      return {
-        x: svgViewBox.x + sx * scale,
-        y: svgViewBox.y + sy * scale,
-      };
+      const svg = svgRef.current;
+      if (!svg) return { x: 0, y: 0 };
+      const pt = svg.createSVGPoint();
+      pt.x = clientX;
+      pt.y = clientY;
+      const ctm = svg.getScreenCTM();
+      if (!ctm) return { x: 0, y: 0 };
+      const svgPt = pt.matrixTransform(ctm.inverse());
+      return { x: svgPt.x, y: svgPt.y };
     },
-    [pan, zoom, svgViewBox]
+    [] // no deps needed — reads from refs / DOM directly
   );
 
   // ── Zoom via scroll ──────────────────────────────────────────
   const handleWheel = useCallback(
     (e) => {
       e.preventDefault();
-      const delta = e.deltaY > 0 ? 0.9 : 1.1;
+      const delta = e.deltaY > 0 ? 0.97 : 1.03;
       setZoom((z) => Math.max(0.1, Math.min(10, z * delta)));
     },
     []
@@ -163,14 +166,18 @@ export default function StepAnchors({
         return;
       }
 
-      if (dragging !== null && svgViewBox) {
+      if (dragging !== null) {
         const pos = screenToSvg(e.clientX, e.clientY);
         setAnchors((prev) =>
-          prev.map((a, i) => (i === dragging ? { ...a, x: pos.x, y: pos.y } : a))
+          prev.map((a, i) =>
+            i === dragging
+              ? { ...a, x: pos.x + dragOffset.dx, y: pos.y + dragOffset.dy }
+              : a
+          )
         );
       }
     },
-    [panStart, dragging, svgViewBox, screenToSvg]
+    [panStart, dragging, dragOffset, screenToSvg]
   );
 
   const handleMouseUp = useCallback(() => {
@@ -264,6 +271,7 @@ export default function StepAnchors({
       >
         {/* Base SVG as image background */}
         <svg
+          ref={svgRef}
           viewBox={viewBoxStr}
           style={{
             width: svgViewBox ? svgViewBox.w : 800,
@@ -287,7 +295,12 @@ export default function StepAnchors({
               className="anchor-marker"
               onMouseDown={(e) => {
                 e.stopPropagation();
-                if (e.button === 0) setDragging(i);
+                if (e.button === 0) {
+                  // Compute offset so the anchor doesn't jump to the cursor
+                  const pos = screenToSvg(e.clientX, e.clientY);
+                  setDragOffset({ dx: a.x - pos.x, dy: a.y - pos.y });
+                  setDragging(i);
+                }
               }}
               onContextMenu={(e) => {
                 e.preventDefault();

@@ -266,8 +266,11 @@ async def identify_components(run_id: str = Form(...)):
     if not components_json.exists():
         raise HTTPException(status_code=500, detail="No components.json produced")
 
-    components = json.loads(components_json.read_text())
-    return JSONResponse({"components": components})
+    raw = json.loads(components_json.read_text())
+    # components.json wraps the list in {"components": [...]};
+    # unwrap so the response is {"components": [...]}, not double-nested.
+    comp_list = raw["components"] if isinstance(raw, dict) and "components" in raw else raw
+    return JSONResponse({"components": comp_list})
 
 
 @app.post("/api/label")
