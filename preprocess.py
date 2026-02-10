@@ -32,7 +32,14 @@ DEFAULT_CONFIG = {
     "flatten_enabled": True,         # set False if input is already clean
     "bg_blur_ksize": 51,             # kernel size for Gaussian blur (odd, large)
     
-    # Denoising
+    # Pre-denoise: edge-preserving filter BEFORE illumination flattening
+    # This preserves stroke edges during the division step
+    "pre_denoise_enabled": True,     # apply bilateral before illumination flattening
+    "pre_denoise_d": 5,              # diameter for pre-flatten bilateral
+    "pre_denoise_sigma_color": 50,   # sigma color for pre-flatten bilateral
+    "pre_denoise_sigma_space": 50,   # sigma space for pre-flatten bilateral
+    
+    # Post-denoise: filter AFTER illumination flattening (before threshold)
     "denoise_method": "bilateral",   # "bilateral", "gaussian", or "none"
     "bilateral_d": 5,                # diameter for bilateral filter
     "bilateral_sigma_color": 50,     # sigma color for bilateral
@@ -310,18 +317,29 @@ def preprocess(
     gray = cv2.cvtColor(input_bgr, cv2.COLOR_BGR2GRAY)
     artifacts.save_debug_image("gray", gray)
     
-    # 3) Illumination flattening (saves debug even if disabled)
-    bg = cv2.GaussianBlur(gray, (config["bg_blur_ksize"], config["bg_blur_ksize"]), 0)
+    # 3) Pre-denoise: edge-preserving bilateral BEFORE illumination flattening
+    # This preserves stroke edges during the division step and reduces paper texture
+    if config.get("pre_denoise_enabled", True):
+        pre_d = config.get("pre_denoise_d", 5)
+        pre_sigma_c = config.get("pre_denoise_sigma_color", 50)
+        pre_sigma_s = config.get("pre_denoise_sigma_space", 50)
+        gray_predenoise = cv2.bilateralFilter(gray, pre_d, pre_sigma_c, pre_sigma_s)
+        artifacts.save_debug_image("pre_denoise", gray_predenoise)
+    else:
+        gray_predenoise = gray
+    
+    # 4) Illumination flattening (saves debug even if disabled)
+    bg = cv2.GaussianBlur(gray_predenoise, (config["bg_blur_ksize"], config["bg_blur_ksize"]), 0)
     artifacts.save_debug_image("illumination_bg", bg)
     
-    gray_flat = flatten_illumination(gray, config)
+    gray_flat = flatten_illumination(gray_predenoise, config)
     artifacts.save_debug_image("illumination_flat", gray_flat)
     
-    # 4) Denoise
+    # 5) Post-denoise (after flattening, before threshold)
     denoised = denoise_image(gray_flat, config)
     artifacts.save_debug_image("denoise", denoised)
     
-    # 5) Threshold
+    # 6) Threshold
     threshold_raw = threshold_image(denoised, config)
     artifacts.save_debug_image("threshold_raw", threshold_raw)
     
