@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Stage 10: Label Placement & SVG Overlay
 
@@ -25,7 +24,8 @@ Usage:
         --svg runs/<run>/70_svg/out/output.svg --debug
 
 Outputs to runs/<run>/100_label_place/out/:
-    - labelled.svg: Final SVG with labels overlaid
+    - labelled.svg: Final SVG with diagram + labels overlaid
+    - labels_only.svg: Standalone SVG with only the label layer (leaders + numbers)
     - labelled_preview.png: Raster preview
 """
 
@@ -87,8 +87,7 @@ DEFAULT_CONFIG = {
     "preview_label_bg_color": [255, 255, 255],
     "preview_label_text_color": [0, 0, 0],
 
-    # Offset text nudge for centering (depends on font)
-    "text_dy_offset": "0.35em",
+
 }
 
 
@@ -212,7 +211,6 @@ def build_label_layer(
         text.set("y", fmt(ly, prec))
         text.set("text-anchor", "middle")
         text.set("dominant-baseline", "central")
-        text.set("dy", config["text_dy_offset"])
         text.set("font-family", config["label_font_family"])
         text.set("font-size", str(config["label_font_size"]))
         text.set("font-weight", config["label_font_weight"])
@@ -503,6 +501,16 @@ def place_labels(
         write_svg_file(standalone, svg_out_path)
         print(f"Standalone label SVG: {svg_out_path}")
 
+    # --- Labels-only standalone SVG ---
+    import copy
+    label_layer_copy = copy.deepcopy(label_layer)
+    labels_only_root = build_standalone_label_svg(
+        label_layer_copy, canvas_w, canvas_h, config,
+    )
+    labels_only_svg_path = artifacts.out_dir / "labels_only.svg"
+    write_svg_file(labels_only_root, labels_only_svg_path)
+    print(f"Labels-only SVG: {labels_only_svg_path}")
+
     # Raster preview
     preview = render_labelled_preview(mask, leader_data, config, start_num)
     artifacts.save_output_image("labelled_preview", preview)
@@ -511,9 +519,9 @@ def place_labels(
     if debug:
         artifacts.save_debug_image("labelled_preview", preview)
 
-        # Labels-only on white background (no strokes)
-        labels_only = render_labelled_preview(None, leader_data, config, start_num)
-        artifacts.save_debug_image("labels_only", labels_only)
+        # Labels-only raster on white background (no strokes)
+        labels_only_raster = render_labelled_preview(None, leader_data, config, start_num)
+        artifacts.save_debug_image("labels_only", labels_only_raster)
 
     # Metrics
     artifacts.write_metrics({

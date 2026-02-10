@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Stage 8: Component Identification for Labelling
 
