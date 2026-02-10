@@ -2,13 +2,13 @@
 """
 Stage 7: SVG Emission
 
-Emits final editable SVG from Stage 6 primitives. Pure serialization without
-re-fitting. Optimized for editability in Illustrator, Figma, Inkscape.
+Emits final editable SVG from Stage 6.5 regularized primitives. Pure serialization 
+without re-fitting. Optimized for editability in Illustrator, Figma, Inkscape.
 
 Usage:
-    python emit_svg.py runs/<run>/60_fit/out/primitives.json --debug
-    python emit_svg.py runs/<run>/60_fit/out/primitives.json --debug --mask runs/<run>/10_preprocess/out/output_mask.png
-    python emit_svg.py runs/<run>/60_fit/out/primitives.json --debug --config configs/svg.json
+    python emit_svg.py runs/<run>/65_regularize/out/primitives_regularized.json --debug
+    python emit_svg.py runs/<run>/65_regularize/out/primitives_regularized.json --debug --mask runs/<run>/10_preprocess/out/output_mask.png
+    python emit_svg.py runs/<run>/65_regularize/out/primitives_regularized.json --debug --config configs/svg.json
 
 Outputs to runs/<run>/70_svg/out/:
     - output.svg: Final editable SVG

@@ -52,9 +52,16 @@ Output: `primitives.json` + overlay PNG (lines, arcs, beziers)
 python fit_primitives.py runs/clean/50_graph_clean/out/graph_clean.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
 ```
 
-## Stage 7: SVG Output
+## Stage 6.5: Geometry Regularization
 Input: `primitives.json`
+Output: `primitives_regularized.json` + overlay PNG (lines, arcs, beziers)
+```bash
+python regularize_geometry.py runs/clean/60_fit/out/primitives.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
+```
+
+## Stage 7: SVG Output
+Input: `primitives_regularized.json` (from Stage 6.5)
 Output: final editable `output.svg` + raster preview PNG
 ```bash
-python emit_svg.py runs/clean/60_fit/out/primitives.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
+python emit_svg.py runs/clean/65_regularize/out/primitives_regularized.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
 ```

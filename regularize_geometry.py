@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Stage 6.5: Geometry Regularization
 
@@ -925,35 +924,26 @@ if __name__ == "__main__":
 
 
 # =============================================================================
-# VERIFICATION INSTRUCTIONS
+# Notes on Debug Artifacts
 # =============================================================================
-"""
-What "production grade" should look like after this stage:
-- Main outlines become straighter and aligned to dominant directions
-- Corners become crisp (no almost-intersections)
-- Circular tape roll arcs look concentric and smooth
-- Hatch remains unchanged (detail bucket passed through)
-
-What to inspect:
-- 01_input_overlay.png: Baseline "before" view
-- 03_after_angle_snap.png: Should show straightened lines aligned to dominant angles
-- 05_after_corners.png: Should show crisp corners where lines meet
-- 07_after_arcs.png: Arcs should share centers where appropriate
-- 09_final_regularized.png: Complete regularized output
-
-Debug files:
-- dominant_angles.txt: List of detected dominant directions
-- regularize_report.json: Detailed per-operation logs
-- metrics.json: Summary statistics
-
-If lines are not snapping:
-- Check if min_line_length_for_global threshold is too high
-- Check if snap_max_delta_deg is too restrictive
-
-If corners are not sharpening:
-- Check corner_min_angle_change_deg threshold
-- Check corner_max_adjust_px movement limit
-
-If arcs are not clustering:
-- Check arc_center_cluster_tol_px and arc_radius_cluster_tol_px
-"""
+#
+# - 01_input_overlay.png: Baseline "before" view
+# - 03_after_angle_snap.png: Should show straightened lines aligned to dominant angles
+# - 05_after_corners.png: Should show crisp corners where lines meet
+# - 07_after_arcs.png: Arcs should share centers where appropriate
+# - 09_final_regularized.png: Complete regularized output
+#
+# - dominant_angles.txt: List of detected dominant directions
+# - regularize_report.json: Detailed per-operation logs
+# - metrics.json: Summary statistics
+#
+# If lines are not snapping:
+# - Check if min_line_length_for_global threshold is too high
+# - Check if snap_max_delta_deg is too restrictive
+#
+# If corners are not sharpening:
+# - Check corner_min_angle_change_deg threshold
+# - Check corner_max_adjust_px movement limit
+#
+# If arcs are not clustering:
+# - Check arc_center_cluster_tol_px and arc_radius_cluster_tol_px
