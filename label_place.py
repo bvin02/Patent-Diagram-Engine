@@ -277,28 +277,17 @@ def composite_svg(
                 wrapper.append(child)
             root.append(wrapper)
 
-            # Update background rect if present
+            # Remove any full-size background rect (transparent bg)
             bg_rects = wrapper.findall(".//{http://www.w3.org/2000/svg}rect")
             if not bg_rects:
                 bg_rects = wrapper.findall(".//rect")
             for rect in bg_rects:
                 if rect.get("width") == "100%" and rect.get("height") == "100%":
-                    # Make it cover the full new canvas, positioned at origin.
-                    # The rect may be nested (not a direct child of wrapper),
-                    # so find its actual parent and remove from there.
-                    parent = wrapper.find(
-                        ".//{http://www.w3.org/2000/svg}rect/.."
-                    )
-                    if parent is None:
-                        parent = wrapper.find(".//rect/..")
-                    if parent is None:
-                        parent = wrapper
-                    try:
-                        parent.remove(rect)
-                    except ValueError:
-                        # Already removed or not a direct child — skip
-                        pass
-                    root.insert(0, rect)
+                    # Find the rect's actual parent and remove it
+                    for parent in wrapper.iter():
+                        if rect in list(parent):
+                            parent.remove(rect)
+                            break
                     break
     else:
         # No canvas change needed — if there's an offset, still wrap
@@ -330,12 +319,6 @@ def build_standalone_label_svg(
     root.set("width", str(canvas_w))
     root.set("height", str(canvas_h))
     root.set("viewBox", f"0 0 {canvas_w} {canvas_h}")
-
-    # White background
-    bg = ET.SubElement(root, "rect")
-    bg.set("width", "100%")
-    bg.set("height", "100%")
-    bg.set("fill", "white")
 
     root.append(label_layer)
     return root

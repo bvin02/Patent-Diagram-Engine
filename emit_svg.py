@@ -43,7 +43,7 @@ DEFAULT_CONFIG = {
     "stroke_width": 1.0,
     "stroke_linecap": "round",
     "stroke_linejoin": "round",
-    "background": "white",  # None for transparent, "white" for white bg
+    "background": None,  # None for transparent, "white" for white bg
     
     # Layer naming
     "structural_layer_name": "structure",
