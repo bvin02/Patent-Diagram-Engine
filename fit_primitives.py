@@ -38,6 +38,9 @@ DEFAULT_CONFIG = {
     "parallel_angle_tolerance_deg": 5.0,  # Max angle diff to consider parallel
     "parallel_min_neighbors": 2,  # Min neighbors to flag as hatching
     "parallel_search_radius_px": 50.0,  # Search radius for neighbors
+    "parallel_max_spacing_px": 30.0,  # Max perpendicular distance between parallel lines
+    "parallel_collinear_ratio": 6.0,  # If along-axis dist / perp dist > this, treat as collinear
+    "parallel_min_straightness": 0.85,  # Min straightness ratio to be considered for parallel
     
     # Line fitting
     "line_min_straightness": 0.9,  # Relaxed from 0.985 for better editability
@@ -563,25 +566,29 @@ def create_polyline_primitive(points: np.ndarray) -> dict:
 # Parallel Line Detection (Cross-Hatching)
 # ---------------------------------------------------------------------------
 
-def detect_parallel_edges(edges: List[dict], config: dict) -> set:
+def detect_parallel_edges(edges: List[dict], config: dict) -> Tuple[set, Dict[int, int]]:
     """
     Detect edges that are part of parallel hatching patterns.
     
     An edge is considered parallel if it has multiple nearby neighbors
-    with similar direction. These edges should be fitted as lines.
+    with similar direction AND close perpendicular spacing.
     
     Args:
         edges: List of edge dicts from graph
         config: Configuration dict
         
     Returns:
-        Set of edge IDs that are parallel (hatching)
+        parallel_ids: Set of edge IDs that are parallel (hatching)
+        parallel_groups: Dict mapping edge_id -> group_id (union-find cluster)
     """
     angle_tol = np.radians(config.get("parallel_angle_tolerance_deg", 5.0))
     min_neighbors = config.get("parallel_min_neighbors", 2)
     search_radius = config.get("parallel_search_radius_px", 50.0)
+    max_spacing = config.get("parallel_max_spacing_px", 30.0)
+    min_straightness = config.get("parallel_min_straightness", 0.85)
+    collinear_ratio = config.get("parallel_collinear_ratio", 6.0)
     
-    # Precompute edge info: direction and midpoint
+    # Precompute edge info: direction, midpoint, endpoints
     edge_info = []
     for edge in edges:
         polyline = np.array(edge["polyline"], dtype=np.float64)
@@ -596,24 +603,66 @@ def detect_parallel_edges(edges: List[dict], config: dict) -> set:
         # Midpoint
         midpoint = polyline[len(polyline) // 2]
         
-        # Length
-        length = compute_path_length(polyline)
+        # Length along path vs endpoint-to-endpoint 
+        path_length = compute_path_length(polyline)
+        endpoint_dist = np.linalg.norm(polyline[-1] - polyline[0])
+        straightness = endpoint_dist / max(path_length, 1e-9)
+        
+        # Skip curved edges — they're curve segments, not hatching strokes
+        if straightness < min_straightness:
+            continue
+        
+        # Endpoints
+        p0 = polyline[0]
+        p1 = polyline[-1]
         
         edge_info.append({
             "id": edge["id"],
+            "u": edge["u"],
+            "v": edge["v"],
             "direction": direction,
             "midpoint": midpoint,
-            "length": length
+            "length": path_length,
+            "p0": p0,
+            "p1": p1
         })
     
     if len(edge_info) < 3:
-        return set()
+        return set(), {}
+    
+    # Compute node degree from ALL edges (not just filtered ones)
+    node_degree = {}
+    for edge in edges:
+        for nid in [edge["u"], edge["v"]]:
+            node_degree[nid] = node_degree.get(nid, 0) + 1
     
     # Build KD-tree on midpoints
     midpoints = np.array([e["midpoint"] for e in edge_info])
     tree = KDTree(midpoints)
     
-    parallel_ids = set()
+    # Union-find for grouping parallel edges
+    n = len(edge_info)
+    parent = list(range(n))
+    rank = [0] * n
+    
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+    
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra == rb:
+            return
+        if rank[ra] < rank[rb]:
+            ra, rb = rb, ra
+        parent[rb] = ra
+        if rank[ra] == rank[rb]:
+            rank[ra] += 1
+    
+    # For each edge, find parallel neighbors and union them
+    parallel_neighbor_count = [0] * n
     
     for i, info in enumerate(edge_info):
         # Skip very long edges (likely structural, not hatching)
@@ -623,29 +672,204 @@ def detect_parallel_edges(edges: List[dict], config: dict) -> set:
         # Find neighbors within search radius
         indices = tree.query_ball_point(info["midpoint"], search_radius)
         
-        # Count neighbors with similar direction
-        parallel_count = 0
         dir_i = info["direction"]
+        normal_i = np.array([-dir_i[1], dir_i[0]])
+        nodes_i = {info["u"], info["v"]}
         
         for j in indices:
             if j == i:
                 continue
             
+            # Skip very long neighbors too
+            if edge_info[j]["length"] > 150:
+                continue
+            
             dir_j = edge_info[j]["direction"]
             
             # Check angle between directions
-            # Use absolute dot product since direction can be flipped
             dot = abs(np.dot(dir_i, dir_j))
             dot = np.clip(dot, -1.0, 1.0)
             angle = np.arccos(dot)
             
-            if angle <= angle_tol:
-                parallel_count += 1
-        
-        if parallel_count >= min_neighbors:
+            if angle > angle_tol:
+                continue
+            
+            # Check perpendicular spacing between midpoints
+            diff = edge_info[j]["midpoint"] - info["midpoint"]
+            perp_dist = abs(np.dot(diff, normal_i))
+            
+            # Reject if too far apart perpendicularly (not same hatching region)
+            if perp_dist > max_spacing:
+                continue
+            
+            # Shared-node check (degree-aware):
+            # - Degree-2 shared node = chain continuation → always reject
+            # - High-degree shared node (hub) = teeth fan out → only reject if collinear
+            nodes_j = {edge_info[j]["u"], edge_info[j]["v"]}
+            shared_nodes = nodes_i & nodes_j
+            if shared_nodes:
+                shared_nid = next(iter(shared_nodes))
+                if node_degree.get(shared_nid, 0) <= 2:
+                    continue  # Chain continuation, always skip
+                elif perp_dist < 4.0:
+                    continue  # Hub node but collinear — skip
+                # Otherwise: hub node with perpendicular offset (teeth) — keep
+            
+            # Reject collinear/end-to-end segments using endpoint projection overlap:
+            # Project both edges onto the shared direction axis. If their intervals
+            # overlap significantly, they're extending each other (collinear).
+            # True side-by-side hatching has little or no projection overlap.
+            if perp_dist < 2.0:
+                # Very low perpendicular offset — check if projections overlap
+                avg_dir = (dir_i + dir_j) / 2.0
+                avg_dir = avg_dir / max(np.linalg.norm(avg_dir), 1e-9)
+                
+                # Project endpoints of both edges onto avg_dir
+                proj_i0 = np.dot(info["p0"], avg_dir)
+                proj_i1 = np.dot(info["p1"], avg_dir)
+                proj_j0 = np.dot(edge_info[j]["p0"], avg_dir)
+                proj_j1 = np.dot(edge_info[j]["p1"], avg_dir)
+                
+                min_i, max_i = min(proj_i0, proj_i1), max(proj_i0, proj_i1)
+                min_j, max_j = min(proj_j0, proj_j1), max(proj_j0, proj_j1)
+                
+                # Overlap length
+                overlap = max(0, min(max_i, max_j) - max(min_i, min_j))
+                shorter = min(max_i - min_i, max_j - min_j)
+                
+                # If overlap is significant relative to the shorter edge, it's collinear
+                if shorter > 1e-3 and overlap / shorter > 0.3:
+                    continue
+            
+            # This pair is parallel and close
+            parallel_neighbor_count[i] += 1
+            union(i, j)
+    
+    # Collect edges with enough parallel neighbors
+    parallel_ids = set()
+    for i, info in enumerate(edge_info):
+        if parallel_neighbor_count[i] >= min_neighbors:
             parallel_ids.add(info["id"])
     
-    return parallel_ids
+    # --- Propagation pass ---
+    # Edges at the boundary of hatching regions may only have 1 qualifying
+    # neighbor (the rest are shared-node or out of range). If that neighbor
+    # is already in a parallel group, absorb this edge into the group.
+    id_to_idx = {info["id"]: i for i, info in enumerate(edge_info)}
+    changed = True
+    max_passes = 3
+    for _pass in range(max_passes):
+        if not changed:
+            break
+        changed = False
+        for i, info in enumerate(edge_info):
+            if info["id"] in parallel_ids:
+                continue  # Already detected
+            if info["length"] > 150:
+                continue
+            
+            dir_i = info["direction"]
+            normal_i = np.array([-dir_i[1], dir_i[0]])
+            
+            # Find nearby edges that ARE in a parallel group
+            indices = tree.query_ball_point(info["midpoint"], search_radius)
+            
+            for j in indices:
+                if j == i:
+                    continue
+                if edge_info[j]["id"] not in parallel_ids:
+                    continue  # Only match against already-detected parallels
+                if edge_info[j]["length"] > 150:
+                    continue
+                
+                dir_j = edge_info[j]["direction"]
+                dot = abs(np.dot(dir_i, dir_j))
+                dot = np.clip(dot, -1.0, 1.0)
+                angle = np.arccos(dot)
+                if angle > angle_tol:
+                    continue
+                
+                diff = edge_info[j]["midpoint"] - info["midpoint"]
+                perp_dist = abs(np.dot(diff, normal_i))
+                
+                if perp_dist > max_spacing:
+                    continue
+                
+                # Collinear check using endpoint projection overlap
+                if perp_dist < 2.0:
+                    avg_dir = (dir_i + dir_j) / 2.0
+                    avg_dir = avg_dir / max(np.linalg.norm(avg_dir), 1e-9)
+                    proj_i0 = np.dot(info["p0"], avg_dir)
+                    proj_i1 = np.dot(info["p1"], avg_dir)
+                    proj_j0 = np.dot(edge_info[j]["p0"], avg_dir)
+                    proj_j1 = np.dot(edge_info[j]["p1"], avg_dir)
+                    min_i, max_i = min(proj_i0, proj_i1), max(proj_i0, proj_i1)
+                    min_j, max_j = min(proj_j0, proj_j1), max(proj_j0, proj_j1)
+                    overlap = max(0, min(max_i, max_j) - max(min_i, min_j))
+                    shorter = min(max_i - min_i, max_j - min_j)
+                    if shorter > 1e-3 and overlap / shorter > 0.3:
+                        continue
+                
+                # Found a qualifying parallel neighbor — absorb
+                parallel_ids.add(info["id"])
+                union(i, j)
+                changed = True
+                break  # One qualifying neighbor is enough for propagation
+    
+    # Build group mapping: edge_id -> group_id
+    # Only include edges that are flagged as parallel
+    parallel_groups = {}
+    for i, info in enumerate(edge_info):
+        if info["id"] in parallel_ids:
+            parallel_groups[info["id"]] = find(i)
+    
+    # --- Post-filter: prune low-quality groups ---
+    min_group_size = config.get("parallel_min_group_size", 5)
+    max_angle_spread_deg = config.get("parallel_max_angle_spread_deg", 20.0)
+    
+    # Collect groups: group_id -> list of edge indices
+    groups_members = {}
+    for i, info in enumerate(edge_info):
+        if info["id"] in parallel_ids:
+            gid = find(i)
+            groups_members.setdefault(gid, []).append(i)
+    
+    # Check each group
+    groups_to_remove = set()
+    for gid, members in groups_members.items():
+        # Remove small groups (likely noise)
+        if len(members) < min_group_size:
+            groups_to_remove.add(gid)
+            continue
+        
+        # Check angle consistency within the group
+        angles = []
+        for idx in members:
+            d = edge_info[idx]["direction"]
+            # Use angle mod 180 (directions are unsigned)
+            a = np.arctan2(d[1], d[0]) % np.pi
+            angles.append(a)
+        angles = np.array(angles)
+        # Circular spread: max deviation from median
+        median_a = np.median(angles)
+        deviations = np.abs(angles - median_a)
+        # Handle wrap-around at 0/pi
+        deviations = np.minimum(deviations, np.pi - deviations)
+        max_dev = np.degrees(np.max(deviations))
+        if max_dev > max_angle_spread_deg / 2:
+            groups_to_remove.add(gid)
+            continue
+    
+    # Remove edges from pruned groups
+    if groups_to_remove:
+        pruned_ids = set()
+        for eid, gid in list(parallel_groups.items()):
+            if gid in groups_to_remove:
+                pruned_ids.add(eid)
+                del parallel_groups[eid]
+        parallel_ids -= pruned_ids
+    
+    return parallel_ids, parallel_groups
 
 
 # ---------------------------------------------------------------------------
@@ -880,6 +1104,7 @@ def process_edge(edge: dict, nodes_by_id: dict, config: dict,
         "v": edge["v"],
         "length_px": length_px,
         "bucket": bucket,
+        "is_parallel": is_parallel,
         "chosen": chosen["primitive"],
         "candidates": [
             {"type": c["type"], "rms_error": float(c["rms_error"]), "max_error": float(c["max_error"]), 
@@ -1026,9 +1251,10 @@ def fit_primitives(
     artifacts = StageArtifacts(run_dir, 60, "fit", debug=debug)
     
     # Detect parallel edges (cross-hatching)
-    parallel_edge_ids = detect_parallel_edges(edges, config)
+    parallel_edge_ids, parallel_groups = detect_parallel_edges(edges, config)
     if parallel_edge_ids:
-        print(f"Parallel hatching detected: {len(parallel_edge_ids)} edges")
+        n_groups = len(set(parallel_groups.values()))
+        print(f"Parallel hatching detected: {len(parallel_edge_ids)} edges in {n_groups} groups")
     
     # Process edges
     primitives = []
@@ -1038,6 +1264,9 @@ def fit_primitives(
         is_parallel = edge["id"] in parallel_edge_ids
         result = process_edge(edge, nodes_by_id, config, error_tol, max_error_cap,
                              is_parallel=is_parallel)
+        # Store parallel group if applicable
+        if is_parallel and edge["id"] in parallel_groups:
+            result["parallel_group"] = int(parallel_groups[edge["id"]])
         primitives.append(result)
         
         fit_report_entries.append({
@@ -1070,9 +1299,33 @@ def fit_primitives(
         type_colors = {"line": (255, 0, 0), "arc": (255, 0, 255), 
                        "cubic": (0, 165, 255), "polyline": (100, 100, 100)}
         for prim in primitives:
-            color = type_colors.get(prim["chosen"]["type"], (255, 255, 255))
+            # Parallel lines get green to distinguish from regular lines
+            if prim.get("is_parallel") and prim["chosen"]["type"] == "line":
+                color = (0, 255, 0)
+            else:
+                color = type_colors.get(prim["chosen"]["type"], (255, 255, 255))
             draw_primitive(vis, prim["chosen"], color, 1)
         artifacts.save_debug_image("chosen_type_vis", vis)
+        
+        # 2b) Parallel groups visualization - each group gets a unique color
+        vis = (base_img.astype(np.float32) * 0.3).astype(np.uint8)
+        # Generate distinct colors for each group using HSV
+        unique_groups = sorted(set(
+            p.get("parallel_group", -1) for p in primitives if p.get("is_parallel")
+        ))
+        group_color_map = {}
+        for idx, gid in enumerate(unique_groups):
+            if gid == -1:
+                continue
+            hue = int(180 * idx / max(len(unique_groups), 1))
+            hsv = np.uint8([[[hue, 255, 255]]])
+            bgr = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)[0, 0]
+            group_color_map[gid] = (int(bgr[0]), int(bgr[1]), int(bgr[2]))
+        for prim in primitives:
+            if prim.get("is_parallel") and prim.get("parallel_group") is not None:
+                color = group_color_map.get(prim["parallel_group"], (255, 255, 255))
+                draw_primitive(vis, prim["chosen"], color, 2)
+        artifacts.save_debug_image("parallel_groups_vis", vis)
         
         # 3) Error heatmap
         vis = np.zeros((h, w, 3), dtype=np.uint8)
