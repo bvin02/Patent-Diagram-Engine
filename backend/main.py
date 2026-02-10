@@ -89,10 +89,15 @@ def _run_pipeline_stages(
             f"Pipeline failed (exit {result.returncode}):\n{result.stderr}\n{result.stdout}"
         )
 
-    # Parse run directory from stage-0 output
+    # Parse run directory from stage-0 output.
+    # The path printed is relative to PROJECT_ROOT (the subprocess cwd),
+    # so resolve it against PROJECT_ROOT, not the backend's own cwd.
     for line in result.stdout.splitlines():
         if line.startswith("Created run directory:"):
-            return Path(line.split(":", 1)[1].strip()).resolve()
+            raw = line.split(":", 1)[1].strip()
+            resolved = (PROJECT_ROOT / raw).resolve()
+            if resolved.exists():
+                return resolved
 
     # Fallback: infer from input name
     slug = input_image.stem.lower().replace(" ", "_")
@@ -100,7 +105,10 @@ def _run_pipeline_stages(
     if candidate.exists():
         return candidate
 
-    raise RuntimeError("Could not determine run directory from pipeline output")
+    raise RuntimeError(
+        f"Could not determine run directory from pipeline output.\n"
+        f"stdout: {result.stdout[:500]}\nstderr: {result.stderr[:500]}"
+    )
 
 
 def _find_run_dir(run_id: str) -> Path:

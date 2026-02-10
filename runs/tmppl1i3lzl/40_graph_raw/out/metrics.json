@@ -1,0 +1,49 @@
+{
+  "config_used": {
+    "allow_diagonal": true,
+    "connectivity": 8,
+    "debug_draw_edge_every_n": 1,
+    "debug_label_every_n": 10,
+    "degree_endpoint": 1,
+    "degree_junction_min": 3,
+    "max_trace_steps": 200000,
+    "min_edge_length": 3,
+    "min_node_component_area": 1,
+    "min_ridge_component_area_for_noise": 1,
+    "simplify_polyline": false
+  },
+  "created_nodes_branch_count": 13,
+  "created_nodes_deadend_count": 0,
+  "degree_histogram": {
+    "0": 0,
+    "1": 120,
+    "2": 12002,
+    "3": 245,
+    "4": 25,
+    "5": 1,
+    "6": 0,
+    "7": 0,
+    "8": 0
+  },
+  "edge_count": 171,
+  "edge_length_stats": {
+    "max": 899.643794388899,
+    "mean": 82.23131687298707,
+    "median": 32.31370849898476,
+    "min": 3.414213562373095
+  },
+  "endpoint_node_count": 116,
+  "graph_sanity": {
+    "fragmentation_score": 0.6783625730994152
+  },
+  "image_h": 1024,
+  "image_w": 1024,
+  "junction_node_count": 122,
+  "node_count_initial": 225,
+  "node_count_total": 238,
+  "node_pixel_count": 391,
+  "num_multi_edges_estimate": 0,
+  "num_self_loops": 0,
+  "ridge_path": "/Users/bhavinsg/Projects/Patent-Diagram-Generator/runs/tmppl1i3lzl/30_ridge/out/ridge.png",
+  "ridge_pixel_count": 12393
+}

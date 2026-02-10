@@ -1,0 +1,42 @@
+{
+  "config": {
+    "bridge_max_angle_deg": 45,
+    "bridge_max_dist_px": 20.0,
+    "chain_merge_iterations": 50,
+    "collinear_max_angle_deg": 25,
+    "dir_sample_len": 5,
+    "enable_gap_bridge": true,
+    "endpoint_merge_max_angle_deg": 30,
+    "mask_min_fg_fraction": 0.6,
+    "merge_radius_px": 5.0,
+    "min_edge_len_for_merge": 3,
+    "rdp_epsilon": 0.75,
+    "spur_max_length_px": 8.0,
+    "spur_prune_iterations": 3
+  },
+  "steps": {
+    "chain_merge": {
+      "chain_merges": 15
+    },
+    "gap_bridging": {
+      "bridges_applied": 20,
+      "enabled": true
+    },
+    "merge_clusters": {
+      "clusters_formed": 41,
+      "nodes_merged": 52
+    },
+    "post_bridge_chain_merge": {
+      "chain_merges": 29
+    },
+    "simplification": {
+      "points_after": 1811,
+      "points_before": 12140,
+      "reduction_ratio": 0.850823723228995
+    },
+    "spur_pruning": {
+      "nodes_removed": 15,
+      "spurs_removed": 12
+    }
+  }
+}

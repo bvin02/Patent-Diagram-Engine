@@ -1,0 +1,4786 @@
+{
+  "edges": [
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.970, rms=0.62",
+          "max_error": 0.8710099693726309,
+          "passed": false,
+          "rms_error": 0.6241985072490897,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.14848075639963518,
+          "passed": true,
+          "rms_error": 0.08572540467680861,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.0440084597015356,
+      "edge_id": 0,
+      "length_px": 11.522750576399803,
+      "rms_error": 0.0,
+      "straightness": 0.9702839450849384
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=1.00>1.0",
+          "max_error": 2.308536035627128,
+          "passed": false,
+          "rms_error": 1.001165782063622,
+          "type": "line"
+        },
+        {
+          "fail_reason": "max=2.75>2.4",
+          "max_error": 2.746642494642515,
+          "passed": false,
+          "rms_error": 0.9935910980764112,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.963826721492731,
+          "passed": true,
+          "rms_error": 1.1564115982042553,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.0806230272371449,
+      "edge_id": 1,
+      "length_px": 86.91551863700069,
+      "rms_error": 1.1564115982042553,
+      "straightness": 0.9546036812745333
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=1.40>1.0; max=2.60>2.4",
+          "max_error": 2.602543390388736,
+          "passed": false,
+          "rms_error": 1.4047627741906554,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=1.39>1.0; max=5.07>2.4",
+          "max_error": 5.071217495031306,
+          "passed": false,
+          "rms_error": 1.3907961046993031,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.538427751687611,
+          "passed": true,
+          "rms_error": 1.3908725895584897,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.04134648221279112,
+      "edge_id": 2,
+      "length_px": 180.12466672440874,
+      "rms_error": 1.3908725895584897,
+      "straightness": 0.9849241355805464
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.870, rms=0.97",
+          "max_error": 1.3734122708460381,
+          "passed": false,
+          "rms_error": 0.9712213496915789,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.19887832012323314,
+          "passed": true,
+          "rms_error": 0.11482245165912923,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.12316615732843247,
+      "edge_id": 3,
+      "length_px": 8.365746312736945,
+      "rms_error": 0.0,
+      "straightness": 0.8702283833537322
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 8.881784197001252e-16,
+          "passed": true,
+          "rms_error": 8.881784197001252e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 4,
+      "length_px": 14.866068747318506,
+      "rms_error": 8.881784197001252e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=2.41>1.0; max=4.04>2.4",
+          "max_error": 4.043913885406993,
+          "passed": false,
+          "rms_error": 2.411591666033867,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.402520077049985,
+          "passed": true,
+          "rms_error": 0.689611978768555,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.4818552758418497,
+          "passed": true,
+          "rms_error": 1.4405812952870978,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.08521053469298731,
+      "edge_id": 5,
+      "length_px": 283.6629723048818,
+      "rms_error": 0.689611978768555,
+      "straightness": 0.9746191999740309
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=1.11>1.0",
+          "max_error": 2.0943854004373184,
+          "passed": false,
+          "rms_error": 1.1130929231951665,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.286956851907462,
+          "passed": true,
+          "rms_error": 0.7545875405689394,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.307865196906178,
+          "passed": true,
+          "rms_error": 1.267392607215222,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.07222417860886864,
+      "edge_id": 6,
+      "length_px": 183.686558982463,
+      "rms_error": 0.7545875405689394,
+      "straightness": 0.980549986236061
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.5674941114437904,
+          "passed": true,
+          "rms_error": 0.7277998451020695,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.4286762310398444,
+          "passed": true,
+          "rms_error": 0.6841929601189257,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.4023111893975537,
+          "passed": true,
+          "rms_error": 0.7874531837376537,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.09967017040989325,
+      "edge_id": 7,
+      "length_px": 78.52334489273063,
+      "rms_error": 0.7277998451020695,
+      "straightness": 0.9665235726740815
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.897<0.9; rms=3.36>1.0; max=12.58>2.4",
+          "max_error": 12.578509911989249,
+          "passed": false,
+          "rms_error": 3.362197371547441,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=2.96>1.0; max=11.97>2.4",
+          "max_error": 11.968678236556798,
+          "passed": false,
+          "rms_error": 2.9572986846833014,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 10.537110578205468,
+          "passed": true,
+          "rms_error": 4.1522485241487,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.0707340131381272,
+      "edge_id": 8,
+      "length_px": 203.7485661618862,
+      "rms_error": 0.0,
+      "straightness": 0.8971326761177103
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=6.48>1.0; max=13.67>2.4",
+          "max_error": 13.673341151298844,
+          "passed": false,
+          "rms_error": 6.480061415886506,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.9051379495877256,
+          "passed": true,
+          "rms_error": 0.8407303797887946,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 3.0506541938037177,
+          "passed": true,
+          "rms_error": 1.7707902792896193,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.04429692481932793,
+      "edge_id": 9,
+      "length_px": 209.79593851265892,
+      "rms_error": 0.8407303797887946,
+      "straightness": 0.9575519853763578
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=9.36>1.0; max=20.83>2.4",
+          "max_error": 20.831577148007465,
+          "passed": false,
+          "rms_error": 9.357167841504632,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=1.71>1.0; max=5.10>2.4",
+          "max_error": 5.097470694103151,
+          "passed": false,
+          "rms_error": 1.7051659544845126,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 3.7778677031481798,
+          "passed": true,
+          "rms_error": 2.448997093307591,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.0506660664401534,
+      "edge_id": 10,
+      "length_px": 268.76559733784666,
+      "rms_error": 2.448997093307591,
+      "straightness": 0.937560941504867
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 3.1401849173675503e-16,
+          "passed": true,
+          "rms_error": 3.1401849173675503e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 11,
+      "length_px": 3.605551275463989,
+      "rms_error": 3.1401849173675503e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.6326041019673698,
+          "passed": true,
+          "rms_error": 0.4746943231042009,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.19784933080345568,
+          "passed": true,
+          "rms_error": 0.11422836439836245,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.015715697544562104,
+      "edge_id": 12,
+      "length_px": 20.7664226027109,
+      "rms_error": 0.4746943231042009,
+      "straightness": 0.9915651181675349
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 3.1401849173675503e-16,
+          "passed": true,
+          "rms_error": 3.1401849173675503e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 13,
+      "length_px": 3.605551275463989,
+      "rms_error": 3.1401849173675503e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.893<0.9; rms=6.62>1.0; max=13.49>2.4",
+          "max_error": 13.492509549289109,
+          "passed": false,
+          "rms_error": 6.623845565674352,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=1.65>1.0; max=3.39>2.4",
+          "max_error": 3.3939572987713547,
+          "passed": false,
+          "rms_error": 1.6468952163685662,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 3.9108267671953656,
+          "passed": true,
+          "rms_error": 1.7057256829373058,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.045627324817723,
+      "edge_id": 14,
+      "length_px": 117.8988574932842,
+      "rms_error": 1.7057256829373058,
+      "straightness": 0.8931750751274281
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.4893867780196406,
+          "passed": true,
+          "rms_error": 1.0763772972838797,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.838597956688673,
+          "passed": true,
+          "rms_error": 0.5679214732829605,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.05167325388752422,
+      "edge_id": 15,
+      "length_px": 32.46571746644526,
+      "rms_error": 1.0763772972838797,
+      "straightness": 0.9642464152333025
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.905, rms=0.94",
+          "max_error": 1.275004684422779,
+          "passed": false,
+          "rms_error": 0.9442307068745907,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.8312475121623418,
+          "passed": true,
+          "rms_error": 0.5351116466685552,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.20591352596124585,
+      "edge_id": 16,
+      "length_px": 19.071067811865476,
+      "rms_error": 0.0,
+      "straightness": 0.9051761900239127
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.3548635049162276,
+          "passed": true,
+          "rms_error": 0.8170450288302308,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9569348458878721,
+          "passed": true,
+          "rms_error": 0.7460455347984056,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.5820350397861904,
+          "passed": true,
+          "rms_error": 0.9032458736386741,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.06038110678865008,
+      "edge_id": 17,
+      "length_px": 59.424989910914384,
+      "rms_error": 0.8170450288302308,
+      "straightness": 0.9690320567471479
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.4944415744063184,
+          "passed": true,
+          "rms_error": 0.9111839960137286,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.2846413709915963,
+          "passed": true,
+          "rms_error": 0.8033706090292363,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0689130233154526,
+      "edge_id": 18,
+      "length_px": 31.16356464845274,
+      "rms_error": 0.9111839960137286,
+      "straightness": 0.9540672843442896
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=2.48>1.0; max=5.83>2.4",
+          "max_error": 5.827487106734574,
+          "passed": false,
+          "rms_error": 2.4772960168268674,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=1.27>1.0; max=3.51>2.4",
+          "max_error": 3.5102200058963007,
+          "passed": false,
+          "rms_error": 1.2685369133337905,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.3276405239130633,
+          "passed": true,
+          "rms_error": 1.0653572266144284,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.1065722599890121,
+      "edge_id": 19,
+      "length_px": 67.65813661007677,
+      "rms_error": 1.0653572266144284,
+      "straightness": 0.932089815969271
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.7316497199417431,
+          "passed": true,
+          "rms_error": 0.5877115128906416,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.8550575113126555,
+          "passed": true,
+          "rms_error": 0.5667278411212155,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.07225635913023316,
+      "edge_id": 20,
+      "length_px": 29.634165021042797,
+      "rms_error": 0.5877115128906416,
+      "straightness": 0.9715934320177705
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.866, rms=0.66",
+          "max_error": 0.9519058759305353,
+          "passed": false,
+          "rms_error": 0.6587758420689404,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.47777163320107446,
+          "passed": true,
+          "rms_error": 0.23964992761160478,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.1687733328861234,
+      "edge_id": 21,
+      "length_px": 9.307135789365265,
+      "rms_error": 0.0,
+      "straightness": 0.8662447750585989
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 3.5596458096434965e-15,
+          "passed": true,
+          "rms_error": 3.5596458096434965e-15,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.0,
+      "edge_id": 22,
+      "length_px": 41.012193308819754,
+      "rms_error": 0.0,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.3794748559573065,
+          "passed": true,
+          "rms_error": 0.9202451076552428,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.8700556704849296,
+          "passed": true,
+          "rms_error": 0.6189763234330208,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.035430146455020316,
+      "edge_id": 23,
+      "length_px": 32.120916106051354,
+      "rms_error": 0.9202451076552428,
+      "straightness": 0.9770801539199492
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=2.89>1.0; max=4.36>2.4",
+          "max_error": 4.355870809275744,
+          "passed": false,
+          "rms_error": 2.890268668763895,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9171173075723402,
+          "passed": true,
+          "rms_error": 0.6090240388618374,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.4810012279475622,
+          "passed": true,
+          "rms_error": 0.9113686133610488,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.04435461626225192,
+      "edge_id": 24,
+      "length_px": 73.78906564851752,
+      "rms_error": 0.6090240388618374,
+      "straightness": 0.9599089464725072
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.7403341355012253,
+          "passed": true,
+          "rms_error": 0.45483385521396685,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.387303677829894,
+          "passed": true,
+          "rms_error": 0.24150386327970783,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.1212599508132018,
+      "edge_id": 25,
+      "length_px": 10.30056307974577,
+      "rms_error": 0.45483385521396685,
+      "straightness": 0.9561475159704751
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.244827215586258,
+          "passed": true,
+          "rms_error": 0.8877406969913744,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.18843011584005256,
+          "passed": true,
+          "rms_error": 0.10879017810368671,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.14951531750510472,
+      "edge_id": 26,
+      "length_px": 7.404918347287664,
+      "rms_error": 0.8877406969913744,
+      "straightness": 0.8541019662496847
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 2.5121479338940403e-15,
+          "passed": true,
+          "rms_error": 2.5121479338940403e-15,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.0,
+      "edge_id": 27,
+      "length_px": 30.4138126514911,
+      "rms_error": 0.0,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.921, rms=0.44",
+          "max_error": 0.5769000332405201,
+          "passed": false,
+          "rms_error": 0.4390024169962429,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.15515364786847735,
+          "passed": true,
+          "rms_error": 0.0895780003626178,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.15089184001012979,
+      "edge_id": 28,
+      "length_px": 6.513233075965879,
+      "rms_error": 0.0,
+      "straightness": 0.9212014878049225
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 2.7544799026562234,
+          "passed": true,
+          "rms_error": 1.4307139679871006,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.949263131746676,
+          "passed": true,
+          "rms_error": 0.9794112842884521,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.7548466958790514,
+          "passed": true,
+          "rms_error": 1.139216489275881,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.06253640298511676,
+      "edge_id": 29,
+      "length_px": 44.62446156144466,
+      "rms_error": 1.4307139679871006,
+      "straightness": 0.9507432781631383
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.0483812159313082,
+          "passed": true,
+          "rms_error": 0.8122481129596746,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.4252131277401418,
+          "passed": true,
+          "rms_error": 0.2454969137637336,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.044954022118220804,
+      "edge_id": 30,
+      "length_px": 18.85964666662759,
+      "rms_error": 0.8122481129596746,
+      "straightness": 0.9558904626363077
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.807312143953211e-15,
+          "passed": true,
+          "rms_error": 1.807312143953211e-15,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 31,
+      "length_px": 16.0312195418814,
+      "rms_error": 1.807312143953211e-15,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 2.220446049250313e-16,
+          "passed": true,
+          "rms_error": 2.220446049250313e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 32,
+      "length_px": 2.8284271247461903,
+      "rms_error": 2.220446049250313e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.955, rms=0.46",
+          "max_error": 0.6557731964870425,
+          "passed": false,
+          "rms_error": 0.4623209972862312,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.6970835169580339,
+          "passed": true,
+          "rms_error": 0.48222305809448124,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.1378117492758626,
+      "edge_id": 33,
+      "length_px": 13.60555127546399,
+      "rms_error": 0.0,
+      "straightness": 0.9554923381490591
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.8371721327786882,
+          "passed": true,
+          "rms_error": 0.5835516518961187,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.8380671517551832,
+          "passed": true,
+          "rms_error": 0.5416109443045231,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.779289543381005,
+          "passed": true,
+          "rms_error": 0.5482682183512664,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.020827236250010785,
+      "edge_id": 34,
+      "length_px": 40.63352940771241,
+      "rms_error": 0.5835516518961187,
+      "straightness": 0.9905421503295934
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.9460620662930228,
+          "passed": true,
+          "rms_error": 0.6677340953544265,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9778324529333986,
+          "passed": true,
+          "rms_error": 0.6631206938063753,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.5324626990323569,
+          "passed": true,
+          "rms_error": 0.8233169944421674,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.06079115542261412,
+      "edge_id": 35,
+      "length_px": 90.54835404121043,
+      "rms_error": 0.6677340953544265,
+      "straightness": 0.9784852156784976
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=4.21>1.0; max=9.23>2.4",
+          "max_error": 9.225618429613778,
+          "passed": false,
+          "rms_error": 4.211657950295588,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.8072569223674009,
+          "passed": true,
+          "rms_error": 0.8373671690720793,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 3.0598941157429684,
+          "passed": true,
+          "rms_error": 1.3534814272322901,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.04774358485580665,
+      "edge_id": 36,
+      "length_px": 181.68064579989297,
+      "rms_error": 0.8373671690720793,
+      "straightness": 0.9700141685611383
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.9088425015094754,
+          "passed": true,
+          "rms_error": 1.2639256512705794,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.7714722320078806,
+          "passed": true,
+          "rms_error": 0.4742534398801196,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.077506634888386,
+          "passed": true,
+          "rms_error": 0.5839024231714737,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.01023930478875988,
+      "edge_id": 37,
+      "length_px": 58.88357471295417,
+      "rms_error": 1.2639256512705794,
+      "straightness": 0.9858725693504611
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.984, rms=0.52",
+          "max_error": 0.6842370059593709,
+          "passed": false,
+          "rms_error": 0.5176476640857668,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.2151745485699978,
+          "passed": true,
+          "rms_error": 0.12423108353964442,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.0267936046946013,
+      "edge_id": 38,
+      "length_px": 17.30441328389933,
+      "rms_error": 0.0,
+      "straightness": 0.984106544760531
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=5.07>1.0; max=18.50>2.4",
+          "max_error": 18.503642411968723,
+          "passed": false,
+          "rms_error": 5.070867713247907,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=3.46>1.0; max=14.14>2.4",
+          "max_error": 14.143889001237085,
+          "passed": false,
+          "rms_error": 3.460406659293612,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 8.258310069320808,
+          "passed": true,
+          "rms_error": 3.068018948322037,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.056237677452418575,
+      "edge_id": 39,
+      "length_px": 288.1507850603287,
+      "rms_error": 0.0,
+      "straightness": 0.9597662837785269
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.988, rms=0.39",
+          "max_error": 0.5287618093403361,
+          "passed": false,
+          "rms_error": 0.39438697743345313,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.1349423327060308,
+          "passed": true,
+          "rms_error": 0.07790899211290292,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.027632336172845027,
+      "edge_id": 40,
+      "length_px": 13.770329614269007,
+      "rms_error": 0.0,
+      "straightness": 0.9877374681461082
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.662<0.9; rms=3.56>1.0; max=7.29>2.4",
+          "max_error": 7.2907684825015036,
+          "passed": false,
+          "rms_error": 3.5584662384920938,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 3.728390862394612,
+          "passed": true,
+          "rms_error": 1.5704015651154775,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.18446621512420117,
+      "edge_id": 41,
+      "length_px": 34.0614421071583,
+      "rms_error": 1.5704015651154775,
+      "straightness": 0.6623626878268776
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.979, rms=0.42",
+          "max_error": 0.6987895468163063,
+          "passed": false,
+          "rms_error": 0.4190666121121814,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.6052816542087005,
+          "passed": true,
+          "rms_error": 0.3775884833130611,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.07012728542622591,
+      "edge_id": 42,
+      "length_px": 19.281045497524584,
+      "rms_error": 0.0,
+      "straightness": 0.9785756828661386
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=4.43>1.0; max=9.72>2.4",
+          "max_error": 9.719352683779395,
+          "passed": false,
+          "rms_error": 4.430141973205511,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.7099876752886018,
+          "passed": true,
+          "rms_error": 0.7871953838611326,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.4955570749809346,
+          "passed": true,
+          "rms_error": 1.173785232753673,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.05895818055044921,
+      "edge_id": 43,
+      "length_px": 157.05377724228782,
+      "rms_error": 0.7871953838611326,
+      "straightness": 0.9616438460521567
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 2.482534153247273e-16,
+          "passed": true,
+          "rms_error": 2.482534153247273e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 44,
+      "length_px": 3.1622776601683795,
+      "rms_error": 2.482534153247273e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 2.259882528558851,
+          "passed": true,
+          "rms_error": 0.7723402039888825,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=55678>5000",
+          "max_error": 1.8826275066530798,
+          "passed": false,
+          "rms_error": 0.6324954411502179,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 6.986342244989013,
+          "passed": true,
+          "rms_error": 3.9981362960000952,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.05551504279565044,
+      "edge_id": 45,
+      "length_px": 846.147625996579,
+      "rms_error": 0.7723402039888825,
+      "straightness": 0.9857952228052074
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.880, rms=0.82",
+          "max_error": 1.0576807525387508,
+          "passed": false,
+          "rms_error": 0.821784071765763,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.32647480839260684,
+          "passed": true,
+          "rms_error": 0.18849031850910306,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.11650079961210612,
+      "edge_id": 46,
+      "length_px": 10.72134935173836,
+      "rms_error": 0.0,
+      "straightness": 0.8799247951496868
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.0059513874958552,
+          "passed": true,
+          "rms_error": 0.6558654549150812,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.205859838167271,
+          "passed": true,
+          "rms_error": 0.6473121811280999,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.6004616193092513,
+          "passed": true,
+          "rms_error": 0.8881782424468458,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0631944113783688,
+      "edge_id": 47,
+      "length_px": 113.36028450427102,
+      "rms_error": 0.6558654549150812,
+      "straightness": 0.9767519971349361
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=2.09>1.0; max=2.96>2.4",
+          "max_error": 2.961484097516085,
+          "passed": false,
+          "rms_error": 2.0887595877057223,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9157177238468653,
+          "passed": true,
+          "rms_error": 0.6221388909992398,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.035512144462188644,
+      "edge_id": 48,
+      "length_px": 38.01936392695509,
+      "rms_error": 0.6221388909992398,
+      "straightness": 0.9119003598621248
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 2.1193891637344264,
+          "passed": true,
+          "rms_error": 0.8584115783738369,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=48409>5000; max=2.72>2.4",
+          "max_error": 2.7218904009860125,
+          "passed": false,
+          "rms_error": 0.7324287723219279,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 7.329542186554113,
+          "passed": true,
+          "rms_error": 4.004836558782878,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.06701589621240517,
+      "edge_id": 49,
+      "length_px": 848.4873213881142,
+      "rms_error": 0.8584115783738369,
+      "straightness": 0.9825363064448703
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=3.51>1.0; max=7.64>2.4",
+          "max_error": 7.6409714033647,
+          "passed": false,
+          "rms_error": 3.51105319148777,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=2.20>1.0; max=4.46>2.4",
+          "max_error": 4.456591301895003,
+          "passed": false,
+          "rms_error": 2.1991935722380997,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 3.134561308885082,
+          "passed": true,
+          "rms_error": 1.4264353808022496,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.06544657339695828,
+      "edge_id": 50,
+      "length_px": 91.79557910071696,
+      "rms_error": 1.4264353808022496,
+      "straightness": 0.9326747541739434
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.903, rms=0.88",
+          "max_error": 1.1909757750994148,
+          "passed": false,
+          "rms_error": 0.8814397740290221,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.24107225267516524,
+          "passed": true,
+          "rms_error": 0.13918312997615614,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.09624756174425193,
+      "edge_id": 51,
+      "length_px": 10.21110255092798,
+      "rms_error": 0.0,
+      "straightness": 0.9028941205232554
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.8632808231414617,
+          "passed": true,
+          "rms_error": 0.6180413616791207,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=7725>5000",
+          "max_error": 0.8810198322626093,
+          "passed": false,
+          "rms_error": 0.6173292442831935,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.3483110426550475,
+          "passed": true,
+          "rms_error": 0.716519868000264,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.04516722997237413,
+      "edge_id": 52,
+      "length_px": 71.97803516552334,
+      "rms_error": 0.6180413616791207,
+      "straightness": 0.9832762029989681
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.974, rms=0.61",
+          "max_error": 0.8499335673243154,
+          "passed": false,
+          "rms_error": 0.6136474409200063,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.1593952108250757,
+          "passed": true,
+          "rms_error": 0.09202686787739461,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.03961070212135951,
+      "edge_id": 53,
+      "length_px": 12.36931687685298,
+      "rms_error": 0.0,
+      "straightness": 0.9735052225338361
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.7084753310080194,
+          "passed": true,
+          "rms_error": 0.5762126850333976,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.5244652064301661,
+          "passed": true,
+          "rms_error": 0.30280012811304907,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.12341341494884349,
+      "edge_id": 54,
+      "length_px": 12.727922061357857,
+      "rms_error": 0.5762126850333976,
+      "straightness": 0.8958064164776165
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.982, rms=0.59",
+          "max_error": 0.8810930136245116,
+          "passed": false,
+          "rms_error": 0.5946792986485933,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.7790509372125695,
+          "passed": true,
+          "rms_error": 0.4195074044607419,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.041575062481553716,
+      "edge_id": 55,
+      "length_px": 24.783530439226077,
+      "rms_error": 0.0,
+      "straightness": 0.9817427013014645
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.9946352604960577,
+          "passed": true,
+          "rms_error": 0.5973686881488639,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.8169784821540134,
+          "passed": true,
+          "rms_error": 0.5391784922758656,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9086570288837601,
+          "passed": true,
+          "rms_error": 0.6073342303125091,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.05255708744569382,
+      "edge_id": 56,
+      "length_px": 69.53425909326356,
+      "rms_error": 0.5973686881488639,
+      "straightness": 0.9838391376859563
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=1.46>1.0; max=3.99>2.4",
+          "max_error": 3.9921195668426215,
+          "passed": false,
+          "rms_error": 1.4602289896166163,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=1.26>1.0; max=3.75>2.4",
+          "max_error": 3.753527318876877,
+          "passed": false,
+          "rms_error": 1.2617340281967737,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.3219666200051594,
+          "passed": true,
+          "rms_error": 1.066649003085523,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.05224318130587527,
+      "edge_id": 57,
+      "length_px": 92.68699415660382,
+      "rms_error": 1.066649003085523,
+      "straightness": 0.9699305193858737
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.1053127893706785,
+          "passed": true,
+          "rms_error": 0.6235220776952612,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9893197324227003,
+          "passed": true,
+          "rms_error": 0.6157055800320791,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.3464352769844536,
+          "passed": true,
+          "rms_error": 0.7603245293642731,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.04284383717495619,
+      "edge_id": 58,
+      "length_px": 94.06614811741558,
+      "rms_error": 0.6235220776952612,
+      "straightness": 0.9854601007532476
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.112587981366626,
+          "passed": true,
+          "rms_error": 0.5613703170828516,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.7924387831826607,
+          "passed": true,
+          "rms_error": 0.5202763749323724,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.2406731274774179,
+          "passed": true,
+          "rms_error": 0.6626176019788024,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.07552275849537714,
+      "edge_id": 59,
+      "length_px": 71.79120809573507,
+      "rms_error": 0.5613703170828516,
+      "straightness": 0.978724143890523
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.952, rms=1.19",
+          "max_error": 1.685600910095903,
+          "passed": false,
+          "rms_error": 1.1922404735076961,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.27026972101932506,
+          "passed": true,
+          "rms_error": 0.15604029618431237,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.037359193727765486,
+      "edge_id": 60,
+      "length_px": 16.602325267042627,
+      "rms_error": 0.0,
+      "straightness": 0.952359868061926
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.333, rms=0.71",
+          "max_error": 1.0,
+          "passed": false,
+          "rms_error": 0.7071067811865476,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.2257486903868156,
+          "passed": true,
+          "rms_error": 0.15962842981645992,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.7404804896930609,
+      "edge_id": 61,
+      "length_px": 4.242640687119286,
+      "rms_error": 0.0,
+      "straightness": 0.3333333333333333
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.3035870792458482,
+          "passed": true,
+          "rms_error": 0.6429344433037323,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=6248>5000",
+          "max_error": 1.0183491493462498,
+          "passed": false,
+          "rms_error": 0.5581027085889065,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.9983976378052006,
+          "passed": true,
+          "rms_error": 1.1666331459990924,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.07951638638113771,
+      "edge_id": 62,
+      "length_px": 217.01380123464278,
+      "rms_error": 0.6429344433037323,
+      "straightness": 0.9787313512176123
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.0367835612901457,
+          "passed": true,
+          "rms_error": 0.6675224680862976,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.8599249294164792,
+          "passed": true,
+          "rms_error": 0.6156025358316444,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.0188709733695245,
+          "passed": true,
+          "rms_error": 0.6224347369595534,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.03341721828962926,
+      "edge_id": 63,
+      "length_px": 55.489175730137774,
+      "rms_error": 0.6675224680862976,
+      "straightness": 0.9859277371937254
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.917, rms=2.01",
+          "max_error": 2.7637639495239266,
+          "passed": false,
+          "rms_error": 2.0138122989766547,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.5057524365033216,
+          "passed": true,
+          "rms_error": 0.2919963053585018,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.03679331642980071,
+      "edge_id": 64,
+      "length_px": 23.810249675906654,
+      "rms_error": 0.0,
+      "straightness": 0.9172658819256969
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.5271966109497757,
+          "passed": true,
+          "rms_error": 0.7870622304077779,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.4021427472202959,
+          "passed": true,
+          "rms_error": 0.6220838502404016,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.437927270620518,
+          "passed": true,
+          "rms_error": 0.8631729338621981,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.05760071090352555,
+      "edge_id": 65,
+      "length_px": 126.40718664240646,
+      "rms_error": 0.6220838502404016,
+      "straightness": 0.9828052829565708
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 3.2547221503451436,
+          "passed": true,
+          "rms_error": 1.1230027313754176,
+          "type": "line"
+        },
+        {
+          "fail_reason": "max=2.74>2.4",
+          "max_error": 2.738337931137721,
+          "passed": false,
+          "rms_error": 0.9705018511902178,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 3.0295742530631933,
+          "passed": true,
+          "rms_error": 1.243288312459642,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.07784949711797332,
+      "edge_id": 66,
+      "length_px": 91.30584325382819,
+      "rms_error": 1.1230027313754176,
+      "straightness": 0.9559208018426328
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.5581529568295875,
+          "passed": true,
+          "rms_error": 0.42412677484772715,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.1858533461237039,
+          "passed": true,
+          "rms_error": 0.10730247941431315,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.02495846135125722,
+      "edge_id": 67,
+      "length_px": 16.75681540193031,
+      "rms_error": 0.42412677484772715,
+      "straightness": 0.9878336044293967
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.8486659663166232,
+          "passed": true,
+          "rms_error": 0.5451607984556613,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.6407722228421561,
+          "passed": true,
+          "rms_error": 0.40564207120473067,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.002892923840513654,
+      "edge_id": 68,
+      "length_px": 71.59163089760807,
+      "rms_error": 0.5451607984556613,
+      "straightness": 0.9988910130766944
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=1.68>1.0; max=3.86>2.4",
+          "max_error": 3.8595648629105166,
+          "passed": false,
+          "rms_error": 1.6811503956958977,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=1.25>1.0; max=3.43>2.4",
+          "max_error": 3.4259469021578752,
+          "passed": false,
+          "rms_error": 1.250787561318828,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 3.6875713104551204,
+          "passed": true,
+          "rms_error": 1.481041106514817,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.08475715183264573,
+      "edge_id": 69,
+      "length_px": 73.2056719060313,
+      "rms_error": 1.481041106514817,
+      "straightness": 0.9168592409664024
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.0731663475187305,
+          "passed": true,
+          "rms_error": 0.6483745414331136,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.4856510419621753,
+          "passed": true,
+          "rms_error": 0.29341662015691733,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.08734274569624738,
+      "edge_id": 70,
+      "length_px": 13.627805494253789,
+      "rms_error": 0.6483745414331136,
+      "straightness": 0.9539320182902152
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.1021654581187417,
+          "passed": true,
+          "rms_error": 0.6183391944950825,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9167354614768328,
+          "passed": true,
+          "rms_error": 0.5543745101819557,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.2760192757911786,
+          "passed": true,
+          "rms_error": 0.6646256146233129,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0826404296212397,
+      "edge_id": 71,
+      "length_px": 76.01552439585669,
+      "rms_error": 0.6183391944950825,
+      "straightness": 0.974728975432937
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.815<0.9; rms=2.32>1.0; max=8.26>2.4",
+          "max_error": 8.255028022910153,
+          "passed": false,
+          "rms_error": 2.315957896516654,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=2.45>1.0; max=9.52>2.4",
+          "max_error": 9.51683372807247,
+          "passed": false,
+          "rms_error": 2.4464685819659047,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 8.85032348491235,
+          "passed": true,
+          "rms_error": 3.206257857043971,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.0999432464054898,
+      "edge_id": 72,
+      "length_px": 104.3763683835873,
+      "rms_error": 0.0,
+      "straightness": 0.815205499697289
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.891<0.9; rms=3.67>1.0; max=13.29>2.4",
+          "max_error": 13.292533635950662,
+          "passed": false,
+          "rms_error": 3.6653397916314647,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=3.89>1.0; max=15.77>2.4",
+          "max_error": 15.770381872529015,
+          "passed": false,
+          "rms_error": 3.8902192637307476,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 6.467022094126372,
+          "passed": true,
+          "rms_error": 2.5407267459110803,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.06990038654941634,
+      "edge_id": 73,
+      "length_px": 112.84976562424245,
+      "rms_error": 2.5407267459110803,
+      "straightness": 0.8905535218020842
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.922, rms=1.27",
+          "max_error": 1.606114887156474,
+          "passed": false,
+          "rms_error": 1.2731964974730825,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9072646489328703,
+          "passed": true,
+          "rms_error": 0.6266090088320071,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.0791776650108593,
+      "edge_id": 74,
+      "length_px": 22.1103997743211,
+      "rms_error": 0.0,
+      "straightness": 0.922465367544328
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.7910281404593671,
+          "passed": true,
+          "rms_error": 0.46181966647627803,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.47831724404308446,
+          "passed": true,
+          "rms_error": 0.3119603867829177,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.04947191209536318,
+      "edge_id": 75,
+      "length_px": 18.678030854162458,
+      "rms_error": 0.46181966647627803,
+      "straightness": 0.9842994935814194
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.940, rms=1.23",
+          "max_error": 2.1072836579489524,
+          "passed": false,
+          "rms_error": 1.2321370427089526,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.8299060953494477,
+          "passed": true,
+          "rms_error": 0.5860832389794106,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.06785230261539148,
+      "edge_id": 76,
+      "length_px": 28.323141128559758,
+      "rms_error": 0.0,
+      "straightness": 0.9401165566533577
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.704<0.9; rms=7.17>1.0; max=12.75>2.4",
+          "max_error": 12.753745591473331,
+          "passed": false,
+          "rms_error": 7.171140810601536,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=5.96>1.0; max=14.49>2.4",
+          "max_error": 14.491729313235844,
+          "passed": false,
+          "rms_error": 5.962246056269824,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 8.10554789304884,
+          "passed": true,
+          "rms_error": 2.8113278881103514,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.07341470770412906,
+      "edge_id": 77,
+      "length_px": 93.39551470393114,
+      "rms_error": 2.8113278881103514,
+      "straightness": 0.7044785481075625
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.6824076114327908,
+          "passed": true,
+          "rms_error": 0.7013513641348876,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.2105313636252504,
+          "passed": true,
+          "rms_error": 0.650405760505913,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.6898935126656087,
+          "passed": true,
+          "rms_error": 0.9657200781021659,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.08418291283354794,
+      "edge_id": 78,
+      "length_px": 125.36484470853392,
+      "rms_error": 0.7013513641348876,
+      "straightness": 0.9731922739223442
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.7084350969021579,
+          "passed": true,
+          "rms_error": 0.5040654009551261,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.10730600758811466,
+          "passed": true,
+          "rms_error": 0.061953152366662025,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.029739265615771292,
+      "edge_id": 79,
+      "length_px": 12.280109889280517,
+      "rms_error": 0.5040654009551261,
+      "straightness": 0.9839525934651476
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 8.881784197001252e-16,
+          "passed": true,
+          "rms_error": 8.881784197001252e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 80,
+      "length_px": 12.041594578792296,
+      "rms_error": 8.881784197001252e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 81,
+      "length_px": 7.810249675906654,
+      "rms_error": 0.0,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.7964954815781818,
+          "passed": true,
+          "rms_error": 0.5509641511182277,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.7491316350013667,
+          "passed": true,
+          "rms_error": 0.49669180493273696,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.04717862466439492,
+      "edge_id": 82,
+      "length_px": 28.73883493918087,
+      "rms_error": 0.5509641511182277,
+      "straightness": 0.9823358701468248
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 4.577566798522237e-16,
+          "passed": true,
+          "rms_error": 4.577566798522237e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 83,
+      "length_px": 4.47213595499958,
+      "rms_error": 4.577566798522237e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.995, rms=0.47",
+          "max_error": 0.6578518405138889,
+          "passed": false,
+          "rms_error": 0.46828273866268416,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.15255830982109772,
+          "passed": true,
+          "rms_error": 0.08807958124232511,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.010321217200525892,
+      "edge_id": 84,
+      "length_px": 20.103852327090845,
+      "rms_error": 0.0,
+      "straightness": 0.9948342076234364
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.8309788125173381,
+          "passed": true,
+          "rms_error": 0.6193615282069281,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.5519759821345437,
+          "passed": true,
+          "rms_error": 0.2984993648203288,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.024777379817117473,
+      "edge_id": 85,
+      "length_px": 26.463477215155276,
+      "rms_error": 0.6193615282069281,
+      "straightness": 0.9853886323705322
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.980, rms=0.63",
+          "max_error": 0.8930772148649108,
+          "passed": false,
+          "rms_error": 0.6319812592010756,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.1575607623697206,
+          "passed": true,
+          "rms_error": 0.09096774856788085,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.02897277643188762,
+      "edge_id": 86,
+      "length_px": 13.683234126713366,
+      "rms_error": 0.0,
+      "straightness": 0.9804997664116768
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 9.930136612989092e-16,
+          "passed": true,
+          "rms_error": 9.930136612989092e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 87,
+      "length_px": 10.198039027185569,
+      "rms_error": 9.930136612989092e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.661<0.9; rms=25.85>1.0; max=51.85>2.4",
+          "max_error": 51.85171098608758,
+          "passed": false,
+          "rms_error": 25.845701810039852,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=9.12>1.0; max=19.10>2.4",
+          "max_error": 19.101404118060827,
+          "passed": false,
+          "rms_error": 9.119078313487142,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 17.901147737454075,
+          "passed": true,
+          "rms_error": 7.211645995507426,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.08108049132356704,
+      "edge_id": 88,
+      "length_px": 245.0329041547996,
+      "rms_error": 0.0,
+      "straightness": 0.6613372018366254
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.6521515052220506,
+          "passed": true,
+          "rms_error": 0.46965970860893747,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.7138365684431847,
+          "passed": true,
+          "rms_error": 0.46610235735548844,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.0249781524021573,
+          "passed": true,
+          "rms_error": 0.590691677148885,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.03289217549798391,
+      "edge_id": 89,
+      "length_px": 60.25326218711912,
+      "rms_error": 0.46965970860893747,
+      "straightness": 0.9894142172421669
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.6093973416979647,
+          "passed": true,
+          "rms_error": 0.4793746349127964,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.26836752242311246,
+          "passed": true,
+          "rms_error": 0.18976449495558945,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.009362519826505392,
+      "edge_id": 90,
+      "length_px": 35.93194459912168,
+      "rms_error": 0.4793746349127964,
+      "straightness": 0.9964678499702333
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.660604506641733,
+          "passed": true,
+          "rms_error": 0.9771138162307731,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.096154552813914,
+          "passed": true,
+          "rms_error": 0.5887992550218444,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.2011596579377246,
+          "passed": true,
+          "rms_error": 0.7602374029857056,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.0239932069219527,
+      "edge_id": 91,
+      "length_px": 91.86198039108436,
+      "rms_error": 0.5887992550218444,
+      "straightness": 0.9897189748618748
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 6.684427777288335e-16,
+          "passed": true,
+          "rms_error": 6.684427777288335e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 92,
+      "length_px": 3.1622776601683795,
+      "rms_error": 6.684427777288335e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.957, rms=0.67",
+          "max_error": 1.0044022859863109,
+          "passed": false,
+          "rms_error": 0.6746024286720791,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.640017604916149,
+          "passed": true,
+          "rms_error": 0.42148551719246274,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.08809464429234687,
+      "edge_id": 93,
+      "length_px": 15.538906576988305,
+      "rms_error": 0.0,
+      "straightness": 0.9566997956814921
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 4.965068306494546e-16,
+          "passed": true,
+          "rms_error": 4.965068306494546e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 94,
+      "length_px": 5.0,
+      "rms_error": 4.965068306494546e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.4800042816092749,
+          "passed": true,
+          "rms_error": 0.7403995455708191,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=21857>5000",
+          "max_error": 1.5059054476514575,
+          "passed": false,
+          "rms_error": 0.7345965662807264,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.9873133113152748,
+          "passed": true,
+          "rms_error": 1.1809146952115726,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.04233106404884071,
+      "edge_id": 95,
+      "length_px": 250.71064566338035,
+      "rms_error": 0.7403995455708191,
+      "straightness": 0.988230730395118
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.6150392535602627,
+          "passed": true,
+          "rms_error": 0.7179104974415274,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=76816>5000",
+          "max_error": 1.4968896543286974,
+          "passed": false,
+          "rms_error": 0.6603793646802734,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 6.688496235190773,
+          "passed": true,
+          "rms_error": 3.849195001458693,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.04018218873825158,
+      "edge_id": 96,
+      "length_px": 802.5755417078553,
+      "rms_error": 0.7179104974415274,
+      "straightness": 0.9889547628875077
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.941, rms=0.66",
+          "max_error": 0.9845630210047553,
+          "passed": false,
+          "rms_error": 0.6608092992093871,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.1090887590758038,
+          "passed": true,
+          "rms_error": 0.5295631173827503,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.13416376509138675,
+      "edge_id": 97,
+      "length_px": 23.22000231742804,
+      "rms_error": 0.0,
+      "straightness": 0.9405825791605992
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.1209444410834517,
+          "passed": true,
+          "rms_error": 0.6894054186788662,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.8436726133554657,
+          "passed": true,
+          "rms_error": 0.5518991237812043,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.0767408319682021,
+          "passed": true,
+          "rms_error": 0.6210038821203222,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.028937766921312863,
+      "edge_id": 98,
+      "length_px": 68.40398823685119,
+      "rms_error": 0.5518991237812043,
+      "straightness": 0.9903246866717802
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=3.31>1.0; max=5.26>2.4",
+          "max_error": 5.2559141497476345,
+          "passed": false,
+          "rms_error": 3.308906328552901,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.2951282288963242,
+          "passed": true,
+          "rms_error": 0.704606483574165,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.384430569689108,
+          "passed": true,
+          "rms_error": 0.8469618440907692,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.029148047674238634,
+      "edge_id": 99,
+      "length_px": 62.444855967522514,
+      "rms_error": 0.704606483574165,
+      "straightness": 0.9470025489152595
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.974, rms=0.64",
+          "max_error": 0.8287495769751488,
+          "passed": false,
+          "rms_error": 0.641543369226981,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9977684163139762,
+          "passed": true,
+          "rms_error": 0.5875528574211288,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.05114048322718914,
+      "edge_id": 100,
+      "length_px": 27.10870943443779,
+      "rms_error": 0.0,
+      "straightness": 0.9738847077445056
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.991, rms=0.75",
+          "max_error": 1.0539999633231563,
+          "passed": false,
+          "rms_error": 0.7494566840516697,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.18207738839350232,
+          "passed": true,
+          "rms_error": 0.10512242920233261,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.01151795884704987,
+      "edge_id": 101,
+      "length_px": 23.990993425527055,
+      "rms_error": 0.0,
+      "straightness": 0.9907771731835749
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=3.99>1.0; max=7.27>2.4",
+          "max_error": 7.274355777281493,
+          "passed": false,
+          "rms_error": 3.987105751915005,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.3587051685351668,
+          "passed": true,
+          "rms_error": 0.5910024914023997,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.586204216311107,
+          "passed": true,
+          "rms_error": 0.8808678553337635,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.050380576234092055,
+      "edge_id": 102,
+      "length_px": 88.85972079067119,
+      "rms_error": 0.5910024914023997,
+      "straightness": 0.9424253838637884
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.7049505375881118,
+          "passed": true,
+          "rms_error": 0.70761818599488,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=6059>5000",
+          "max_error": 1.1248055776786714,
+          "passed": false,
+          "rms_error": 0.567919781406906,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.145343429678453,
+          "passed": true,
+          "rms_error": 1.4832167491938895,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.04592379642067013,
+      "edge_id": 103,
+      "length_px": 261.38197646375,
+      "rms_error": 0.70761818599488,
+      "straightness": 0.987402174328225
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": "detail: straight=0.938, rms=0.69",
+          "max_error": 0.935940701368275,
+          "passed": false,
+          "rms_error": 0.6887345495091793,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.1826944322666418,
+          "passed": true,
+          "rms_error": 0.1054786796485915,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.07991087011470623,
+      "edge_id": 104,
+      "length_px": 9.82842712474619,
+      "rms_error": 0.0,
+      "straightness": 0.9380488190302345
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.6238700732867526,
+          "passed": true,
+          "rms_error": 0.6160007169617912,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=13763>5000",
+          "max_error": 1.4152929521515034,
+          "passed": false,
+          "rms_error": 0.5898036741909171,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.6991430693449554,
+          "passed": true,
+          "rms_error": 1.3937077462623804,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.07990818388874761,
+      "edge_id": 105,
+      "length_px": 271.95564229939515,
+      "rms_error": 0.6160007169617912,
+      "straightness": 0.9784738501849823
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.882<0.9; rms=21.35>1.0; max=50.17>2.4",
+          "max_error": 50.17341445778452,
+          "passed": false,
+          "rms_error": 21.352740073183686,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=10.72>1.0; max=50.53>2.4",
+          "max_error": 50.525692981234585,
+          "passed": false,
+          "rms_error": 10.722605421691155,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 18.829690115428445,
+          "passed": true,
+          "rms_error": 7.0115561024419035,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.06274412793726725,
+      "edge_id": 106,
+      "length_px": 392.8619506242371,
+      "rms_error": 0.0,
+      "straightness": 0.8819442102521406
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 3.1401849173675503e-16,
+          "passed": true,
+          "rms_error": 3.1401849173675503e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 107,
+      "length_px": 4.242640687119285,
+      "rms_error": 3.1401849173675503e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 4.440892098500626e-16,
+          "passed": true,
+          "rms_error": 4.440892098500626e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 108,
+      "length_px": 5.656854249492381,
+      "rms_error": 4.440892098500626e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 9.155133597044475e-16,
+          "passed": true,
+          "rms_error": 9.155133597044475e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 109,
+      "length_px": 12.36931687685298,
+      "rms_error": 9.155133597044475e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 4.577566798522237e-16,
+          "passed": true,
+          "rms_error": 4.577566798522237e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 110,
+      "length_px": 3.605551275463989,
+      "rms_error": 4.577566798522237e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=3.78>1.0; max=7.43>2.4",
+          "max_error": 7.426079099499127,
+          "passed": false,
+          "rms_error": 3.7841852930594073,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.443783817418307,
+          "passed": true,
+          "rms_error": 0.7234841523781951,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.2715533207651983,
+          "passed": true,
+          "rms_error": 1.4992133734871882,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.019926506117167057,
+      "edge_id": 111,
+      "length_px": 285.6388362532666,
+      "rms_error": 0.7234841523781951,
+      "straightness": 0.9896476390161573
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.0349073892757883,
+          "passed": true,
+          "rms_error": 0.6116008111038642,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.0185181466341078,
+          "passed": true,
+          "rms_error": 0.560002425900651,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.2367921626858065,
+          "passed": true,
+          "rms_error": 0.658842488323491,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.06548523407392183,
+      "edge_id": 112,
+      "length_px": 57.49666580448525,
+      "rms_error": 0.6116008111038642,
+      "straightness": 0.9716374003985402
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=7.70>1.0; max=16.04>2.4",
+          "max_error": 16.04130391490592,
+          "passed": false,
+          "rms_error": 7.699190029485387,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=3.37>1.0; max=10.43>2.4",
+          "max_error": 10.43046691809134,
+          "passed": false,
+          "rms_error": 3.3738721948771877,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 5.0033918227289345,
+          "passed": true,
+          "rms_error": 2.1496980695221874,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.0720375422165868,
+      "edge_id": 113,
+      "length_px": 158.7016031420878,
+      "rms_error": 2.1496980695221874,
+      "straightness": 0.9181726794224758
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 2.2041438317491497,
+          "passed": true,
+          "rms_error": 0.7080018795087052,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=202945>5000",
+          "max_error": 2.025183050718624,
+          "passed": false,
+          "rms_error": 0.6955678612966089,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 6.980764485307278,
+          "passed": true,
+          "rms_error": 3.881797140651955,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.03865524008189407,
+      "edge_id": 114,
+      "length_px": 803.9389156213638,
+      "rms_error": 0.7080018795087052,
+      "straightness": 0.9885516928901524
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.827<0.9; rms=25.42>1.0; max=45.27>2.4",
+          "max_error": 45.26517772569619,
+          "passed": false,
+          "rms_error": 25.41720821121442,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=4.25>1.0; max=16.36>2.4",
+          "max_error": 16.358917246213593,
+          "passed": false,
+          "rms_error": 4.250330436132198,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 9.453924091972413,
+          "passed": true,
+          "rms_error": 5.026649264734885,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.039100690399720014,
+      "edge_id": 115,
+      "length_px": 331.76832578358164,
+      "rms_error": 0.0,
+      "straightness": 0.8268779579960732
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.0049657002090127,
+          "passed": true,
+          "rms_error": 0.5777028539553637,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=6110>5000",
+          "max_error": 1.0187871030702809,
+          "passed": false,
+          "rms_error": 0.5715040921024901,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.4241685962104529,
+          "passed": true,
+          "rms_error": 0.860819847603854,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.12569330666745665,
+      "edge_id": 116,
+      "length_px": 124.97056274847714,
+      "rms_error": 0.5777028539553637,
+      "straightness": 0.9607594422062582
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 9.930136612989092e-16,
+          "passed": true,
+          "rms_error": 9.930136612989092e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 117,
+      "length_px": 6.708203932499369,
+      "rms_error": 9.930136612989092e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 9.930136612989092e-16,
+          "passed": true,
+          "rms_error": 9.930136612989092e-16,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.0,
+      "edge_id": 118,
+      "length_px": 13.92838827718412,
+      "rms_error": 9.930136612989092e-16,
+      "straightness": 1.0
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.6795000828929372,
+          "passed": true,
+          "rms_error": 0.4976844330512806,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.15126267765349538,
+          "passed": true,
+          "rms_error": 0.08733154766158914,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.03253141252665709,
+      "edge_id": 119,
+      "length_px": 13.039532407520593,
+      "rms_error": 0.4976844330512806,
+      "straightness": 0.982109486340143
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.8924321425424901,
+          "passed": true,
+          "rms_error": 0.8887995669022842,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.3601338824871618,
+          "passed": true,
+          "rms_error": 0.7833359009569484,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.4008789346404378,
+          "passed": true,
+          "rms_error": 0.9315829763668573,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.06766220306731675,
+      "edge_id": 120,
+      "length_px": 120.73386983262354,
+      "rms_error": 0.8887995669022842,
+      "straightness": 0.9750371371263481
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.634<0.9; rms=12.72>1.0; max=29.88>2.4",
+          "max_error": 29.884032411521808,
+          "passed": false,
+          "rms_error": 12.71737873683052,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=10.81>1.0; max=32.72>2.4; sweep=0.68<0.8",
+          "max_error": 32.71823912057464,
+          "passed": false,
+          "rms_error": 10.805781982259724,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 18.582380404103453,
+          "passed": true,
+          "rms_error": 8.197894833934114,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.06541069561245948,
+      "edge_id": 121,
+      "length_px": 195.54229261772468,
+      "rms_error": 0.0,
+      "straightness": 0.6343194781713305
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=9.70>1.0; max=18.48>2.4",
+          "max_error": 18.47832240149828,
+          "passed": false,
+          "rms_error": 9.70148996341919,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.0507209105806226,
+          "passed": true,
+          "rms_error": 0.9625344097739422,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 4.657914125932551,
+          "passed": true,
+          "rms_error": 2.242666756327512,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "arc",
+      "curvature_score": 0.08286745154814197,
+      "edge_id": 122,
+      "length_px": 235.40134767683537,
+      "rms_error": 0.9625344097739422,
+      "straightness": 0.9231210303657752
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.893<0.9; rms=3.42>1.0; max=7.04>2.4",
+          "max_error": 7.044034023824916,
+          "passed": false,
+          "rms_error": 3.4153562921892355,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=1.05>1.0",
+          "max_error": 2.381592353558915,
+          "passed": false,
+          "rms_error": 1.0472685540300442,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.6721258596000395,
+          "passed": true,
+          "rms_error": 1.0221629996135333,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.09459417647072943,
+      "edge_id": 123,
+      "length_px": 67.42024615216734,
+      "rms_error": 1.0221629996135333,
+      "straightness": 0.8930251123389882
+    },
+    {
+      "bucket": "detail",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.7144317552939252,
+          "passed": true,
+          "rms_error": 0.5551226449339826,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.3058736123688975,
+          "passed": true,
+          "rms_error": 0.21628530549204933,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.023075742538320773,
+      "edge_id": 124,
+      "length_px": 24.596747752497688,
+      "rms_error": 0.5551226449339826,
+      "straightness": 0.9900329738226896
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 2.556540706541791,
+          "passed": true,
+          "rms_error": 1.73224084076526,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.947297318653797,
+          "passed": true,
+          "rms_error": 0.5208741624265386,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.05403691116397555,
+      "edge_id": 125,
+      "length_px": 36.44395525283449,
+      "rms_error": 1.73224084076526,
+      "straightness": 0.9393734927985
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.7071067811865476,
+          "passed": true,
+          "rms_error": 0.6324555320336759,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.1744123580884671,
+          "passed": true,
+          "rms_error": 0.6981591838338037,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.06398996609138921,
+      "edge_id": 126,
+      "length_px": 37.243572468470276,
+      "rms_error": 0.6324555320336759,
+      "straightness": 0.9684725498414132
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=6.32>1.0; max=12.97>2.4",
+          "max_error": 12.971832479020446,
+          "passed": false,
+          "rms_error": 6.323963706839342,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=1.10>1.0; max=2.85>2.4",
+          "max_error": 2.8475661056127706,
+          "passed": false,
+          "rms_error": 1.100507754809671,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.792935023749619,
+          "passed": true,
+          "rms_error": 1.3828977664151654,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.03271726545355146,
+      "edge_id": 127,
+      "length_px": 158.2676004496525,
+      "rms_error": 1.3828977664151654,
+      "straightness": 0.9503909147391354
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.5924907983180985,
+          "passed": true,
+          "rms_error": 0.8639328132391655,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.2769941453009324,
+          "passed": true,
+          "rms_error": 0.826208876027022,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.662968711884341,
+          "passed": true,
+          "rms_error": 1.0373555899213682,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.12793784641374922,
+      "edge_id": 128,
+      "length_px": 104.98403557184412,
+      "rms_error": 0.8639328132391655,
+      "straightness": 0.9529543166693142
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "straight=0.840<0.9; rms=28.08>1.0; max=58.98>2.4",
+          "max_error": 58.98175871770062,
+          "passed": false,
+          "rms_error": 28.084679027867363,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=3.27>1.0; max=13.11>2.4",
+          "max_error": 13.107867476566526,
+          "passed": false,
+          "rms_error": 3.272451969751278,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 9.645115675533782,
+          "passed": true,
+          "rms_error": 6.282042450578925,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "polyline",
+      "curvature_score": 0.05306653939102301,
+      "edge_id": 129,
+      "length_px": 438.67457012983425,
+      "rms_error": 0.0,
+      "straightness": 0.8401564911013865
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=6.35>1.0; max=14.35>2.4",
+          "max_error": 14.345702769005436,
+          "passed": false,
+          "rms_error": 6.345882854596388,
+          "type": "line"
+        },
+        {
+          "fail_reason": "rms=1.59>1.0; max=5.61>2.4",
+          "max_error": 5.609223967014486,
+          "passed": false,
+          "rms_error": 1.5878234261579625,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 4.214578884295159,
+          "passed": true,
+          "rms_error": 2.1414847393124443,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.05731551814519437,
+      "edge_id": 130,
+      "length_px": 165.99297892831262,
+      "rms_error": 2.1414847393124443,
+      "straightness": 0.9203071459044215
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.8244633287164318,
+          "passed": true,
+          "rms_error": 1.337089298045358,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.9296632530117108,
+          "passed": true,
+          "rms_error": 0.6061171504765925,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.4209678470707015,
+          "passed": true,
+          "rms_error": 0.7140989129559202,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.005203450866726081,
+      "edge_id": 131,
+      "length_px": 93.98186690747838,
+      "rms_error": 1.337089298045358,
+      "straightness": 0.9936059296561969
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 0.5988674264189829,
+          "passed": true,
+          "rms_error": 0.47851581329341936,
+          "type": "line"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.7039950836366298,
+          "passed": true,
+          "rms_error": 0.4064517510457813,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.017391921859277952,
+      "edge_id": 132,
+      "length_px": 37.0,
+      "rms_error": 0.47851581329341936,
+      "straightness": 0.98972072560003
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": null,
+          "max_error": 1.1598930381638586,
+          "passed": true,
+          "rms_error": 0.6614967607170859,
+          "type": "line"
+        },
+        {
+          "fail_reason": "radius=33131>5000",
+          "max_error": 1.1732877911708783,
+          "passed": false,
+          "rms_error": 0.6608701369168437,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 1.8688283762194162,
+          "passed": true,
+          "rms_error": 1.0582959757245927,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "line",
+      "curvature_score": 0.11453198017967939,
+      "edge_id": 133,
+      "length_px": 166.54032691203116,
+      "rms_error": 0.6614967607170859,
+      "straightness": 0.961647276469743
+    },
+    {
+      "bucket": "structural",
+      "candidates": [
+        {
+          "fail_reason": "rms=5.80>1.0; max=16.18>2.4",
+          "max_error": 16.179005745149755,
+          "passed": false,
+          "rms_error": 5.802720275432173,
+          "type": "line"
+        },
+        {
+          "fail_reason": "max=2.57>2.4",
+          "max_error": 2.570882432206389,
+          "passed": false,
+          "rms_error": 0.8453357167715714,
+          "type": "arc"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 2.2955458751851676,
+          "passed": true,
+          "rms_error": 1.3618278716426995,
+          "type": "cubic"
+        },
+        {
+          "fail_reason": null,
+          "max_error": 0.0,
+          "passed": true,
+          "rms_error": 0.0,
+          "type": "polyline"
+        }
+      ],
+      "chosen_type": "cubic",
+      "curvature_score": 0.0939422556183893,
+      "edge_id": 134,
+      "length_px": 181.00373362041094,
+      "rms_error": 1.3618278716426995,
+      "straightness": 0.9447965082593899
+    }
+  ]
+}

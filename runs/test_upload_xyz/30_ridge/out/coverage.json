@@ -1,0 +1,11 @@
+{
+  "coverage_1px": 0.7514741118866548,
+  "coverage_2px": 0.9432440879258256,
+  "endpoint_count": 114,
+  "junction_count": 274,
+  "ridge_dt_percentiles": {
+    "p10": 1.399993896484375,
+    "p50": 2.0,
+    "p90": 2.1968994140625
+  }
+}
