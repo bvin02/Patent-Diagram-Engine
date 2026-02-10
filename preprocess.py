@@ -279,6 +279,25 @@ def create_overlay(original_bgr: np.ndarray, mask: np.ndarray) -> np.ndarray:
 # Main preprocessing function
 # ---------------------------------------------------------------------------
 
+
+def infer_run_dir(input_path: str, runs_root: str) -> Path:
+    """
+    Infer run directory from input path.
+    
+    If input_path is already under runs/<run>/..., reuse that run directory.
+    Otherwise create a new run directory.
+    """
+    input_p = Path(input_path).resolve()
+    runs_root_p = Path(runs_root).resolve()
+    
+    try:
+        rel_path = input_p.relative_to(runs_root_p)
+        run_name = rel_path.parts[0]
+        return runs_root_p / run_name
+    except ValueError:
+        return make_run_dir(input_path, runs_root)
+
+
 def preprocess(
     input_path: str,
     runs_root: str = "runs",
@@ -303,7 +322,7 @@ def preprocess(
     config = load_config(config_path)
     
     # Create run directory and artifacts manager
-    run_dir = make_run_dir(input_path, runs_root)
+    run_dir = infer_run_dir(input_path, runs_root)
     artifacts = StageArtifacts(run_dir, 10, "preprocess", debug=debug)
     
     # Read input image
