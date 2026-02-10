@@ -64,6 +64,14 @@ DEFAULT_CONFIG = {
     # Misc
     "dir_sample_len_for_turning": 3,
     "error_heatmap_bins": [0.5, 1.0, 2.0, 3.0],
+    
+    # Polyline smoothing (curve-aware)
+    "polyline_smooth_enabled": True,
+    "polyline_corner_threshold_deg": 35.0,  # Angle above this is a corner
+    "polyline_smooth_weight": 0.65,  # 0=original, 1=fully smoothed
+    "polyline_min_smooth_length_px": 15.0,  # Min segment length to smooth
+    "polyline_max_drift_px": 2.5,  # Max allowed deviation from original
+    "polyline_smooth_iterations": 2,  # Number of smoothing passes
 }
 
 
@@ -263,6 +271,199 @@ def deterministic_palette(n: int) -> List[Tuple[int, int, int]]:
         bgr = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)[0, 0]
         colors.append(tuple(map(int, bgr)))
     return colors
+
+
+# ---------------------------------------------------------------------------
+# Polyline Smoothing (Curve-Aware)
+# ---------------------------------------------------------------------------
+
+def detect_polyline_corners(points: np.ndarray, angle_threshold_deg: float) -> List[int]:
+    """
+    Detect corner indices in a polyline where turning angle exceeds threshold.
+    
+    The turning angle is the deviation from a straight path - i.e., how much
+    the direction changes at each vertex. A corner has a large turning angle.
+    
+    Args:
+        points: Nx2 array of polyline vertices
+        angle_threshold_deg: Angle threshold in degrees (larger = sharper corner)
+    
+    Returns:
+        List of indices where corners occur (always includes 0 and len-1)
+    """
+    if len(points) < 3:
+        return [0, len(points) - 1] if len(points) >= 2 else [0]
+    
+    threshold_rad = np.radians(angle_threshold_deg)
+    corners = [0]  # Always include start
+    
+    for i in range(1, len(points) - 1):
+        v1 = points[i] - points[i - 1]
+        v2 = points[i + 1] - points[i]
+        
+        n1 = np.linalg.norm(v1)
+        n2 = np.linalg.norm(v2)
+        
+        if n1 < 1e-9 or n2 < 1e-9:
+            continue
+        
+        # Compute the turning angle: deviation from straight path
+        # When vectors are aligned (straight): cos_angle ≈ 1, angle ≈ 0
+        # When perpendicular: cos_angle ≈ 0, angle ≈ π/2 (90°)
+        # When reversed (U-turn): cos_angle ≈ -1, angle ≈ π (180°)
+        cos_angle = np.clip(np.dot(v1, v2) / (n1 * n2), -1.0, 1.0)
+        turning_angle = np.arccos(cos_angle)  # 0 = straight, π = U-turn
+        
+        # A corner has a large deviation from straight
+        # For a smooth curve, turning angle is small (close to 0)
+        # For a sharp corner, turning angle is large (> threshold)
+        if turning_angle >= threshold_rad:
+            corners.append(i)
+    
+    corners.append(len(points) - 1)  # Always include end
+    return corners
+
+
+def smooth_polyline_segment(points: np.ndarray, weight: float, 
+                            iterations: int = 2, 
+                            max_drift_px: float = 2.5) -> np.ndarray:
+    """
+    Apply weighted moving-average smoothing to a polyline segment.
+    Endpoints are fixed. Drift is constrained.
+    
+    Args:
+        points: Nx2 array of vertices to smooth
+        weight: Blend factor 0=original, 1=fully smoothed neighbor average
+        iterations: Number of smoothing passes
+        max_drift_px: Maximum allowed deviation from original position
+        
+    Returns:
+        Smoothed points array with same shape
+    """
+    if len(points) < 3:
+        return points.copy()
+    
+    smoothed = points.copy()
+    original = points.copy()
+    
+    for _ in range(iterations):
+        new_pts = smoothed.copy()
+        for i in range(1, len(smoothed) - 1):
+            # Weighted average of neighbors
+            neighbor_avg = 0.25 * smoothed[i - 1] + 0.5 * smoothed[i] + 0.25 * smoothed[i + 1]
+            # Blend between current and neighbor average
+            new_pts[i] = (1 - weight) * smoothed[i] + weight * neighbor_avg
+        smoothed = new_pts
+    
+    # Constrain drift from original
+    for i in range(1, len(smoothed) - 1):
+        drift = smoothed[i] - original[i]
+        drift_mag = np.linalg.norm(drift)
+        if drift_mag > max_drift_px:
+            smoothed[i] = original[i] + drift * (max_drift_px / drift_mag)
+    
+    return smoothed
+
+
+def smooth_polyline_curve_aware(points: np.ndarray, config: dict) -> Tuple[np.ndarray, List[int], List[Tuple[int, int]]]:
+    """
+    Smooth a polyline while preserving sharp corners.
+    
+    Detects corners (sharp angle changes) and only smooths the curved segments
+    between corners. Endpoints and junction corners remain fixed.
+    
+    Args:
+        points: Nx2 array of polyline vertices
+        config: Configuration dict with smoothing parameters
+        
+    Returns:
+        Tuple of:
+        - Smoothed points array
+        - List of corner indices (for debug)
+        - List of (start, end) tuples for smoothed segments (for debug)
+    """
+    if not config.get("polyline_smooth_enabled", True):
+        return points.copy(), [], []
+    
+    if len(points) < 3:
+        return points.copy(), [0, len(points) - 1] if len(points) >= 2 else [0], []
+    
+    # Get parameters
+    corner_threshold = config.get("polyline_corner_threshold_deg", 35.0)
+    smooth_weight = config.get("polyline_smooth_weight", 0.65)
+    min_length = config.get("polyline_min_smooth_length_px", 15.0)
+    max_drift = config.get("polyline_max_drift_px", 2.5)
+    iterations = config.get("polyline_smooth_iterations", 2)
+    
+    # Detect corners
+    corners = detect_polyline_corners(points, corner_threshold)
+    
+    if len(corners) < 2:
+        return points.copy(), corners, []
+    
+    # Smooth segments between corners
+    smoothed = points.copy()
+    smoothed_segments = []
+    
+    for seg_idx in range(len(corners) - 1):
+        start_idx = corners[seg_idx]
+        end_idx = corners[seg_idx + 1]
+        
+        # Extract segment
+        segment = points[start_idx:end_idx + 1]
+        
+        if len(segment) < 3:
+            continue
+        
+        # Check segment length
+        seg_length = compute_path_length(segment)
+        if seg_length < min_length:
+            continue
+        
+        # Smooth the segment
+        smoothed_seg = smooth_polyline_segment(
+            segment, smooth_weight, iterations, max_drift
+        )
+        
+        # Copy back interior points (endpoints are corners, stay fixed)
+        # smoothed_seg[0] = start corner, smoothed_seg[-1] = end corner
+        # We copy smoothed_seg[1:-1] to smoothed[start_idx+1:end_idx]
+        if end_idx > start_idx + 1:  # There are interior points to copy
+            smoothed[start_idx + 1:end_idx] = smoothed_seg[1:-1]
+        
+        smoothed_segments.append((start_idx, end_idx))
+    
+    return smoothed, corners, smoothed_segments
+
+
+def create_smoothed_polyline_primitive(points: np.ndarray, config: dict) -> Tuple[dict, dict]:
+    """
+    Create polyline primitive with optional curve-aware smoothing.
+    
+    Args:
+        points: Original polyline points
+        config: Configuration dict
+        
+    Returns:
+        Tuple of (primitive dict, debug info dict)
+    """
+    # Apply curve-aware smoothing
+    smoothed, corners, smoothed_segments = smooth_polyline_curve_aware(points, config)
+    
+    primitive = {
+        "type": "polyline",
+        "points": [[float(p[0]), float(p[1])] for p in smoothed]
+    }
+    
+    debug_info = {
+        "original_points": [[float(p[0]), float(p[1])] for p in points],
+        "corner_indices": corners,
+        "smoothed_segments": smoothed_segments,
+        "num_corners": len(corners),
+        "was_smoothed": len(smoothed_segments) > 0
+    }
+    
+    return primitive, debug_info
 
 
 # ---------------------------------------------------------------------------
@@ -809,14 +1010,16 @@ def process_edge(edge: dict, nodes_by_id: dict, config: dict,
     }
     candidates.append(bezier_candidate)
     
-    # --- Polyline fallback ---
+    # --- Polyline fallback (with curve-aware smoothing) ---
+    polyline_prim, polyline_smooth_info = create_smoothed_polyline_primitive(simplified, config)
     polyline_candidate = {
         "type": "polyline",
-        "primitive": create_polyline_primitive(simplified),
+        "primitive": polyline_prim,
         "rms_error": 0.0,
         "max_error": 0.0,
         "passed": True,
-        "fail_reason": None
+        "fail_reason": None,
+        "smooth_info": polyline_smooth_info  # For debug visualization
     }
     candidates.append(polyline_candidate)
     
@@ -887,6 +1090,7 @@ def process_edge(edge: dict, nodes_by_id: dict, config: dict,
             for c in candidates
         ],
         "polyline_simplified": [[float(p[0]), float(p[1])] for p in simplified],
+        "polyline_smooth_info": polyline_candidate.get("smooth_info"),  # For debug visualization
         "quality": {
             "rms_error": chosen["rms_error"],
             "max_error": chosen["max_error"],
@@ -1111,6 +1315,50 @@ def fit_primitives(
                     cv2.polylines(vis, [pts], False, (0, 255, 255), 1)
         artifacts.save_debug_image("failed_line_candidates", vis)
         
+        # 5b) Polyline smoothing visualization (original vs smoothed with corners highlighted)
+        vis = (base_img.astype(np.float32) * 0.3).astype(np.uint8)
+        smoothed_count = 0
+        corner_count = 0
+        for prim in primitives:
+            if prim["chosen"]["type"] != "polyline":
+                continue
+            
+            smooth_info = prim.get("polyline_smooth_info")
+            if not smooth_info:
+                continue
+            
+            # Get original and smoothed points
+            original_pts = np.array(smooth_info.get("original_points", []))
+            smoothed_pts = np.array(prim["chosen"]["points"])
+            corners = smooth_info.get("corner_indices", [])
+            was_smoothed = smooth_info.get("was_smoothed", False)
+            
+            if len(original_pts) < 2 or len(smoothed_pts) < 2:
+                continue
+            
+            # Draw original in red (thin)
+            cv2.polylines(vis, [original_pts.astype(np.int32)], False, (0, 0, 180), 1)
+            
+            # Draw smoothed in green (thicker)
+            cv2.polylines(vis, [smoothed_pts.astype(np.int32)], False, (0, 255, 0), 2)
+            
+            # Mark corners with yellow circles
+            for c_idx in corners:
+                if 0 <= c_idx < len(smoothed_pts):
+                    pt = tuple(smoothed_pts[c_idx].astype(int))
+                    cv2.circle(vis, pt, 4, (0, 255, 255), -1)
+                    corner_count += 1
+            
+            if was_smoothed:
+                smoothed_count += 1
+        
+        # Add legend
+        cv2.putText(vis, f"Red=original, Green=smoothed, Yellow=corners", 
+                    (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+        cv2.putText(vis, f"Smoothed: {smoothed_count} polylines, {corner_count} corners preserved", 
+                    (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+        artifacts.save_debug_image("polyline_smoothing_vis", vis)
+        
         # 6) Top 20 longest edges detail (individual crops)
         sorted_by_len = sorted(primitives, key=lambda p: p["length_px"], reverse=True)
         for idx, prim in enumerate(sorted_by_len[:20]):
@@ -1255,7 +1503,21 @@ def fit_primitives(
         "rms_median_structural": float(np.median(structural_errors)) if structural_errors else 0,
         "rms_p90_structural": float(np.percentile(structural_errors, 90)) if structural_errors else 0,
         "top_20_worst_edges": [{"id": e["edge_id"], "rms": e["quality"]["rms_error"]} for e in worst_edges],
-        "readiness_flags": {}
+        "readiness_flags": {},
+        # Polyline smoothing stats
+        "polyline_smoothing": {
+            "enabled": config.get("polyline_smooth_enabled", True),
+            "total_polylines": type_counts["polyline"],
+            "smoothed_polylines": sum(
+                1 for p in primitives 
+                if p["chosen"]["type"] == "polyline" 
+                and p.get("polyline_smooth_info", {}).get("was_smoothed", False)
+            ),
+            "corners_preserved": sum(
+                p.get("polyline_smooth_info", {}).get("num_corners", 0)
+                for p in primitives if p["chosen"]["type"] == "polyline"
+            )
+        }
     }
     
     if structural_line_fraction < 0.4:
