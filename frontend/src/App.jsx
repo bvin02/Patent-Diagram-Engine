@@ -153,6 +153,10 @@ export default function App() {
           />
         )}
       </div>
+
+      <footer className="disclaimer">
+        This tool is provided as-is for reference purposes only and does not replace the expertise of a professional patent drafter.
+      </footer>
     </div>
   );
 }

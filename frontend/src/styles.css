@@ -183,6 +183,61 @@ body {
 
 /* Step 1: Upload */
 
+.patent-checklist {
+  position: absolute;
+  left: 50px;
+  top: 150px;
+  max-width: 280px;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.patent-checklist h3 {
+  font-size: 15px;
+  margin: 0 0 8px;
+}
+
+.patent-checklist .checklist-intro {
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.patent-checklist h4 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 14px 0 4px;
+  color: var(--text);
+}
+
+.patent-checklist ul {
+  margin: 0 0 4px;
+  padding-left: 18px;
+}
+
+.patent-checklist li {
+  margin-bottom: 2px;
+  color: var(--text-muted);
+}
+
+.checklist-rule {
+  margin-top: 16px;
+  padding: 10px 12px;
+  background: rgba(37, 99, 235, 0.06);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
 .upload-area {
   max-width: 500px;
   width: 100%;
@@ -444,4 +499,13 @@ body {
   border-radius: var(--radius);
   font-size: 13px;
   margin-bottom: 16px;
+}
+
+.disclaimer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.6;
+  padding: 10px 24px;
+  border-top: 1px solid var(--border);
 }

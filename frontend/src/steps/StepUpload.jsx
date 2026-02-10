@@ -55,6 +55,46 @@ export default function StepUpload({
 
   return (
     <div className="step-panel">
+      {/* Left: Patent drawing checklist */}
+      <aside className="patent-checklist">
+        <h3>Utility Patent Drawing Checklist</h3>
+        <p className="checklist-intro">
+          Include enough views to clearly show how the invention is structured
+          and how it works. At a minimum, your drawings should display every
+          claimed feature.
+        </p>
+
+        <h4>Required in most cases</h4>
+        <ul>
+          <li>Front view</li>
+          <li>Side view</li>
+          <li>Top view</li>
+        </ul>
+
+        <h4>Include when applicable</h4>
+        <ul>
+          <li>Bottom view (only if it shows features not visible elsewhere)</li>
+          <li>Isometric view (recommended for clear 3D understanding)</li>
+          <li>Exploded view (if the invention has multiple parts)</li>
+          <li>Section or cross-section views (if internal components affect function)</li>
+          <li>Detail views (for small or complex features)</li>
+        </ul>
+
+        <h4>Drawing standards</h4>
+        <ul>
+          <li>Black-and-white line drawings</li>
+          <li>Consistent reference numbers across all figures</li>
+          <li>No unnecessary shading or perspective distortion</li>
+          <li>Each figure labeled and referenced in the description</li>
+        </ul>
+
+        <div className="checklist-rule">
+          <strong>Rule of thumb:</strong> If a feature is claimed, it must appear
+          clearly in at least one drawing.
+        </div>
+      </aside>
+
+      {/* Right: Upload area */}
       <div className="upload-area">
         <h2>Upload Patent Sketch</h2>
         <p>Upload a pencil sketch (PNG or JPG) to convert to a clean vector SVG.</p>
