@@ -40,7 +40,7 @@ from utils.artifacts import StageArtifacts
 DEFAULT_CONFIG = {
     # Stroke styling
     "stroke_color": "#000000",
-    "stroke_width": 1.5,
+    "stroke_width": 1.0,
     "stroke_linecap": "round",
     "stroke_linejoin": "round",
     "background": "white",  # None for transparent, "white" for white bg
