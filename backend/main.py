@@ -150,9 +150,18 @@ def _run_label_stages(
         raise RuntimeError(f"Stage 8 failed:\n{r8.stderr}\n{r8.stdout}")
 
     # If caller supplied custom anchor positions, patch components.json
+    # while preserving the metadata (image size, paths, config) that
+    # label_leaders.py needs.
     components_json = run_dir / "80_label_identify" / "out" / "components.json"
     if components_override is not None:
-        components_json.write_text(json.dumps(components_override, indent=2))
+        existing = {}
+        if components_json.exists():
+            existing = json.loads(components_json.read_text())
+        existing["components"] = (
+            components_override if isinstance(components_override, list)
+            else components_override.get("components", components_override)
+        )
+        components_json.write_text(json.dumps(existing, indent=2))
 
     # --- Stage 9: leader routing ---------------------------------------------------
     cmd_9 = [

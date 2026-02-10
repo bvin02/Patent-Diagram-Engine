@@ -1,0 +1,37 @@
+{
+  "apply_thinning": true,
+  "component_count_final": 33,
+  "component_count_raw": 34,
+  "config_used": {
+    "apply_thinning": true,
+    "dilate_radius": 2,
+    "dt_vis_clip_percentile": 99.0,
+    "eps": 1e-06,
+    "min_dt": 0.5,
+    "min_ridge_component_area": 2,
+    "plateau_thin": false,
+    "ridge_distance_clip": 5.0,
+    "spur_prune_length": 1
+  },
+  "corrected_dt_background": false,
+  "coverage_1px": 0.7514741118866548,
+  "coverage_2px": 0.9432440879258256,
+  "dilate_radius": 2,
+  "dt_path": "/Users/bhavinsg/Projects/Patent-Diagram-Generator/runs/tmpw9_mcdd3/20_distance_transform/out/dt.npy",
+  "endpoint_count": 114,
+  "eps_used": 1e-06,
+  "image_h": 1024,
+  "image_w": 1024,
+  "junction_count": 274,
+  "mask_path": "/Users/bhavinsg/Projects/Patent-Diagram-Generator/runs/tmpw9_mcdd3/10_preprocess/out/output_mask.png",
+  "min_dt_used": 0.5,
+  "min_ridge_component_area": 2,
+  "ridge_dt_percentiles": {
+    "p10": 1.399993896484375,
+    "p50": 2.0,
+    "p90": 2.1968994140625
+  },
+  "ridge_pixels_final": 12393,
+  "ridge_pixels_raw": 9199,
+  "thresholded_input": false
+}

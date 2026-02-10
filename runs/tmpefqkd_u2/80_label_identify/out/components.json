@@ -1,0 +1,280 @@
+{
+  "components": [
+    {
+      "id": 0,
+      "anchor_x": 829,
+      "anchor_y": 309,
+      "area": 4568,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 1,
+      "anchor_x": 508,
+      "anchor_y": 359,
+      "area": 42835,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 2,
+      "anchor_x": 726,
+      "anchor_y": 415,
+      "area": 4603,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 3,
+      "anchor_x": 579,
+      "anchor_y": 448,
+      "area": 23486,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 4,
+      "anchor_x": 536,
+      "anchor_y": 456,
+      "area": 1483,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 5,
+      "anchor_x": 748,
+      "anchor_y": 456,
+      "area": 629,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 6,
+      "anchor_x": 670,
+      "anchor_y": 463,
+      "area": 4355,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 7,
+      "anchor_x": 102,
+      "anchor_y": 481,
+      "area": 742,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 8,
+      "anchor_x": 107,
+      "anchor_y": 499,
+      "area": 1129,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 9,
+      "anchor_x": 694,
+      "anchor_y": 509,
+      "area": 1694,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 10,
+      "anchor_x": 608,
+      "anchor_y": 524,
+      "area": 6472,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 11,
+      "anchor_x": 392,
+      "anchor_y": 546,
+      "area": 3546,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 12,
+      "anchor_x": 319,
+      "anchor_y": 575,
+      "area": 4385,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 13,
+      "anchor_x": 594,
+      "anchor_y": 583,
+      "area": 1651,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 14,
+      "anchor_x": 388,
+      "anchor_y": 612,
+      "area": 7086,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 15,
+      "anchor_x": 535,
+      "anchor_y": 616,
+      "area": 2536,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 16,
+      "anchor_x": 120,
+      "anchor_y": 662,
+      "area": 45377,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 17,
+      "anchor_x": 195,
+      "anchor_y": 815,
+      "area": 2012,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 18,
+      "anchor_x": 364,
+      "anchor_y": 856,
+      "area": 82151,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    },
+    {
+      "id": 19,
+      "anchor_x": 172,
+      "anchor_y": 873,
+      "area": 27404,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": []
+    }
+  ],
+  "config": {
+    "anchor_min_edge_dist": 5,
+    "border_margin": 5,
+    "max_component_area_frac": 0.5,
+    "min_boundary_pixels": 20,
+    "min_component_area": 200,
+    "min_edge_segment_length": 8,
+    "novel_boundary_frac": 0.15,
+    "stroke_dilate_radius": 1
+  },
+  "image": {
+    "height": 1024,
+    "width": 1024
+  },
+  "mask_path": "/Users/bhavinsg/Projects/Patent-Diagram-Generator/runs/tmpefqkd_u2/10_preprocess/out/output_mask.png",
+  "svg_path": "/Users/bhavinsg/Projects/Patent-Diagram-Generator/runs/tmpefqkd_u2/70_svg/out/output.svg"
+}

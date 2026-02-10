@@ -283,8 +283,21 @@ def composite_svg(
                 bg_rects = wrapper.findall(".//rect")
             for rect in bg_rects:
                 if rect.get("width") == "100%" and rect.get("height") == "100%":
-                    # Make it cover the full new canvas, positioned at origin
-                    wrapper.remove(rect)
+                    # Make it cover the full new canvas, positioned at origin.
+                    # The rect may be nested (not a direct child of wrapper),
+                    # so find its actual parent and remove from there.
+                    parent = wrapper.find(
+                        ".//{http://www.w3.org/2000/svg}rect/.."
+                    )
+                    if parent is None:
+                        parent = wrapper.find(".//rect/..")
+                    if parent is None:
+                        parent = wrapper
+                    try:
+                        parent.remove(rect)
+                    except ValueError:
+                        # Already removed or not a direct child — skip
+                        pass
                     root.insert(0, rect)
                     break
     else:

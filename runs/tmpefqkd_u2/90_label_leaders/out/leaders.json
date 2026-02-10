@@ -1,0 +1,508 @@
+{
+  "canvas": {
+    "height": 1080,
+    "width": 1191
+  },
+  "components": [
+    {
+      "anchor_x": 829,
+      "anchor_y": 309,
+      "area": 4568,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 0
+    },
+    {
+      "anchor_x": 508,
+      "anchor_y": 359,
+      "area": 42835,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 1
+    },
+    {
+      "anchor_x": 726,
+      "anchor_y": 415,
+      "area": 4603,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 2
+    },
+    {
+      "anchor_x": 579,
+      "anchor_y": 448,
+      "area": 23486,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 3
+    },
+    {
+      "anchor_x": 536,
+      "anchor_y": 456,
+      "area": 1483,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 4
+    },
+    {
+      "anchor_x": 748,
+      "anchor_y": 456,
+      "area": 629,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 5
+    },
+    {
+      "anchor_x": 670,
+      "anchor_y": 463,
+      "area": 4355,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 6
+    },
+    {
+      "anchor_x": 102,
+      "anchor_y": 481,
+      "area": 742,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 7
+    },
+    {
+      "anchor_x": 107,
+      "anchor_y": 499,
+      "area": 1129,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 8
+    },
+    {
+      "anchor_x": 694,
+      "anchor_y": 509,
+      "area": 1694,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 9
+    },
+    {
+      "anchor_x": 608,
+      "anchor_y": 524,
+      "area": 6472,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 10
+    },
+    {
+      "anchor_x": 392,
+      "anchor_y": 546,
+      "area": 3546,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 11
+    },
+    {
+      "anchor_x": 319,
+      "anchor_y": 575,
+      "area": 4385,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 12
+    },
+    {
+      "anchor_x": 594,
+      "anchor_y": 583,
+      "area": 1651,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 13
+    },
+    {
+      "anchor_x": 388,
+      "anchor_y": 612,
+      "area": 7086,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 14
+    },
+    {
+      "anchor_x": 535,
+      "anchor_y": 616,
+      "area": 2536,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 15
+    },
+    {
+      "anchor_x": 120,
+      "anchor_y": 662,
+      "area": 45377,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 16
+    },
+    {
+      "anchor_x": 195,
+      "anchor_y": 815,
+      "area": 2012,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 17
+    },
+    {
+      "anchor_x": 364,
+      "anchor_y": 856,
+      "area": 82151,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 18
+    },
+    {
+      "anchor_x": 172,
+      "anchor_y": 873,
+      "area": 27404,
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "boundary_edges": [],
+      "id": 19
+    }
+  ],
+  "config": {
+    "canvas_extension": 100,
+    "extend_canvas": true,
+    "image_edge_padding": 30,
+    "label_margin": 60,
+    "leader_elbow": false,
+    "max_crossing_passes": 20,
+    "min_label_spacing": 35,
+    "min_leader_length": 30,
+    "side_weights": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "crossings": 0,
+  "drawing_bbox": [
+    12,
+    95,
+    1023,
+    990
+  ],
+  "image": {
+    "height": 1024,
+    "width": 1024
+  },
+  "label_ring": [
+    30,
+    35,
+    1161,
+    1050
+  ],
+  "leaders": [
+    {
+      "anchor_x": 907,
+      "anchor_y": 309,
+      "component_id": 0,
+      "label_x": 1161,
+      "label_y": 117,
+      "original_anchor_x": 829,
+      "original_anchor_y": 309,
+      "side": "right"
+    },
+    {
+      "anchor_x": 586,
+      "anchor_y": 359,
+      "component_id": 1,
+      "label_x": 569,
+      "label_y": 35,
+      "original_anchor_x": 508,
+      "original_anchor_y": 359,
+      "side": "top"
+    },
+    {
+      "anchor_x": 804,
+      "anchor_y": 415,
+      "component_id": 2,
+      "label_x": 1161,
+      "label_y": 196,
+      "original_anchor_x": 726,
+      "original_anchor_y": 415,
+      "side": "right"
+    },
+    {
+      "anchor_x": 657,
+      "anchor_y": 448,
+      "component_id": 3,
+      "label_x": 925,
+      "label_y": 35,
+      "original_anchor_x": 579,
+      "original_anchor_y": 448,
+      "side": "top"
+    },
+    {
+      "anchor_x": 614,
+      "anchor_y": 456,
+      "component_id": 4,
+      "label_x": 704,
+      "label_y": 35,
+      "original_anchor_x": 536,
+      "original_anchor_y": 456,
+      "side": "top"
+    },
+    {
+      "anchor_x": 826,
+      "anchor_y": 456,
+      "component_id": 5,
+      "label_x": 1161,
+      "label_y": 330,
+      "original_anchor_x": 748,
+      "original_anchor_y": 456,
+      "side": "right"
+    },
+    {
+      "anchor_x": 748,
+      "anchor_y": 463,
+      "component_id": 6,
+      "label_x": 1161,
+      "label_y": 247,
+      "original_anchor_x": 670,
+      "original_anchor_y": 463,
+      "side": "right"
+    },
+    {
+      "anchor_x": 180,
+      "anchor_y": 481,
+      "component_id": 7,
+      "label_x": 30,
+      "label_y": 453,
+      "original_anchor_x": 102,
+      "original_anchor_y": 481,
+      "side": "left"
+    },
+    {
+      "anchor_x": 185,
+      "anchor_y": 499,
+      "component_id": 8,
+      "label_x": 30,
+      "label_y": 488,
+      "original_anchor_x": 107,
+      "original_anchor_y": 499,
+      "side": "left"
+    },
+    {
+      "anchor_x": 772,
+      "anchor_y": 509,
+      "component_id": 9,
+      "label_x": 1161,
+      "label_y": 448,
+      "original_anchor_x": 694,
+      "original_anchor_y": 509,
+      "side": "right"
+    },
+    {
+      "anchor_x": 686,
+      "anchor_y": 524,
+      "component_id": 10,
+      "label_x": 1161,
+      "label_y": 413,
+      "original_anchor_x": 608,
+      "original_anchor_y": 524,
+      "side": "right"
+    },
+    {
+      "anchor_x": 470,
+      "anchor_y": 546,
+      "component_id": 11,
+      "label_x": 30,
+      "label_y": 558,
+      "original_anchor_x": 392,
+      "original_anchor_y": 546,
+      "side": "left"
+    },
+    {
+      "anchor_x": 397,
+      "anchor_y": 575,
+      "component_id": 12,
+      "label_x": 30,
+      "label_y": 635,
+      "original_anchor_x": 319,
+      "original_anchor_y": 575,
+      "side": "left"
+    },
+    {
+      "anchor_x": 672,
+      "anchor_y": 583,
+      "component_id": 13,
+      "label_x": 1161,
+      "label_y": 841,
+      "original_anchor_x": 594,
+      "original_anchor_y": 583,
+      "side": "right"
+    },
+    {
+      "anchor_x": 466,
+      "anchor_y": 612,
+      "component_id": 14,
+      "label_x": 30,
+      "label_y": 845,
+      "original_anchor_x": 388,
+      "original_anchor_y": 612,
+      "side": "left"
+    },
+    {
+      "anchor_x": 613,
+      "anchor_y": 616,
+      "component_id": 15,
+      "label_x": 716,
+      "label_y": 1050,
+      "original_anchor_x": 535,
+      "original_anchor_y": 616,
+      "side": "bottom"
+    },
+    {
+      "anchor_x": 198,
+      "anchor_y": 662,
+      "component_id": 16,
+      "label_x": 30,
+      "label_y": 712,
+      "original_anchor_x": 120,
+      "original_anchor_y": 662,
+      "side": "left"
+    },
+    {
+      "anchor_x": 273,
+      "anchor_y": 815,
+      "component_id": 17,
+      "label_x": 30,
+      "label_y": 1020,
+      "original_anchor_x": 195,
+      "original_anchor_y": 815,
+      "side": "left"
+    },
+    {
+      "anchor_x": 442,
+      "anchor_y": 856,
+      "component_id": 18,
+      "label_x": 347,
+      "label_y": 1050,
+      "original_anchor_x": 364,
+      "original_anchor_y": 856,
+      "side": "bottom"
+    },
+    {
+      "anchor_x": 250,
+      "anchor_y": 873,
+      "component_id": 19,
+      "label_x": 64,
+      "label_y": 1050,
+      "original_anchor_x": 172,
+      "original_anchor_y": 873,
+      "side": "bottom"
+    }
+  ],
+  "offset": {
+    "x": 78,
+    "y": 0
+  },
+  "svg_path": "/Users/bhavinsg/Projects/Patent-Diagram-Generator/runs/tmpefqkd_u2/70_svg/out/output.svg"
+}
