@@ -1,0 +1,528 @@
+{
+  "canvas": {
+    "height": 1080,
+    "width": 1191
+  },
+  "components": [
+    {
+      "anchor_x": 829,
+      "anchor_y": 309,
+      "area": 4568,
+      "bbox": [
+        689,
+        241,
+        859,
+        367
+      ],
+      "boundary_pixel_count": 787,
+      "id": 0,
+      "max_interior_dist": 22.57
+    },
+    {
+      "anchor_x": 508,
+      "anchor_y": 359,
+      "area": 42835,
+      "bbox": [
+        411,
+        240,
+        733,
+        605
+      ],
+      "boundary_pixel_count": 2906,
+      "id": 1,
+      "max_interior_dist": 56.32
+    },
+    {
+      "anchor_x": 726,
+      "anchor_y": 415,
+      "area": 4603,
+      "bbox": [
+        694,
+        379,
+        756,
+        490
+      ],
+      "boundary_pixel_count": 473,
+      "id": 2,
+      "max_interior_dist": 30.79
+    },
+    {
+      "anchor_x": 579,
+      "anchor_y": 448,
+      "area": 23486,
+      "bbox": [
+        532,
+        279,
+        808,
+        595
+      ],
+      "boundary_pixel_count": 2332,
+      "id": 3,
+      "max_interior_dist": 28.0
+    },
+    {
+      "anchor_x": 536,
+      "anchor_y": 456,
+      "area": 1483,
+      "bbox": [
+        517,
+        446,
+        543,
+        601
+      ],
+      "boundary_pixel_count": 467,
+      "id": 4,
+      "max_interior_dist": 6.2
+    },
+    {
+      "anchor_x": 748,
+      "anchor_y": 456,
+      "area": 629,
+      "bbox": [
+        710,
+        449,
+        758,
+        488
+      ],
+      "boundary_pixel_count": 263,
+      "id": 5,
+      "max_interior_dist": 6.4
+    },
+    {
+      "anchor_x": 670,
+      "anchor_y": 463,
+      "area": 4355,
+      "bbox": [
+        636,
+        395,
+        692,
+        533
+      ],
+      "boundary_pixel_count": 569,
+      "id": 6,
+      "max_interior_dist": 20.79
+    },
+    {
+      "anchor_x": 102,
+      "anchor_y": 481,
+      "area": 742,
+      "bbox": [
+        40,
+        474,
+        119,
+        505
+      ],
+      "boundary_pixel_count": 301,
+      "id": 7,
+      "max_interior_dist": 6.39
+    },
+    {
+      "anchor_x": 107,
+      "anchor_y": 499,
+      "area": 1129,
+      "bbox": [
+        60,
+        483,
+        126,
+        526
+      ],
+      "boundary_pixel_count": 293,
+      "id": 8,
+      "max_interior_dist": 8.4
+    },
+    {
+      "anchor_x": 694,
+      "anchor_y": 509,
+      "area": 1694,
+      "bbox": [
+        636,
+        491,
+        723,
+        558
+      ],
+      "boundary_pixel_count": 452,
+      "id": 9,
+      "max_interior_dist": 9.8
+    },
+    {
+      "anchor_x": 608,
+      "anchor_y": 524,
+      "area": 6472,
+      "bbox": [
+        596,
+        348,
+        767,
+        559
+      ],
+      "boundary_pixel_count": 1777,
+      "id": 10,
+      "max_interior_dist": 11.0
+    },
+    {
+      "anchor_x": 392,
+      "anchor_y": 546,
+      "area": 3546,
+      "bbox": [
+        352,
+        518,
+        516,
+        617
+      ],
+      "boundary_pixel_count": 706,
+      "id": 11,
+      "max_interior_dist": 18.58
+    },
+    {
+      "anchor_x": 319,
+      "anchor_y": 575,
+      "area": 4385,
+      "bbox": [
+        284,
+        510,
+        404,
+        642
+      ],
+      "boundary_pixel_count": 761,
+      "id": 12,
+      "max_interior_dist": 27.17
+    },
+    {
+      "anchor_x": 594,
+      "anchor_y": 583,
+      "area": 1651,
+      "bbox": [
+        545,
+        548,
+        640,
+        617
+      ],
+      "boundary_pixel_count": 541,
+      "id": 13,
+      "max_interior_dist": 9.2
+    },
+    {
+      "anchor_x": 388,
+      "anchor_y": 612,
+      "area": 7086,
+      "bbox": [
+        351,
+        556,
+        492,
+        647
+      ],
+      "boundary_pixel_count": 608,
+      "id": 14,
+      "max_interior_dist": 35.0
+    },
+    {
+      "anchor_x": 535,
+      "anchor_y": 616,
+      "area": 2536,
+      "bbox": [
+        351,
+        605,
+        547,
+        662
+      ],
+      "boundary_pixel_count": 646,
+      "id": 15,
+      "max_interior_dist": 8.2
+    },
+    {
+      "anchor_x": 120,
+      "anchor_y": 662,
+      "area": 45377,
+      "bbox": [
+        22,
+        506,
+        256,
+        831
+      ],
+      "boundary_pixel_count": 1470,
+      "id": 16,
+      "max_interior_dist": 94.88
+    },
+    {
+      "anchor_x": 195,
+      "anchor_y": 815,
+      "area": 2012,
+      "bbox": [
+        21,
+        727,
+        260,
+        855
+      ],
+      "boundary_pixel_count": 990,
+      "id": 17,
+      "max_interior_dist": 5.2
+    },
+    {
+      "anchor_x": 364,
+      "anchor_y": 856,
+      "area": 82151,
+      "bbox": [
+        266,
+        469,
+        1014,
+        982
+      ],
+      "boundary_pixel_count": 5643,
+      "id": 18,
+      "max_interior_dist": 42.95
+    },
+    {
+      "anchor_x": 172,
+      "anchor_y": 873,
+      "area": 27404,
+      "bbox": [
+        22,
+        739,
+        264,
+        978
+      ],
+      "boundary_pixel_count": 1259,
+      "id": 19,
+      "max_interior_dist": 51.93
+    }
+  ],
+  "config": {
+    "canvas_extension": 100,
+    "extend_canvas": true,
+    "image_edge_padding": 30,
+    "label_margin": 60,
+    "leader_elbow": false,
+    "max_crossing_passes": 20,
+    "min_label_spacing": 35,
+    "min_leader_length": 30,
+    "side_weights": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "crossings": 0,
+  "drawing_bbox": [
+    12,
+    95,
+    1023,
+    990
+  ],
+  "image": {
+    "height": 1024,
+    "width": 1024
+  },
+  "label_ring": [
+    30,
+    35,
+    1161,
+    1050
+  ],
+  "leaders": [
+    {
+      "anchor_x": 907,
+      "anchor_y": 309,
+      "component_id": 0,
+      "label_x": 1161,
+      "label_y": 117,
+      "original_anchor_x": 829,
+      "original_anchor_y": 309,
+      "side": "right"
+    },
+    {
+      "anchor_x": 586,
+      "anchor_y": 359,
+      "component_id": 1,
+      "label_x": 569,
+      "label_y": 35,
+      "original_anchor_x": 508,
+      "original_anchor_y": 359,
+      "side": "top"
+    },
+    {
+      "anchor_x": 804,
+      "anchor_y": 415,
+      "component_id": 2,
+      "label_x": 1161,
+      "label_y": 196,
+      "original_anchor_x": 726,
+      "original_anchor_y": 415,
+      "side": "right"
+    },
+    {
+      "anchor_x": 657,
+      "anchor_y": 448,
+      "component_id": 3,
+      "label_x": 925,
+      "label_y": 35,
+      "original_anchor_x": 579,
+      "original_anchor_y": 448,
+      "side": "top"
+    },
+    {
+      "anchor_x": 614,
+      "anchor_y": 456,
+      "component_id": 4,
+      "label_x": 704,
+      "label_y": 35,
+      "original_anchor_x": 536,
+      "original_anchor_y": 456,
+      "side": "top"
+    },
+    {
+      "anchor_x": 826,
+      "anchor_y": 456,
+      "component_id": 5,
+      "label_x": 1161,
+      "label_y": 330,
+      "original_anchor_x": 748,
+      "original_anchor_y": 456,
+      "side": "right"
+    },
+    {
+      "anchor_x": 748,
+      "anchor_y": 463,
+      "component_id": 6,
+      "label_x": 1161,
+      "label_y": 247,
+      "original_anchor_x": 670,
+      "original_anchor_y": 463,
+      "side": "right"
+    },
+    {
+      "anchor_x": 180,
+      "anchor_y": 481,
+      "component_id": 7,
+      "label_x": 30,
+      "label_y": 453,
+      "original_anchor_x": 102,
+      "original_anchor_y": 481,
+      "side": "left"
+    },
+    {
+      "anchor_x": 185,
+      "anchor_y": 499,
+      "component_id": 8,
+      "label_x": 30,
+      "label_y": 488,
+      "original_anchor_x": 107,
+      "original_anchor_y": 499,
+      "side": "left"
+    },
+    {
+      "anchor_x": 772,
+      "anchor_y": 509,
+      "component_id": 9,
+      "label_x": 1161,
+      "label_y": 448,
+      "original_anchor_x": 694,
+      "original_anchor_y": 509,
+      "side": "right"
+    },
+    {
+      "anchor_x": 686,
+      "anchor_y": 524,
+      "component_id": 10,
+      "label_x": 1161,
+      "label_y": 413,
+      "original_anchor_x": 608,
+      "original_anchor_y": 524,
+      "side": "right"
+    },
+    {
+      "anchor_x": 470,
+      "anchor_y": 546,
+      "component_id": 11,
+      "label_x": 30,
+      "label_y": 558,
+      "original_anchor_x": 392,
+      "original_anchor_y": 546,
+      "side": "left"
+    },
+    {
+      "anchor_x": 397,
+      "anchor_y": 575,
+      "component_id": 12,
+      "label_x": 30,
+      "label_y": 635,
+      "original_anchor_x": 319,
+      "original_anchor_y": 575,
+      "side": "left"
+    },
+    {
+      "anchor_x": 672,
+      "anchor_y": 583,
+      "component_id": 13,
+      "label_x": 1161,
+      "label_y": 841,
+      "original_anchor_x": 594,
+      "original_anchor_y": 583,
+      "side": "right"
+    },
+    {
+      "anchor_x": 466,
+      "anchor_y": 612,
+      "component_id": 14,
+      "label_x": 30,
+      "label_y": 845,
+      "original_anchor_x": 388,
+      "original_anchor_y": 612,
+      "side": "left"
+    },
+    {
+      "anchor_x": 613,
+      "anchor_y": 616,
+      "component_id": 15,
+      "label_x": 716,
+      "label_y": 1050,
+      "original_anchor_x": 535,
+      "original_anchor_y": 616,
+      "side": "bottom"
+    },
+    {
+      "anchor_x": 198,
+      "anchor_y": 662,
+      "component_id": 16,
+      "label_x": 30,
+      "label_y": 712,
+      "original_anchor_x": 120,
+      "original_anchor_y": 662,
+      "side": "left"
+    },
+    {
+      "anchor_x": 273,
+      "anchor_y": 815,
+      "component_id": 17,
+      "label_x": 30,
+      "label_y": 1020,
+      "original_anchor_x": 195,
+      "original_anchor_y": 815,
+      "side": "left"
+    },
+    {
+      "anchor_x": 442,
+      "anchor_y": 856,
+      "component_id": 18,
+      "label_x": 347,
+      "label_y": 1050,
+      "original_anchor_x": 364,
+      "original_anchor_y": 856,
+      "side": "bottom"
+    },
+    {
+      "anchor_x": 250,
+      "anchor_y": 873,
+      "component_id": 19,
+      "label_x": 64,
+      "label_y": 1050,
+      "original_anchor_x": 172,
+      "original_anchor_y": 873,
+      "side": "bottom"
+    }
+  ],
+  "offset": {
+    "x": 78,
+    "y": 0
+  },
+  "svg_path": "/Users/bhavinsg/Projects/Patent-Diagram-Generator/runs/tape/70_svg/out/output.svg"
+}

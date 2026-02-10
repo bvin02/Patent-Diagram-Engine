@@ -1,0 +1,300 @@
+{
+  "components": [
+    {
+      "anchor_x": 829,
+      "anchor_y": 309,
+      "area": 4568,
+      "bbox": [
+        689,
+        241,
+        859,
+        367
+      ],
+      "boundary_pixel_count": 787,
+      "id": 0,
+      "max_interior_dist": 22.57
+    },
+    {
+      "anchor_x": 508,
+      "anchor_y": 359,
+      "area": 42835,
+      "bbox": [
+        411,
+        240,
+        733,
+        605
+      ],
+      "boundary_pixel_count": 2906,
+      "id": 1,
+      "max_interior_dist": 56.32
+    },
+    {
+      "anchor_x": 726,
+      "anchor_y": 415,
+      "area": 4603,
+      "bbox": [
+        694,
+        379,
+        756,
+        490
+      ],
+      "boundary_pixel_count": 473,
+      "id": 2,
+      "max_interior_dist": 30.79
+    },
+    {
+      "anchor_x": 579,
+      "anchor_y": 448,
+      "area": 23486,
+      "bbox": [
+        532,
+        279,
+        808,
+        595
+      ],
+      "boundary_pixel_count": 2332,
+      "id": 3,
+      "max_interior_dist": 28.0
+    },
+    {
+      "anchor_x": 536,
+      "anchor_y": 456,
+      "area": 1483,
+      "bbox": [
+        517,
+        446,
+        543,
+        601
+      ],
+      "boundary_pixel_count": 467,
+      "id": 4,
+      "max_interior_dist": 6.2
+    },
+    {
+      "anchor_x": 748,
+      "anchor_y": 456,
+      "area": 629,
+      "bbox": [
+        710,
+        449,
+        758,
+        488
+      ],
+      "boundary_pixel_count": 263,
+      "id": 5,
+      "max_interior_dist": 6.4
+    },
+    {
+      "anchor_x": 670,
+      "anchor_y": 463,
+      "area": 4355,
+      "bbox": [
+        636,
+        395,
+        692,
+        533
+      ],
+      "boundary_pixel_count": 569,
+      "id": 6,
+      "max_interior_dist": 20.79
+    },
+    {
+      "anchor_x": 102,
+      "anchor_y": 481,
+      "area": 742,
+      "bbox": [
+        40,
+        474,
+        119,
+        505
+      ],
+      "boundary_pixel_count": 301,
+      "id": 7,
+      "max_interior_dist": 6.39
+    },
+    {
+      "anchor_x": 107,
+      "anchor_y": 499,
+      "area": 1129,
+      "bbox": [
+        60,
+        483,
+        126,
+        526
+      ],
+      "boundary_pixel_count": 293,
+      "id": 8,
+      "max_interior_dist": 8.4
+    },
+    {
+      "anchor_x": 694,
+      "anchor_y": 509,
+      "area": 1694,
+      "bbox": [
+        636,
+        491,
+        723,
+        558
+      ],
+      "boundary_pixel_count": 452,
+      "id": 9,
+      "max_interior_dist": 9.8
+    },
+    {
+      "anchor_x": 608,
+      "anchor_y": 524,
+      "area": 6472,
+      "bbox": [
+        596,
+        348,
+        767,
+        559
+      ],
+      "boundary_pixel_count": 1777,
+      "id": 10,
+      "max_interior_dist": 11.0
+    },
+    {
+      "anchor_x": 392,
+      "anchor_y": 546,
+      "area": 3546,
+      "bbox": [
+        352,
+        518,
+        516,
+        617
+      ],
+      "boundary_pixel_count": 706,
+      "id": 11,
+      "max_interior_dist": 18.58
+    },
+    {
+      "anchor_x": 319,
+      "anchor_y": 575,
+      "area": 4385,
+      "bbox": [
+        284,
+        510,
+        404,
+        642
+      ],
+      "boundary_pixel_count": 761,
+      "id": 12,
+      "max_interior_dist": 27.17
+    },
+    {
+      "anchor_x": 594,
+      "anchor_y": 583,
+      "area": 1651,
+      "bbox": [
+        545,
+        548,
+        640,
+        617
+      ],
+      "boundary_pixel_count": 541,
+      "id": 13,
+      "max_interior_dist": 9.2
+    },
+    {
+      "anchor_x": 388,
+      "anchor_y": 612,
+      "area": 7086,
+      "bbox": [
+        351,
+        556,
+        492,
+        647
+      ],
+      "boundary_pixel_count": 608,
+      "id": 14,
+      "max_interior_dist": 35.0
+    },
+    {
+      "anchor_x": 535,
+      "anchor_y": 616,
+      "area": 2536,
+      "bbox": [
+        351,
+        605,
+        547,
+        662
+      ],
+      "boundary_pixel_count": 646,
+      "id": 15,
+      "max_interior_dist": 8.2
+    },
+    {
+      "anchor_x": 120,
+      "anchor_y": 662,
+      "area": 45377,
+      "bbox": [
+        22,
+        506,
+        256,
+        831
+      ],
+      "boundary_pixel_count": 1470,
+      "id": 16,
+      "max_interior_dist": 94.88
+    },
+    {
+      "anchor_x": 195,
+      "anchor_y": 815,
+      "area": 2012,
+      "bbox": [
+        21,
+        727,
+        260,
+        855
+      ],
+      "boundary_pixel_count": 990,
+      "id": 17,
+      "max_interior_dist": 5.2
+    },
+    {
+      "anchor_x": 364,
+      "anchor_y": 856,
+      "area": 82151,
+      "bbox": [
+        266,
+        469,
+        1014,
+        982
+      ],
+      "boundary_pixel_count": 5643,
+      "id": 18,
+      "max_interior_dist": 42.95
+    },
+    {
+      "anchor_x": 172,
+      "anchor_y": 873,
+      "area": 27404,
+      "bbox": [
+        22,
+        739,
+        264,
+        978
+      ],
+      "boundary_pixel_count": 1259,
+      "id": 19,
+      "max_interior_dist": 51.93
+    }
+  ],
+  "config": {
+    "anchor_min_edge_dist": 5,
+    "border_margin": 5,
+    "max_component_area_frac": 0.5,
+    "min_boundary_pixels": 20,
+    "min_component_area": 200,
+    "min_edge_segment_length": 8,
+    "novel_boundary_frac": 0.15,
+    "stroke_dilate_radius": 1
+  },
+  "image": {
+    "height": 1024,
+    "width": 1024
+  },
+  "mask_path": "/Users/bhavinsg/Projects/Patent-Diagram-Generator/runs/tape/10_preprocess/out/output_mask.png",
+  "svg_path": "/Users/bhavinsg/Projects/Patent-Diagram-Generator/runs/tape/70_svg/out/output.svg"
+}

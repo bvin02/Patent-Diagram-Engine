@@ -88,6 +88,34 @@ STAGES = [
             "--mask", str(ctx["run_dir"] / "10_preprocess" / "out" / "output_mask.png"),
         ],
     },
+    {
+        "id": "8",
+        "name": "Label Identify",
+        "script": "label_identify.py",
+        "build_args": lambda ctx: [
+            str(ctx["run_dir"] / "10_preprocess" / "out" / "output_mask.png"),
+            "--svg", str(ctx["run_dir"] / "70_svg" / "out" / "output.svg"),
+        ],
+    },
+    {
+        "id": "9",
+        "name": "Label Leaders",
+        "script": "label_leaders.py",
+        "build_args": lambda ctx: [
+            str(ctx["run_dir"] / "80_label_identify" / "out" / "components.json"),
+            "--mask", str(ctx["run_dir"] / "10_preprocess" / "out" / "output_mask.png"),
+        ],
+    },
+    {
+        "id": "10",
+        "name": "Label Place",
+        "script": "label_place.py",
+        "build_args": lambda ctx: [
+            str(ctx["run_dir"] / "90_label_leaders" / "out" / "leaders.json"),
+            "--svg", str(ctx["run_dir"] / "70_svg" / "out" / "output.svg"),
+            "--mask", str(ctx["run_dir"] / "10_preprocess" / "out" / "output_mask.png"),
+        ],
+    },
 ]
 
 
@@ -258,8 +286,12 @@ Examples:
     print(f"\n{'='*60}")
     if not failed:
         print(f"  ✓  Pipeline completed successfully in {total_elapsed:.1f}s")
+        # Show labelled SVG if available, otherwise plain SVG
+        labelled_path = run_dir / "100_label_place" / "out" / "labelled.svg"
         svg_path = run_dir / "70_svg" / "out" / "output.svg"
-        if svg_path.exists():
+        if labelled_path.exists():
+            print(f"  Output:  {labelled_path}")
+        elif svg_path.exists():
             print(f"  Output:  {svg_path}")
     else:
         print(f"  ✗  Pipeline failed at stage {failed[0]['id']}: {failed[0]['name']}")
