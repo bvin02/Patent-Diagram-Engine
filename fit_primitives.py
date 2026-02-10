@@ -72,6 +72,14 @@ DEFAULT_CONFIG = {
     "polyline_min_smooth_length_px": 15.0,  # Min segment length to smooth
     "polyline_max_drift_px": 2.5,  # Max allowed deviation from original
     "polyline_smooth_iterations": 2,  # Number of smoothing passes
+    
+    # Pure curve smoothing (polylines with NO interior corners - just smooth arcs)
+    "pure_curve_enabled": True,  # Apply extra smoothing to pure curves
+    "pure_curve_chaikin_iterations": 2,  # Chaikin subdivision passes (doubles points each pass)
+    "pure_curve_smooth_iterations": 10,  # Moving-average passes after Chaikin (more = smoother)
+    "pure_curve_smooth_weight": 0.95,  # Very aggressive smoothing weight
+    "pure_curve_max_drift_px": 4.0,  # Allow drift for pure curves (well-constrained)
+    "pure_curve_min_points": 4,  # Min points to consider as pure curve
 }
 
 
@@ -365,12 +373,140 @@ def smooth_polyline_segment(points: np.ndarray, weight: float,
     return smoothed
 
 
-def smooth_polyline_curve_aware(points: np.ndarray, config: dict) -> Tuple[np.ndarray, List[int], List[Tuple[int, int]]]:
+def chaikin_subdivide(points: np.ndarray, iterations: int = 2) -> np.ndarray:
+    """
+    Apply Chaikin's corner-cutting subdivision to create a smoother curve.
+    
+    Each iteration replaces each segment with two new points at 1/4 and 3/4
+    positions, effectively cutting corners and converging to a B-spline.
+    
+    Args:
+        points: Nx2 array of polyline vertices
+        iterations: Number of subdivision passes
+        
+    Returns:
+        Subdivided points array (approximately 2^iterations times more points)
+    """
+    if len(points) < 3:
+        return points.copy()
+    
+    result = points.copy()
+    
+    for _ in range(iterations):
+        n = len(result)
+        # Each segment produces 2 new points, plus we keep first and last
+        new_pts = [result[0]]  # Keep first point fixed
+        
+        for i in range(n - 1):
+            p0 = result[i]
+            p1 = result[i + 1]
+            # Q = 3/4 * P0 + 1/4 * P1
+            q = 0.75 * p0 + 0.25 * p1
+            # R = 1/4 * P0 + 3/4 * P1
+            r = 0.25 * p0 + 0.75 * p1
+            new_pts.append(q)
+            new_pts.append(r)
+        
+        new_pts.append(result[-1])  # Keep last point fixed
+        result = np.array(new_pts)
+    
+    return result
+
+
+def smooth_pure_curve(points: np.ndarray, config: dict) -> np.ndarray:
+    """
+    Apply aggressive smoothing to a "pure curve" polyline (no interior corners).
+    
+    Uses Chaikin subdivision followed by moving-average smoothing to create
+    a seamlessly smooth curve, with drift constraint to stay near original.
+    
+    Args:
+        points: Nx2 array of polyline vertices (assumed to be a smooth curve)
+        config: Configuration dict
+        
+    Returns:
+        Smoothed points array
+    """
+    if len(points) < 3:
+        return points.copy()
+    
+    # Get pure curve parameters
+    chaikin_iters = config.get("pure_curve_chaikin_iterations", 2)
+    smooth_iters = config.get("pure_curve_smooth_iterations", 4)
+    smooth_weight = config.get("pure_curve_smooth_weight", 0.8)
+    max_drift = config.get("pure_curve_max_drift_px", 4.0)
+    
+    # Step 1: Chaikin subdivision to increase point density and smooth corners
+    subdivided = chaikin_subdivide(points, chaikin_iters)
+    
+    # Step 2: Moving-average smoothing
+    smoothed = subdivided.copy()
+    for _ in range(smooth_iters):
+        new_pts = smoothed.copy()
+        for i in range(1, len(smoothed) - 1):
+            # 5-point weighted average for extra smoothness
+            if i >= 2 and i < len(smoothed) - 2:
+                neighbor_avg = (0.1 * smoothed[i-2] + 0.2 * smoothed[i-1] + 
+                               0.4 * smoothed[i] + 
+                               0.2 * smoothed[i+1] + 0.1 * smoothed[i+2])
+            else:
+                neighbor_avg = 0.25 * smoothed[i-1] + 0.5 * smoothed[i] + 0.25 * smoothed[i+1]
+            new_pts[i] = (1 - smooth_weight) * smoothed[i] + smooth_weight * neighbor_avg
+        smoothed = new_pts
+    
+    # Step 3: Constrain drift from original curve
+    # For each smoothed point, find closest point on original polyline
+    # and limit deviation
+    for i in range(1, len(smoothed) - 1):
+        # Find closest point on original polyline segments
+        min_dist = float('inf')
+        closest_pt = smoothed[i]
+        
+        for j in range(len(points) - 1):
+            # Project onto segment points[j] to points[j+1]
+            seg_start = points[j]
+            seg_end = points[j + 1]
+            seg_vec = seg_end - seg_start
+            seg_len_sq = np.dot(seg_vec, seg_vec)
+            
+            if seg_len_sq < 1e-9:
+                proj_pt = seg_start
+            else:
+                t = np.clip(np.dot(smoothed[i] - seg_start, seg_vec) / seg_len_sq, 0, 1)
+                proj_pt = seg_start + t * seg_vec
+            
+            dist = np.linalg.norm(smoothed[i] - proj_pt)
+            if dist < min_dist:
+                min_dist = dist
+                closest_pt = proj_pt
+        
+        # Apply drift constraint
+        if min_dist > max_drift:
+            direction = smoothed[i] - closest_pt
+            direction_norm = np.linalg.norm(direction)
+            if direction_norm > 1e-9:
+                smoothed[i] = closest_pt + (direction / direction_norm) * max_drift
+    
+    # Step 4: Resample to reduce point count while maintaining smoothness
+    target_count = max(len(points), int(len(points) * 1.5))
+    if len(smoothed) > target_count:
+        indices = np.linspace(0, len(smoothed) - 1, target_count).astype(int)
+        indices[0] = 0
+        indices[-1] = len(smoothed) - 1
+        smoothed = smoothed[indices]
+    
+    return smoothed
+
+
+def smooth_polyline_curve_aware(points: np.ndarray, config: dict) -> Tuple[np.ndarray, List[int], List[Tuple[int, int]], bool]:
     """
     Smooth a polyline while preserving sharp corners.
     
     Detects corners (sharp angle changes) and only smooths the curved segments
     between corners. Endpoints and junction corners remain fixed.
+    
+    For "pure curves" (polylines with NO interior corners), applies more aggressive
+    Chaikin subdivision + smoothing for seamless curves.
     
     Args:
         points: Nx2 array of polyline vertices
@@ -381,12 +517,13 @@ def smooth_polyline_curve_aware(points: np.ndarray, config: dict) -> Tuple[np.nd
         - Smoothed points array
         - List of corner indices (for debug)
         - List of (start, end) tuples for smoothed segments (for debug)
+        - Boolean indicating if pure curve smoothing was applied
     """
     if not config.get("polyline_smooth_enabled", True):
-        return points.copy(), [], []
+        return points.copy(), [], [], False
     
     if len(points) < 3:
-        return points.copy(), [0, len(points) - 1] if len(points) >= 2 else [0], []
+        return points.copy(), [0, len(points) - 1] if len(points) >= 2 else [0], [], False
     
     # Get parameters
     corner_threshold = config.get("polyline_corner_threshold_deg", 35.0)
@@ -399,9 +536,24 @@ def smooth_polyline_curve_aware(points: np.ndarray, config: dict) -> Tuple[np.nd
     corners = detect_polyline_corners(points, corner_threshold)
     
     if len(corners) < 2:
-        return points.copy(), corners, []
+        return points.copy(), corners, [], False
     
-    # Smooth segments between corners
+    # Check if this is a "pure curve" - only endpoints are corners
+    pure_curve_enabled = config.get("pure_curve_enabled", True)
+    min_pure_curve_pts = config.get("pure_curve_min_points", 4)
+    is_pure_curve = (pure_curve_enabled and 
+                     len(corners) == 2 and 
+                     corners[0] == 0 and 
+                     corners[1] == len(points) - 1 and
+                     len(points) >= min_pure_curve_pts)
+    
+    if is_pure_curve:
+        # Apply aggressive pure curve smoothing
+        smoothed = smooth_pure_curve(points, config)
+        smoothed_segments = [(0, len(points) - 1)]
+        return smoothed, corners, smoothed_segments, True
+    
+    # Standard smoothing for polylines with interior corners
     smoothed = points.copy()
     smoothed_segments = []
     
@@ -433,7 +585,7 @@ def smooth_polyline_curve_aware(points: np.ndarray, config: dict) -> Tuple[np.nd
         
         smoothed_segments.append((start_idx, end_idx))
     
-    return smoothed, corners, smoothed_segments
+    return smoothed, corners, smoothed_segments, False
 
 
 def create_smoothed_polyline_primitive(points: np.ndarray, config: dict) -> Tuple[dict, dict]:
@@ -448,7 +600,7 @@ def create_smoothed_polyline_primitive(points: np.ndarray, config: dict) -> Tupl
         Tuple of (primitive dict, debug info dict)
     """
     # Apply curve-aware smoothing
-    smoothed, corners, smoothed_segments = smooth_polyline_curve_aware(points, config)
+    smoothed, corners, smoothed_segments, is_pure_curve = smooth_polyline_curve_aware(points, config)
     
     primitive = {
         "type": "polyline",
@@ -460,7 +612,8 @@ def create_smoothed_polyline_primitive(points: np.ndarray, config: dict) -> Tupl
         "corner_indices": corners,
         "smoothed_segments": smoothed_segments,
         "num_corners": len(corners),
-        "was_smoothed": len(smoothed_segments) > 0
+        "was_smoothed": len(smoothed_segments) > 0,
+        "is_pure_curve": is_pure_curve
     }
     
     return primitive, debug_info
@@ -1318,6 +1471,7 @@ def fit_primitives(
         # 5b) Polyline smoothing visualization (original vs smoothed with corners highlighted)
         vis = (base_img.astype(np.float32) * 0.3).astype(np.uint8)
         smoothed_count = 0
+        pure_curve_count = 0
         corner_count = 0
         for prim in primitives:
             if prim["chosen"]["type"] != "polyline":
@@ -1332,6 +1486,7 @@ def fit_primitives(
             smoothed_pts = np.array(prim["chosen"]["points"])
             corners = smooth_info.get("corner_indices", [])
             was_smoothed = smooth_info.get("was_smoothed", False)
+            is_pure_curve = smooth_info.get("is_pure_curve", False)
             
             if len(original_pts) < 2 or len(smoothed_pts) < 2:
                 continue
@@ -1339,23 +1494,28 @@ def fit_primitives(
             # Draw original in red (thin)
             cv2.polylines(vis, [original_pts.astype(np.int32)], False, (0, 0, 180), 1)
             
-            # Draw smoothed in green (thicker)
-            cv2.polylines(vis, [smoothed_pts.astype(np.int32)], False, (0, 255, 0), 2)
+            # Draw smoothed: cyan for pure curves, green for regular
+            if is_pure_curve:
+                cv2.polylines(vis, [smoothed_pts.astype(np.int32)], False, (255, 255, 0), 2)  # Cyan
+                pure_curve_count += 1
+            else:
+                cv2.polylines(vis, [smoothed_pts.astype(np.int32)], False, (0, 255, 0), 2)  # Green
             
-            # Mark corners with yellow circles
-            for c_idx in corners:
-                if 0 <= c_idx < len(smoothed_pts):
-                    pt = tuple(smoothed_pts[c_idx].astype(int))
-                    cv2.circle(vis, pt, 4, (0, 255, 255), -1)
-                    corner_count += 1
+            # Mark corners with yellow circles (only for non-pure curves)
+            if not is_pure_curve:
+                for c_idx in corners:
+                    if 0 <= c_idx < len(original_pts):
+                        pt = tuple(original_pts[c_idx].astype(int))
+                        cv2.circle(vis, pt, 4, (0, 255, 255), -1)
+                        corner_count += 1
             
             if was_smoothed:
                 smoothed_count += 1
         
         # Add legend
-        cv2.putText(vis, f"Red=original, Green=smoothed, Yellow=corners", 
+        cv2.putText(vis, f"Red=original, Green=smoothed, Cyan=pure curves, Yellow=corners", 
                     (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-        cv2.putText(vis, f"Smoothed: {smoothed_count} polylines, {corner_count} corners preserved", 
+        cv2.putText(vis, f"Smoothed: {smoothed_count} polylines ({pure_curve_count} pure curves), {corner_count} corners", 
                     (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
         artifacts.save_debug_image("polyline_smoothing_vis", vis)
         
@@ -1512,6 +1672,11 @@ def fit_primitives(
                 1 for p in primitives 
                 if p["chosen"]["type"] == "polyline" 
                 and p.get("polyline_smooth_info", {}).get("was_smoothed", False)
+            ),
+            "pure_curves": sum(
+                1 for p in primitives 
+                if p["chosen"]["type"] == "polyline" 
+                and p.get("polyline_smooth_info", {}).get("is_pure_curve", False)
             ),
             "corners_preserved": sum(
                 p.get("polyline_smooth_info", {}).get("num_corners", 0)
