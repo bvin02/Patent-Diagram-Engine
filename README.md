@@ -61,32 +61,32 @@ cd frontend && npm install && cd ..
 
 ```bash
 # Full pipeline (vectorization + labelling)
-python run_pipeline.py examples/clean.png
+python run_pipeline.py examples/tape.png
 
 # Vectorization only (stages 0-7)
-python run_pipeline.py examples/clean.png --only-stages 0 1 2 3 4 5 6 7
+python run_pipeline.py examples/tape.png --only-stages 0 1 2 3 4 5 6 7
 
 # Resume from a specific stage
-python run_pipeline.py examples/clean.png --from-stage 4
+python run_pipeline.py examples/tape.png --from-stage 4
 
 # Without debug output
-python run_pipeline.py examples/clean.png --no-debug
+python run_pipeline.py examples/tape.png --no-debug
 ```
 
 ### Run individual stages manually
 
 ```bash
-python stage0_init_run.py examples/clean.png
-python preprocess.py examples/clean.png --debug
-python distance_transform.py runs/clean/10_preprocess/out/output_mask.png --debug
-python ridge_extraction.py runs/clean/10_preprocess/out/output_mask.png runs/clean/20_distance_transform/out/dt.npy --debug
-python graph_build.py runs/clean/30_ridge/out/ridge.png --mask runs/clean/10_preprocess/out/output_mask.png --debug
-python graph_cleanup.py runs/clean/40_graph_raw/out/graph_raw.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
-python fit_primitives.py runs/clean/50_graph_clean/out/graph_clean.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
-python emit_svg.py runs/clean/60_fit/out/primitives.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
-python label_identify.py runs/clean/10_preprocess/out/output_mask.png --svg runs/clean/70_svg/out/output.svg --debug
-python label_leaders.py runs/clean/80_label_identify/out/components.json --mask runs/clean/10_preprocess/out/output_mask.png --debug
-python label_place.py runs/clean/90_label_leaders/out/leaders.json --svg runs/clean/70_svg/out/output.svg --debug
+python stage0_init_run.py examples/tape.png
+python preprocess.py examples/tape.png --debug
+python distance_transform.py runs/tape/10_preprocess/out/output_mask.png --debug
+python ridge_extraction.py runs/tape/10_preprocess/out/output_mask.png runs/tape/20_distance_transform/out/dt.npy --debug
+python graph_build.py runs/tape/30_ridge/out/ridge.png --mask runs/tape/10_preprocess/out/output_mask.png --debug
+python graph_tapeup.py runs/tape/40_graph_raw/out/graph_raw.json --mask runs/tape/10_preprocess/out/output_mask.png --debug
+python fit_primitives.py runs/tape/50_graph_tape/out/graph_tape.json --mask runs/tape/10_preprocess/out/output_mask.png --debug
+python emit_svg.py runs/tape/60_fit/out/primitives.json --mask runs/tape/10_preprocess/out/output_mask.png --debug
+python label_identify.py runs/tape/10_preprocess/out/output_mask.png --svg runs/tape/70_svg/out/output.svg --debug
+python label_leaders.py runs/tape/80_label_identify/out/components.json --mask runs/tape/10_preprocess/out/output_mask.png --debug
+python label_place.py runs/tape/90_label_leaders/out/leaders.json --svg runs/clean/70_svg/out/output.svg --debug
 ```
 
 ---
